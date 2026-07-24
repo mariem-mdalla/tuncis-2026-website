@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion';
 import { MapPin, Plane, BedDouble, Mail } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function PracticalInfo() {
+  const { t } = useTranslation();
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: { 
@@ -30,7 +33,7 @@ export default function PracticalInfo() {
             animate={{ opacity: 1, y: 0 }}
             className="font-heading text-4xl md:text-5xl mb-4 font-bold"
           >
-            Practical Information
+            {t('practicalInfo.title')}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -38,7 +41,7 @@ export default function PracticalInfo() {
             transition={{ delay: 0.1 }}
             className="text-white/80 text-lg max-w-xl"
           >
-            Everything you need to plan your trip to TUNCIS 2026.
+            {t('practicalInfo.subtitle')}
           </motion.p>
         </div>
       </section>
@@ -54,7 +57,7 @@ export default function PracticalInfo() {
             <div className="w-12 h-12 bg-tuncis-yellow/10 rounded-xl flex items-center justify-center text-tuncis-yellow mb-6">
               <MapPin size={24} />
             </div>
-            <h2 className="font-heading text-xl font-bold text-tuncis-blue mb-3">Venue</h2>
+            <h2 className="font-heading text-xl font-bold text-tuncis-blue mb-3">{t('practicalInfo.venue')}</h2>
             <p className="text-tuncis-gray leading-relaxed text-lg font-medium">Green Park Hotel</p>
             <p className="text-tuncis-gray/80">Sousse, Tunisia</p>
           </motion.div>
@@ -63,9 +66,9 @@ export default function PracticalInfo() {
             <div className="w-12 h-12 bg-tuncis-yellow/10 rounded-xl flex items-center justify-center text-tuncis-yellow mb-6">
               <Plane size={24} />
             </div>
-            <h2 className="font-heading text-xl font-bold text-tuncis-blue mb-3">Getting There</h2>
+            <h2 className="font-heading text-xl font-bold text-tuncis-blue mb-3">{t('practicalInfo.gettingThere')}</h2>
             <p className="text-tuncis-gray leading-relaxed">
-              Nearest airports: Enfidha–Hammamet (NBE) and Monastir Habib Bourguiba (MIR).
+              {t('practicalInfo.gettingThereText')}
             </p>
           </motion.div>
 
@@ -73,9 +76,9 @@ export default function PracticalInfo() {
             <div className="w-12 h-12 bg-tuncis-yellow/10 rounded-xl flex items-center justify-center text-tuncis-yellow mb-6">
               <BedDouble size={24} />
             </div>
-            <h2 className="font-heading text-xl font-bold text-tuncis-blue mb-3">Accommodation</h2>
+            <h2 className="font-heading text-xl font-bold text-tuncis-blue mb-3">{t('practicalInfo.accommodation')}</h2>
             <p className="text-tuncis-gray italic leading-relaxed">
-              Details to be confirmed by the organizing committee.
+              {t('practicalInfo.accommodationPending')}
             </p>
           </motion.div>
 
@@ -83,7 +86,7 @@ export default function PracticalInfo() {
             <div className="w-12 h-12 bg-tuncis-yellow/10 rounded-xl flex items-center justify-center text-tuncis-yellow mb-6">
               <Mail size={24} />
             </div>
-            <h2 className="font-heading text-xl font-bold text-tuncis-blue mb-3">Contact</h2>
+            <h2 className="font-heading text-xl font-bold text-tuncis-blue mb-3">{t('practicalInfo.contact')}</h2>
             <p className="text-tuncis-gray mb-2">For any inquiries regarding the event:</p>
             <a href="mailto:tuncis2026@horizon-tech.tn" className="text-tuncis-blue font-bold hover:text-tuncis-yellow transition-colors inline-block border-b-2 border-tuncis-blue hover:border-tuncis-yellow">
               tuncis2026@horizon-tech.tn

@@ -1,0 +1,101 @@
+{
+  "nav": {
+    "programme": "Programme",
+    "callForCommunications": "Appel à Communications",
+    "committees": "Comités",
+    "practicalInfo": "Infos Pratiques",
+    "register": "S'inscrire"
+  },
+  "home": {
+    "eyebrow": "23–24 octobre 2026 · Sousse, Tunisie",
+    "themePrefix": "De la recherche au déploiement industriel :",
+    "themeHighlight": "co-construire l'innovation en IA",
+    "subtitle": "TUNCIS 2026 réunit chercheurs, praticiens et doctorants de Tunisie et d'Europe pour deux jours de keynotes, ateliers et un Doctoral Consortium.",
+    "registerNow": "S'inscrire maintenant",
+    "viewProgramme": "Voir le Programme",
+    "keyDates": "Dates Clés",
+    "highlightsLabel": "Temps Forts",
+    "highlightsTitle": "À quoi s'attendre à TUNCIS 2026",
+    "keynotes": { "title": "Keynotes", "desc": "Interventions de chercheurs en IA de Tunisie et d'Europe." },
+    "workshops": { "title": "Ateliers Collaboratifs", "desc": "Sessions pratiques reliant recherche et pratique industrielle." },
+    "consortium": { "title": "Doctoral Consortium", "desc": "Un espace dédié aux doctorants pour présenter et recevoir des retours." },
+    "nvidia": { "title": "Certification NVIDIA", "desc": "Parcours de formation certifiante optionnel pour les participants." }
+  },
+  "milestones": {
+    "submission": "Date Limite de Soumission",
+    "acceptance": "Notification d'Acceptation",
+    "registrationDeadline": "Date Limite d'Inscription",
+    "programmePublished": "Programme Final Publié",
+    "event": "TUNCIS 2026"
+  },
+  "registration": {
+    "title": "Inscription",
+    "subtitle": "Rejoignez-nous pour TUNCIS 2026 — l'inscription prend moins de 5 minutes.",
+    "personalInfo": "Informations Personnelles",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "email": "Adresse E-mail",
+    "affiliation": "Établissement",
+    "affiliationPlaceholder": "Université ou organisme",
+    "status": "Statut",
+    "statusOptions": {
+      "researcher": "Chercheur",
+      "practitioner": "Praticien",
+      "phd": "Doctorant",
+      "student": "Étudiant"
+    },
+    "participation": "Options de Participation",
+    "doctoralConsortium": "Doctoral Consortium",
+    "galaDinner": "Dîner de Gala",
+    "nvidiaCertification": "Certification NVIDIA",
+    "yes": "Oui",
+    "no": "Non",
+    "additionalInfo": "Informations Complémentaires",
+    "dietary": "Restrictions Alimentaires",
+    "dietaryPlaceholder": "Indiquez toute allergie ou besoin alimentaire particulier",
+    "submit": "Soumettre l'Inscription",
+    "submitting": "Envoi en cours...",
+    "confirmedTitle": "Inscription Confirmée",
+    "confirmedMessage": "Merci de vous être inscrit à TUNCIS 2026. Un e-mail de confirmation vous sera envoyé sous peu.",
+    "errorFallback": "Veuillez vérifier le formulaire et réessayer."
+  },
+  "footer": {
+    "description": "Conférence Tunisienne sur l'Intelligence Artificielle et l'Innovation Scientifique. Organisée par TunAISia en partenariat avec Horizon University et les principales institutions tunisiennes.",
+    "event": "Événement",
+    "contact": "Contact",
+    "rights": "© 2026 TUNCIS. Tous droits réservés."
+  },
+  "programme": {
+    "title": "Programme",
+    "subtitle": "23–24 octobre 2026 · Green Park Hotel, Sousse",
+    "day1": "Jour 1 — 23 octobre",
+    "day2": "Jour 2 — 24 octobre",
+    "note": "Programme susceptible d'être modifié par le comité d'organisation."
+  },
+  "cfc": {
+    "title": "Appel à Communications",
+    "subtitle": "Soumettez vos travaux de recherche au Doctoral Consortium de TUNCIS 2026 et partagez-les avec des chercheurs de Tunisie et d'Europe.",
+    "topicsTitle": "Thématiques de Recherche",
+    "topicsPending": "Les thématiques détaillées seront publiées par le comité d'organisation. Les soumissions doivent porter sur l'Intelligence Artificielle, de la recherche au déploiement industriel.",
+    "guidelinesTitle": "Consignes de Soumission",
+    "guidelinesText": "Les soumissions doivent être des travaux originaux et inédits, en lien avec les thématiques ci-dessus. Les soumissions au Doctoral Consortium doivent inclure un résumé de la problématique, de la méthodologie et de l'état d'avancement.",
+    "submitCta": "Soumettre via le Formulaire d'Inscription",
+    "datesTitle": "Dates Importantes"
+  },
+  "committees": {
+    "title": "Comités",
+    "subtitle": "Organisé par TunAISia, en partenariat avec les principales universités tunisiennes.",
+    "organizing": "Comité d'Organisation",
+    "scientific": "Comité Scientifique"
+  },
+  "practicalInfo": {
+    "title": "Informations Pratiques",
+    "subtitle": "Tout ce qu'il vous faut pour préparer votre venue à TUNCIS 2026.",
+    "venue": "Lieu",
+    "gettingThere": "Comment s'y rendre",
+    "gettingThereText": "Aéroports les plus proches : Enfidha–Hammamet (NBE) et Monastir Habib Bourguiba (MIR).",
+    "accommodation": "Hébergement",
+    "accommodationPending": "Détails à confirmer par le comité d'organisation.",
+    "contact": "Contact"
+  }
+}

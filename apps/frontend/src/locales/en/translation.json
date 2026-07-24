@@ -1,0 +1,101 @@
+{
+  "nav": {
+    "programme": "Programme",
+    "callForCommunications": "Call for Communications",
+    "committees": "Committees",
+    "practicalInfo": "Practical Info",
+    "register": "Register"
+  },
+  "home": {
+    "eyebrow": "October 23–24, 2026 · Sousse, Tunisia",
+    "themePrefix": "From research to industrial deployment:",
+    "themeHighlight": "co-construct innovation in AI",
+    "subtitle": "TUNCIS 2026 brings together researchers, practitioners, and PhD students from Tunisia and Europe for two days of keynotes, workshops, and a Doctoral Consortium.",
+    "registerNow": "Register Now",
+    "viewProgramme": "View Programme",
+    "keyDates": "Key Dates",
+    "highlightsLabel": "Highlights",
+    "highlightsTitle": "What to expect at TUNCIS 2026",
+    "keynotes": { "title": "Keynotes", "desc": "Talks from leading AI researchers across Tunisia and Europe." },
+    "workshops": { "title": "Collaborative Workshops", "desc": "Hands-on sessions bridging research and industry practice." },
+    "consortium": { "title": "Doctoral Consortium", "desc": "A dedicated track for PhD students to present and get feedback." },
+    "nvidia": { "title": "NVIDIA Certification", "desc": "Optional certified training track for attendees." }
+  },
+  "milestones": {
+    "submission": "Submission Deadline",
+    "acceptance": "Acceptance Notification",
+    "registrationDeadline": "Registration Deadline",
+    "programmePublished": "Final Programme Published",
+    "event": "TUNCIS 2026"
+  },
+  "registration": {
+    "title": "Registration",
+    "subtitle": "Join us for TUNCIS 2026 — registration takes less than 5 minutes.",
+    "personalInfo": "Personal Information",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email Address",
+    "affiliation": "Affiliation",
+    "affiliationPlaceholder": "University or organization",
+    "status": "Status",
+    "statusOptions": {
+      "researcher": "Researcher",
+      "practitioner": "Practitioner",
+      "phd": "PhD Student",
+      "student": "Student"
+    },
+    "participation": "Participation Options",
+    "doctoralConsortium": "Doctoral Consortium",
+    "galaDinner": "Gala Dinner",
+    "nvidiaCertification": "NVIDIA AI Certification",
+    "yes": "Yes",
+    "no": "No",
+    "additionalInfo": "Additional Information",
+    "dietary": "Dietary Restrictions",
+    "dietaryPlaceholder": "Let us know of any allergies or dietary requirements",
+    "submit": "Submit Registration",
+    "submitting": "Submitting...",
+    "confirmedTitle": "Registration Confirmed",
+    "confirmedMessage": "Thank you for registering for TUNCIS 2026. A confirmation email will follow shortly.",
+    "errorFallback": "Please check the form and try again."
+  },
+  "footer": {
+    "description": "Tunisian Conference on Artificial Intelligence and Scientific Innovation. Organized by TunAISia in partnership with Horizon University and leading Tunisian institutions.",
+    "event": "Event",
+    "contact": "Contact",
+    "rights": "© 2026 TUNCIS. All rights reserved."
+  },
+  "programme": {
+    "title": "Programme",
+    "subtitle": "October 23–24, 2026 · Green Park Hotel, Sousse",
+    "day1": "Day 1 — October 23",
+    "day2": "Day 2 — October 24",
+    "note": "Schedule subject to updates by the organizing committee."
+  },
+  "cfc": {
+    "title": "Call for Communications",
+    "subtitle": "Submit your research to the TUNCIS 2026 Doctoral Consortium and share your work with researchers from Tunisia and Europe.",
+    "topicsTitle": "Research Topics",
+    "topicsPending": "Detailed topics of interest will be published by the organizing committee. Submissions should relate to Artificial Intelligence, from research to industrial deployment.",
+    "guidelinesTitle": "Submission Guidelines",
+    "guidelinesText": "Submissions should be original, unpublished work relevant to the topics above. Doctoral Consortium submissions should include a summary of the research problem, methodology, and current progress.",
+    "submitCta": "Submit via Registration Form",
+    "datesTitle": "Important Dates"
+  },
+  "committees": {
+    "title": "Committees",
+    "subtitle": "Organized by TunAISia, in partnership with leading Tunisian universities.",
+    "organizing": "Organizing Committee",
+    "scientific": "Scientific Committee"
+  },
+  "practicalInfo": {
+    "title": "Practical Information",
+    "subtitle": "Everything you need to plan your trip to TUNCIS 2026.",
+    "venue": "Venue",
+    "gettingThere": "Getting There",
+    "gettingThereText": "Nearest airports: Enfidha–Hammamet (NBE) and Monastir Habib Bourguiba (MIR).",
+    "accommodation": "Accommodation",
+    "accommodationPending": "Details to be confirmed by the organizing committee.",
+    "contact": "Contact"
+  }
+}

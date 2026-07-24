@@ -1,23 +1,41 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 const day1 = [
-  { time: "08:30 – 09:00", title: "Registration & Welcome Coffee" },
-  { time: "09:00 – 10:00", title: "Opening Keynote" },
-  { time: "10:00 – 12:00", title: "Collaborative Workshops" },
-  { time: "12:00 – 13:30", title: "Lunch" },
-  { time: "13:30 – 16:00", title: "Doctoral Consortium Sessions" },
-  { time: "16:00 – 17:00", title: "NVIDIA AI Certification Track" },
+  { time: "08:30 – 09:00", key: "welcome" },
+  { time: "09:00 – 10:00", key: "keynote" },
+  { time: "10:00 – 12:00", key: "workshops" },
+  { time: "12:00 – 13:30", key: "lunch" },
+  { time: "13:30 – 16:00", key: "consortium" },
+  { time: "16:00 – 17:00", key: "nvidia" },
 ];
 
 const day2 = [
-  { time: "09:00 – 10:30", title: "Keynote: Industrial Deployment of AI" },
-  { time: "10:30 – 12:30", title: "Paper Presentations" },
-  { time: "12:30 – 14:00", title: "Lunch" },
-  { time: "14:00 – 16:00", title: "Panel: Research-Industry Collaboration" },
-  { time: "20:00", title: "Gala Dinner" },
+  { time: "09:00 – 10:30", key: "keynote2" },
+  { time: "10:30 – 12:30", key: "presentations" },
+  { time: "12:30 – 14:00", key: "lunch2" },
+  { time: "14:00 – 16:00", key: "panel" },
+  { time: "20:00", key: "gala" },
 ];
 
-function DaySchedule({ title, items }) {
+const itemLabels = {
+  en: {
+    welcome: "Registration & Welcome Coffee", keynote: "Opening Keynote", workshops: "Collaborative Workshops",
+    lunch: "Lunch", consortium: "Doctoral Consortium Sessions", nvidia: "NVIDIA AI Certification Track",
+    keynote2: "Keynote: Industrial Deployment of AI", presentations: "Paper Presentations",
+    lunch2: "Lunch", panel: "Panel: Research-Industry Collaboration", gala: "Gala Dinner",
+  },
+  fr: {
+    welcome: "Accueil & Café de Bienvenue", keynote: "Keynote d'Ouverture", workshops: "Ateliers Collaboratifs",
+    lunch: "Déjeuner", consortium: "Sessions du Doctoral Consortium", nvidia: "Parcours Certification NVIDIA",
+    keynote2: "Keynote : Déploiement Industriel de l'IA", presentations: "Présentations de Communications",
+    lunch2: "Déjeuner", panel: "Panel : Collaboration Recherche-Industrie", gala: "Dîner de Gala",
+  },
+};
+
+function DaySchedule({ title, items, lang }) {
+  const labels = itemLabels[lang] || itemLabels.fr;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -38,7 +56,9 @@ function DaySchedule({ title, items }) {
           >
             <div className="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-tuncis-bg border-4 border-tuncis-yellow group-hover:scale-125 transition-transform" />
             <p className="text-sm uppercase tracking-widest text-tuncis-yellow font-bold mb-1">{item.time}</p>
-            <p className="text-tuncis-blue font-bold text-lg group-hover:text-tuncis-blue-dark transition-colors">{item.title}</p>
+            <p className="text-tuncis-blue font-bold text-lg group-hover:text-tuncis-blue-dark transition-colors">
+              {labels[item.key]}
+            </p>
           </motion.div>
         ))}
       </div>
@@ -47,6 +67,9 @@ function DaySchedule({ title, items }) {
 }
 
 export default function Programme() {
+  const { t, i18n } = useTranslation();
+  const lang = i18n.language?.startsWith('en') ? 'en' : 'fr';
+
   return (
     <motion.main
       initial={{ opacity: 0, y: 16 }}
@@ -62,7 +85,7 @@ export default function Programme() {
             animate={{ opacity: 1, y: 0 }}
             className="font-heading text-4xl md:text-5xl mb-4 font-bold"
           >
-            Programme
+            {t('programme.title')}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -70,22 +93,22 @@ export default function Programme() {
             transition={{ delay: 0.1 }}
             className="text-white/80 text-lg"
           >
-            October 23–24, 2026 · Green Park Hotel, Sousse
+            {t('programme.subtitle')}
           </motion.p>
         </div>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 -mt-8 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <DaySchedule title="Day 1 — October 23" items={day1} />
-          <DaySchedule title="Day 2 — October 24" items={day2} />
+          <DaySchedule title={t('programme.day1')} items={day1} lang={lang} />
+          <DaySchedule title={t('programme.day2')} items={day2} lang={lang} />
         </div>
         <motion.p 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           className="text-center text-sm text-tuncis-gray/70 mt-12 italic"
         >
-          Schedule subject to updates by the organizing committee.
+          {t('programme.note')}
         </motion.p>
       </section>
     </motion.main>

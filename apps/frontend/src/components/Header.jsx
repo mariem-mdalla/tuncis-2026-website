@@ -1,8 +1,35 @@
 import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { Menu, X } from 'lucide-react';
 
+function LanguageSwitcher() {
+  const { i18n } = useTranslation();
+
+  const changeLang = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
+  return (
+    <div className="flex gap-1 text-sm font-bold ml-1">
+      <button
+        onClick={() => changeLang('en')}
+        className={`px-2 py-1 rounded transition-colors ${i18n.language === 'en' ? 'bg-tuncis-yellow text-tuncis-blue' : 'text-white/80 hover:text-white'}`}
+      >
+        EN
+      </button>
+      <button
+        onClick={() => changeLang('fr')}
+        className={`px-2 py-1 rounded transition-colors ${i18n.language === 'fr' ? 'bg-tuncis-yellow text-tuncis-blue' : 'text-white/80 hover:text-white'}`}
+      >
+        FR
+      </button>
+    </div>
+  );
+}
+
 export default function Header() {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -12,7 +39,6 @@ export default function Header() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // Close mobile menu on route change
   const handleNavClick = () => setMenuOpen(false);
 
   const linkClass = ({ isActive }) =>
@@ -25,7 +51,6 @@ export default function Header() {
   return (
     <header className={`sticky top-0 z-50 text-white transition-all duration-300 ${headerClass}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
         <Link to="/" className="font-heading text-xl sm:text-2xl tracking-wide flex items-center gap-1" onClick={handleNavClick}>
           <span className="font-bold">TUNCIS</span>
           <span className="text-tuncis-yellow">2026</span>
@@ -33,31 +58,26 @@ export default function Header() {
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-6">
-          <NavLink to="/programme" className={linkClass}>Programme</NavLink>
-          <NavLink to="/call-for-communications" className={linkClass}>Call for Communications</NavLink>
-          <NavLink to="/committees" className={linkClass}>Committees</NavLink>
-          <NavLink to="/practical-info" className={linkClass}>Practical Info</NavLink>
+          <NavLink to="/programme" className={linkClass}>{t('nav.programme')}</NavLink>
+          <NavLink to="/call-for-communications" className={linkClass}>{t('nav.callForCommunications')}</NavLink>
+          <NavLink to="/committees" className={linkClass}>{t('nav.committees')}</NavLink>
+          <NavLink to="/practical-info" className={linkClass}>{t('nav.practicalInfo')}</NavLink>
           <Link
             to="/register"
             className="bg-tuncis-yellow text-tuncis-blue text-sm font-bold px-5 py-2 rounded-full hover:bg-white transition-colors shadow-[0_0_12px_rgba(251,213,58,0.4)]"
           >
-            Register
+            {t('nav.register')}
           </Link>
+          <LanguageSwitcher />
         </nav>
 
-        {/* Mobile: Register button + hamburger */}
-        <div className="flex items-center gap-3 lg:hidden">
-          <Link
-            to="/register"
-            onClick={handleNavClick}
-            className="bg-tuncis-yellow text-tuncis-blue text-xs font-bold px-4 py-2 rounded-full"
-          >
-            Register
-          </Link>
+        {/* Mobile nav items */}
+        <div className="flex items-center gap-2 lg:hidden">
+          <LanguageSwitcher />
           <button
             onClick={() => setMenuOpen((o) => !o)}
             aria-label="Toggle menu"
-            className="text-white p-1"
+            className="text-white p-1 ml-2"
           >
             {menuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -66,12 +86,12 @@ export default function Header() {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="lg:hidden bg-tuncis-blue/95 backdrop-blur-md border-t border-white/10 px-4 pb-4 pt-2 space-y-1">
+        <div className="lg:hidden bg-tuncis-blue/95 backdrop-blur-md border-t border-white/10 px-4 pb-4 pt-2 space-y-1 shadow-lg">
           {[
-            { to: '/programme', label: 'Programme' },
-            { to: '/call-for-communications', label: 'Call for Communications' },
-            { to: '/committees', label: 'Committees' },
-            { to: '/practical-info', label: 'Practical Info' },
+            { to: '/programme', label: t('nav.programme') },
+            { to: '/call-for-communications', label: t('nav.callForCommunications') },
+            { to: '/committees', label: t('nav.committees') },
+            { to: '/practical-info', label: t('nav.practicalInfo') },
           ].map(({ to, label }) => (
             <NavLink
               key={to}
@@ -84,6 +104,15 @@ export default function Header() {
               {label}
             </NavLink>
           ))}
+          <div className="pt-3 pb-1 px-2">
+            <Link
+              to="/register"
+              onClick={handleNavClick}
+              className="inline-block bg-tuncis-yellow text-tuncis-blue text-sm font-bold px-6 py-2.5 rounded-full shadow-md"
+            >
+              {t('nav.register')}
+            </Link>
+          </div>
         </div>
       )}
     </header>

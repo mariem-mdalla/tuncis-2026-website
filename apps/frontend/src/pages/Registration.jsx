@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
-function YesNoToggle({ label, value, onChange }) {
+function YesNoToggle({ label, value, onChange, t }) {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-4">
       <span className="text-tuncis-blue font-medium">{label}</span>
@@ -18,7 +19,7 @@ function YesNoToggle({ label, value, onChange }) {
                 : 'bg-tuncis-bg text-tuncis-gray hover:bg-tuncis-blue/10 border border-gray-200'
             }`}
           >
-            {opt}
+            {opt === 'Yes' ? t('registration.yes') : t('registration.no')}
           </button>
         ))}
       </div>
@@ -31,10 +32,78 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
+const API_BASE = "http://127.0.0.1:5001/tuncis-2026/us-central1/api";
+
 export default function Registration() {
+  const { t } = useTranslation();
+  const [form, setForm] = useState({
+    firstName: '', lastName: '', email: '', affiliation: '', status: 'Researcher',
+  });
   const [consortium, setConsortium] = useState(null);
   const [gala, setGala] = useState(null);
   const [nvidia, setNvidia] = useState(null);
+  const [dietary, setDietary] = useState('');
+  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [errorMsg, setErrorMsg] = useState('');
+
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setStatus('submitting');
+    setErrorMsg('');
+
+    const payload = {
+      ...form,
+      doctoralConsortium: consortium === 'Yes',
+      galaDinner: gala === 'Yes',
+      nvidiaCertification: nvidia === 'Yes',
+      dietaryRestrictions: dietary,
+    };
+
+    try {
+      const res = await fetch(`${API_BASE}/registrations`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.message || t('registration.errorFallback'));
+      }
+
+      setStatus('success');
+    } catch (err) {
+      setStatus('error');
+      setErrorMsg(err.message);
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <motion.main
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
+        className="bg-tuncis-bg min-h-screen flex items-center justify-center px-4"
+      >
+        <div className="text-center max-w-md">
+          <div className="w-14 h-14 rounded-full bg-tuncis-blue/10 flex items-center justify-center mx-auto mb-6">
+            <Check size={28} className="text-tuncis-blue" />
+          </div>
+          <h1 className="font-heading text-2xl sm:text-3xl text-tuncis-blue mb-3 font-bold">
+            {t('registration.confirmedTitle')}
+          </h1>
+          <p className="text-tuncis-gray">
+            {t('registration.confirmedMessage')}
+          </p>
+        </div>
+      </motion.main>
+    );
+  }
 
   return (
     <motion.main
@@ -43,101 +112,112 @@ export default function Registration() {
       transition={{ duration: 0.35, ease: 'easeOut' }}
       className="bg-tuncis-bg min-h-screen pb-20"
     >
-      {/* Page header */}
       <section className="bg-tuncis-blue text-white py-16 sm:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tuncis-yellow/10 via-transparent to-transparent" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
-          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl mb-3 font-bold">Registration</h1>
+          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl mb-3 font-bold">{t('registration.title')}</h1>
           <p className="text-white/80 text-base sm:text-lg">
-            Join us for TUNCIS 2026 — registration takes less than 5 minutes.
+            {t('registration.subtitle')}
           </p>
         </div>
       </section>
 
-      {/* Centered form */}
       <section className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
         <motion.form
+          onSubmit={handleSubmit}
           initial="hidden"
           animate="visible"
           variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
           className="bg-white border border-gray-100 shadow-lg rounded-2xl overflow-hidden"
         >
-          {/* Top accent bar */}
           <div className="h-1.5 bg-gradient-to-r from-tuncis-blue via-tuncis-blue to-tuncis-yellow" />
 
           <div className="p-6 sm:p-10 space-y-10">
-            {/* Section 1 — Personal */}
             <motion.div variants={itemVariants}>
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
                 <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">1</div>
-                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">Personal Information</h2>
+                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.personalInfo')}</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">First Name *</label>
-                  <input type="text" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
+                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.firstName')} *</label>
+                  <input
+                    name="firstName" value={form.firstName} onChange={handleChange} required
+                    type="text" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
                 </div>
                 <div>
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">Last Name *</label>
-                  <input type="text" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
+                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.lastName')} *</label>
+                  <input
+                    name="lastName" value={form.lastName} onChange={handleChange} required
+                    type="text" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">Email Address *</label>
-                  <input type="email" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
+                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.email')} *</label>
+                  <input
+                    name="email" value={form.email} onChange={handleChange} required
+                    type="email" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">Affiliation *</label>
-                  <input type="text" placeholder="University or organization" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
+                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.affiliation')} *</label>
+                  <input
+                    name="affiliation" value={form.affiliation} onChange={handleChange} required
+                    type="text" placeholder={t('registration.affiliationPlaceholder')} className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
                 </div>
                 <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">Status *</label>
-                  <select className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-sm">
-                    <option>Researcher</option>
-                    <option>Post-doctoral Researcher</option>
-                    <option>PhD Student</option>
-                    <option>Practitioner</option>
-                    <option>Teacher</option>
-                    <option>Student</option>
+                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.status')} *</label>
+                  <select
+                    name="status" value={form.status} onChange={handleChange}
+                    className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-sm">
+                    <option value="Researcher">{t('registration.statusOptions.researcher')}</option>
+                    <option value="Practitioner">{t('registration.statusOptions.practitioner')}</option>
+                    <option value="PhD Student">{t('registration.statusOptions.phd')}</option>
+                    <option value="Student">{t('registration.statusOptions.student')}</option>
                   </select>
                 </div>
               </div>
             </motion.div>
 
-            {/* Section 2 — Participation */}
             <motion.div variants={itemVariants}>
               <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
                 <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">2</div>
-                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">Participation Options</h2>
+                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.participation')}</h2>
               </div>
               <div className="divide-y divide-gray-100">
-                <YesNoToggle label="Doctoral Consortium" value={consortium} onChange={setConsortium} />
-                <YesNoToggle label="Gala Dinner" value={gala} onChange={setGala} />
-                <YesNoToggle label="NVIDIA AI Certification" value={nvidia} onChange={setNvidia} />
+                <YesNoToggle label={t('registration.doctoralConsortium')} value={consortium} onChange={setConsortium} t={t} />
+                <YesNoToggle label={t('registration.galaDinner')} value={gala} onChange={setGala} t={t} />
+                <YesNoToggle label={t('registration.nvidiaCertification')} value={nvidia} onChange={setNvidia} t={t} />
               </div>
             </motion.div>
 
-            {/* Section 3 — Additional */}
             <motion.div variants={itemVariants}>
               <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
                 <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">3</div>
-                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">Additional Information</h2>
+                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.additionalInfo')}</h2>
               </div>
-              <label className="block text-sm font-bold text-tuncis-blue mb-2">Dietary Restrictions</label>
+              <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.dietary')}</label>
               <textarea
+                value={dietary}
+                onChange={(e) => setDietary(e.target.value)}
                 rows="3"
-                placeholder="Let us know of any allergies or dietary requirements"
+                placeholder={t('registration.dietaryPlaceholder')}
                 className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none resize-none text-sm"
               />
             </motion.div>
 
-            {/* Submit */}
+            {status === 'error' && (
+              <motion.p variants={itemVariants} className="text-red-600 text-sm">
+                {errorMsg}
+              </motion.p>
+            )}
+
             <motion.div variants={itemVariants}>
               <button
                 type="submit"
-                className="w-full flex items-center justify-center gap-2 bg-tuncis-yellow text-tuncis-blue font-bold px-8 py-4 rounded-xl hover:bg-[#e5c235] active:scale-95 transition-all shadow-md shadow-tuncis-yellow/20 text-base"
+                disabled={status === 'submitting'}
+                className="w-full flex items-center justify-center gap-2 bg-tuncis-yellow text-tuncis-blue font-bold px-8 py-4 rounded-xl hover:bg-[#e5c235] active:scale-95 transition-all shadow-md shadow-tuncis-yellow/20 text-base disabled:opacity-50"
               >
                 <Check size={20} />
-                Submit Registration
+                {status === 'submitting' ? t('registration.submitting') : t('registration.submit')}
               </button>
             </motion.div>
           </div>

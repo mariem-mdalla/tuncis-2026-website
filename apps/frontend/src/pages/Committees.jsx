@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Building2, User } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 const organizing = [
   { name: "Full Name", role: "Conference Chair", affiliation: "Horizon University" },
@@ -45,6 +46,7 @@ function CommitteeGrid({ title, members }) {
 }
 
 export default function Committees() {
+  const { t } = useTranslation();
   return (
     <motion.main
       initial={{ opacity: 0, y: 16 }}
@@ -60,7 +62,7 @@ export default function Committees() {
             animate={{ opacity: 1, y: 0 }}
             className="font-heading text-4xl md:text-5xl mb-4 font-bold"
           >
-            Committees
+            {t('committees.title')}
           </motion.h1>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -68,14 +70,14 @@ export default function Committees() {
             transition={{ delay: 0.1 }}
             className="text-white/80 text-lg max-w-2xl"
           >
-            Organized by TunAISia, in partnership with leading Tunisian universities and research centers.
+            {t('committees.subtitle')}
           </motion.p>
         </div>
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 -mt-8 relative z-20 space-y-16">
-        <CommitteeGrid title="Organizing Committee" members={organizing} />
-        <CommitteeGrid title="Scientific Committee" members={scientific} />
+        <CommitteeGrid title={t('committees.organizing')} members={organizing} />
+        <CommitteeGrid title={t('committees.scientific')} members={scientific} />
       </section>
     </motion.main>
   );
