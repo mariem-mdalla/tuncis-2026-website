@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check } from 'lucide-react';
+import { Check, ChevronDown } from 'lucide-react';
+import PhoneInput, { getCountryCallingCode } from 'react-phone-number-input';
+import 'react-phone-number-input/style.css';
 import { useTranslation } from 'react-i18next';
 
 function YesNoToggle({ label, value, onChange, t }) {
@@ -27,6 +29,29 @@ function YesNoToggle({ label, value, onChange, t }) {
   );
 }
 
+const CustomCountrySelect = ({ value, onChange, labels, options, iconComponent: Icon }) => {
+  return (
+    <div className="PhoneInputCountry relative flex items-center gap-2 h-full">
+      {Icon && <div className="w-5 h-4 overflow-hidden rounded-[2px] shadow-sm"><Icon country={value} label={labels ? labels[value] : value} /></div>}
+      <span className="text-sm font-medium text-tuncis-blue whitespace-nowrap">
+        {value ? `+${getCountryCallingCode(value)} ${labels ? labels[value] : value}` : 'Intl'}
+      </span>
+      <ChevronDown size={14} className="text-tuncis-gray/70 ml-1" />
+      <select
+        value={value || ''}
+        onChange={(event) => onChange(event.target.value || undefined)}
+        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+      >
+        {options.map(({ value, label }) => (
+          <option key={value || 'ZZ'} value={value || ''}>
+            {label} {value && `+${getCountryCallingCode(value)}`}
+          </option>
+        ))}
+      </select>
+    </div>
+  );
+};
+
 const itemVariants = {
   hidden: { opacity: 0, y: 12 },
   visible: { opacity: 1, y: 0 },
@@ -37,7 +62,7 @@ const API_BASE = "http://127.0.0.1:5001/tuncis-2026/us-central1/api";
 export default function Registration() {
   const { t } = useTranslation();
   const [form, setForm] = useState({
-    firstName: '', lastName: '', email: '', affiliation: '', status: 'Researcher',
+    firstName: '', lastName: '', email: '', phone: '', affiliation: '', status: 'Researcher',
   });
   const [consortium, setConsortium] = useState(null);
   const [gala, setGala] = useState(null);
@@ -49,12 +74,15 @@ export default function Registration() {
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
+  const handlePhoneChange = (value) => {
+    setForm({ ...form, phone: value || '' });
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('submitting');
     setErrorMsg('');
-
+  
     const payload = {
       ...form,
       doctoralConsortium: consortium === 'Yes',
@@ -158,6 +186,16 @@ export default function Registration() {
                     type="email" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
                 </div>
                 <div className="sm:col-span-2">
+                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.phone')} *</label>
+                  <PhoneInput
+                    defaultCountry="TN"
+                    value={form.phone}
+                    onChange={handlePhoneChange}
+                    className="tuncis-phone-layout"
+                    countrySelectComponent={CustomCountrySelect}
+                  />
+                </div>
+                <div className="sm:col-span-2">
                   <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.affiliation')} *</label>
                   <input
                     name="affiliation" value={form.affiliation} onChange={handleChange} required
@@ -171,7 +209,6 @@ export default function Registration() {
                     <option value="Researcher">{t('registration.statusOptions.researcher')}</option>
                     <option value="Practitioner">{t('registration.statusOptions.practitioner')}</option>
                     <option value="PhD Student">{t('registration.statusOptions.phd')}</option>
-                    <option value="Student">{t('registration.statusOptions.student')}</option>
                   </select>
                 </div>
               </div>

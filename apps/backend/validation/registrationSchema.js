@@ -4,6 +4,7 @@ const registrationSchema = z.object({
   firstName: z.string().min(1, "First name is required"),
   lastName: z.string().min(1, "Last name is required"),
   email: z.string().email("Invalid email address"),
+  phone: z.string().min(6, "Phone number is required"),
   affiliation: z.string().min(1, "Affiliation is required"),
   status: z.enum(["Researcher", "Practitioner", "PhD Student", "Student"]),
   doctoralConsortium: z.boolean(),

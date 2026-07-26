@@ -5,8 +5,9 @@ const registrations = pgTable("registrations", {
   firstName: text("first_name").notNull(),
   lastName: text("last_name").notNull(),
   email: text("email").notNull(),
+  phone: text("phone").notNull(),
   affiliation: text("affiliation").notNull(),
-  status: text("status").notNull(), // Researcher / Practitioner / PhD Student / Student
+  status: text("status").notNull(),
   doctoralConsortium: boolean("doctoral_consortium").notNull(),
   galaDinner: boolean("gala_dinner").notNull(),
   nvidiaCertification: boolean("nvidia_certification").notNull(),

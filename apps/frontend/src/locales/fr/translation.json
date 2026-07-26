@@ -35,14 +35,14 @@
     "firstName": "Prénom",
     "lastName": "Nom",
     "email": "Adresse E-mail",
+    "phone": "Numéro de Téléphone",
     "affiliation": "Établissement",
     "affiliationPlaceholder": "Université ou organisme",
     "status": "Statut",
     "statusOptions": {
       "researcher": "Chercheur",
       "practitioner": "Praticien",
-      "phd": "Doctorant",
-      "student": "Étudiant"
+      "phd": "Doctorant"
     },
     "participation": "Options de Participation",
     "doctoralConsortium": "Doctoral Consortium",

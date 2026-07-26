@@ -35,6 +35,7 @@
     "firstName": "First Name",
     "lastName": "Last Name",
     "email": "Email Address",
+    "phone": "Phone Number",
     "affiliation": "Affiliation",
     "affiliationPlaceholder": "University or organization",
     "status": "Status",
