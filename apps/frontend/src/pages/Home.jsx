@@ -2,7 +2,7 @@ import { Link } from 'react-router';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { Presentation, Users, GraduationCap, Award } from 'lucide-react';
-import Timeline from '../components/Timeline';
+import Timeline from '../components/TimeLine';
 
 export default function Home() {
   const { t } = useTranslation();
