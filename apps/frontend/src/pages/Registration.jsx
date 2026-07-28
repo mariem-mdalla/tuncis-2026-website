@@ -62,7 +62,7 @@ const API_BASE = "http://127.0.0.1:5001/tuncis-2026/us-central1/api";
 export default function Registration() {
   const { t } = useTranslation();
   const [form, setForm] = useState({
-    firstName: '', lastName: '', email: '', phone: '', affiliation: '', status: 'Researcher',
+    fullName: '', email: '', phone: '', affiliation: '', status: 'Researcher',
   });
   const [consortium, setConsortium] = useState(null);
   const [gala, setGala] = useState(null);
@@ -167,16 +167,10 @@ export default function Registration() {
                 <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.personalInfo')}</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.firstName')} *</label>
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.fullName')} *</label>
                   <input
-                    name="firstName" value={form.firstName} onChange={handleChange} required
-                    type="text" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
-                </div>
-                <div>
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.lastName')} *</label>
-                  <input
-                    name="lastName" value={form.lastName} onChange={handleChange} required
+                    name="fullName" value={form.fullName} onChange={handleChange} required
                     type="text" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
                 </div>
                 <div className="sm:col-span-2">

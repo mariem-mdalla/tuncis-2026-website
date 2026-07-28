@@ -2,8 +2,7 @@ const { pgTable, serial, text, boolean, timestamp } = require("drizzle-orm/pg-co
 
 const registrations = pgTable("registrations", {
   id: serial("id").primaryKey(),
-  firstName: text("first_name").notNull(),
-  lastName: text("last_name").notNull(),
+  fullName: text("full_name").notNull(),
   email: text("email").notNull(),
   phone: text("phone").notNull(),
   affiliation: text("affiliation").notNull(),
