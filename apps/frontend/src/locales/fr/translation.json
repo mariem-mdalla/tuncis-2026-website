@@ -85,7 +85,12 @@
     "title": "Comités",
     "subtitle": "Organisé par TunAISia, en partenariat avec les principales universités tunisiennes.",
     "organizing": "Comité d'Organisation",
-    "scientific": "Comité Scientifique"
+    "scientific": "Comité Scientifique",
+    "leadership": "Direction",
+    "roles": {
+      "coordination": "Coordination générale",
+      "coChairConsortium": "Co-chair, consortium doctoral"
+    }
   },
   "practicalInfo": {
     "title": "Informations Pratiques",

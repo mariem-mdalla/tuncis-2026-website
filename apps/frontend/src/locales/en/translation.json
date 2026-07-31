@@ -86,7 +86,12 @@
     "title": "Committees",
     "subtitle": "Organized by TunAISia, in partnership with leading Tunisian universities.",
     "organizing": "Organizing Committee",
-    "scientific": "Scientific Committee"
+    "scientific": "Scientific Committee",
+    "leadership": "Leadership",
+    "roles": {
+      "coordination": "General Coordination",
+      "coChairConsortium": "Co-chair, Doctoral Consortium"
+    }
   },
   "practicalInfo": {
     "title": "Practical Information",
