@@ -2,34 +2,57 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 
 const day1 = [
-  { time: "08:30 – 09:00", key: "welcome" },
-  { time: "09:00 – 10:00", key: "keynote" },
-  { time: "10:00 – 12:00", key: "workshops" },
-  { time: "12:00 – 13:30", key: "lunch" },
-  { time: "13:30 – 16:00", key: "consortium" },
-  { time: "16:00 – 17:00", key: "nvidia" },
+  { time: "9H – 10H",      key: "keynote1" },
+  { time: "10H – 11H",     key: "workshops1" },
+  { time: "11H – 11H15",   key: "coffeeBreak1" },
+  { time: "11H15 – 13H",   key: "workshops2" },
+  { time: "13H",           key: "lunch" },
+  { time: "14H – 15H",     key: "keynote2" },
+  { time: "15H",           key: "coffeeBreak2" },
+  { time: "15H30 – 17H",   key: "workshops3" },
+  { time: "17H – 18H",     key: "closing1" },
+  { time: "19H",           key: "gala" },
 ];
 
 const day2 = [
-  { time: "09:00 – 10:30", key: "keynote2" },
-  { time: "10:30 – 12:30", key: "presentations" },
-  { time: "12:30 – 14:00", key: "lunch2" },
-  { time: "14:00 – 16:00", key: "panel" },
-  { time: "20:00", key: "gala" },
+  { time: "9H – 10H",      key: "keynote3" },
+  { time: "10H – 11H",     key: "coffeeBreak3" },
+  { time: "11H15 – 12H30", key: "pitching" },
+  { time: "12H30 – 13H",   key: "closing2" },
 ];
 
 const itemLabels = {
   en: {
-    welcome: "Registration & Welcome Coffee", keynote: "Opening Keynote", workshops: "Collaborative Workshops",
-    lunch: "Lunch", consortium: "Doctoral Consortium Sessions", nvidia: "NVIDIA AI Certification Track",
-    keynote2: "Keynote: Industrial Deployment of AI", presentations: "Paper Presentations",
-    lunch2: "Lunch", panel: "Panel: Research-Industry Collaboration", gala: "Gala Dinner",
+    keynote1:     "Keynote",
+    workshops1:   "Collaborative Workshops",
+    coffeeBreak1: "Coffee Break",
+    workshops2:   "Workshops",
+    lunch:        "Lunch Break",
+    keynote2:     "Keynote 2",
+    coffeeBreak2: "Coffee Break",
+    workshops3:   "Collaborative Workshops 2",
+    closing1:     "Wrap-up & Closing",
+    gala:         "Gala Dinner",
+    keynote3:     "Keynote",
+    coffeeBreak3: "Coffee Break",
+    pitching:     "Research Project Pitching / NVIDIA Certification Workshop",
+    closing2:     "Wrap-up & Closing",
   },
   fr: {
-    welcome: "Accueil & Café de Bienvenue", keynote: "Keynote d'Ouverture", workshops: "Ateliers Collaboratifs",
-    lunch: "Déjeuner", consortium: "Sessions du Doctoral Consortium", nvidia: "Parcours Certification NVIDIA",
-    keynote2: "Keynote : Déploiement Industriel de l'IA", presentations: "Présentations de Communications",
-    lunch2: "Déjeuner", panel: "Panel : Collaboration Recherche-Industrie", gala: "Dîner de Gala",
+    keynote1:     "Keynote",
+    workshops1:   "Ateliers collaboratifs",
+    coffeeBreak1: "Pause café",
+    workshops2:   "Ateliers",
+    lunch:        "Pause déjeuner",
+    keynote2:     "Keynote 2",
+    coffeeBreak2: "Pause café",
+    workshops3:   "Ateliers collaboratifs 2",
+    closing1:     "Restitution et Clôture",
+    gala:         "Gala dîner",
+    keynote3:     "Keynote",
+    coffeeBreak3: "Pause café",
+    pitching:     "Research project pitching / Workshop de certification NVIDIA",
+    closing2:     "Restitution et clôture",
   },
 };
 
@@ -101,7 +124,17 @@ export default function Programme() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 -mt-8 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
           <DaySchedule title={t('programme.day1')} items={day1} lang={lang} />
-          <DaySchedule title={t('programme.day2')} items={day2} lang={lang} />
+          <div className="space-y-6">
+            <DaySchedule title={t('programme.day2')} items={day2} lang={lang} />
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-sm text-tuncis-gray/70 italic px-1"
+            >
+              {t('programme.pendingNote')}
+            </motion.p>
+          </div>
         </div>
         <motion.p 
           initial={{ opacity: 0 }}

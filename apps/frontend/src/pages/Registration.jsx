@@ -201,8 +201,9 @@ export default function Registration() {
                     name="status" value={form.status} onChange={handleChange}
                     className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-sm">
                     <option value="Researcher">{t('registration.statusOptions.researcher')}</option>
-                    <option value="Practitioner">{t('registration.statusOptions.practitioner')}</option>
+                    <option value="Engineer">{t('registration.statusOptions.engineer')}</option>
                     <option value="PhD Student">{t('registration.statusOptions.phd')}</option>
+                    <option value="Other">{t('registration.statusOptions.other')}</option>
                   </select>
                 </div>
               </div>
@@ -233,6 +234,17 @@ export default function Registration() {
                 placeholder={t('registration.dietaryPlaceholder')}
                 className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none resize-none text-sm"
               />
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
+                <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">4</div>
+                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.feesTitle')}</h2>
+              </div>
+              <div className="bg-tuncis-blue rounded-xl p-6 space-y-3">
+                <p className="text-white/90 text-sm leading-relaxed">{t('registration.feesText')}</p>
+                <p className="text-white/60 text-xs italic">{t('registration.feesNote')}</p>
+              </div>
             </motion.div>
 
             {status === 'error' && (

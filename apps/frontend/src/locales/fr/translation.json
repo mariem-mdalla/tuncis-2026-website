@@ -10,7 +10,7 @@
     "eyebrow": "23–24 octobre 2026 · Sousse, Tunisie",
     "themePrefix": "De la recherche au déploiement industriel :",
     "themeHighlight": "co-construire l'innovation en IA",
-    "subtitle": "TUNCIS 2026 réunit chercheurs, praticiens et doctorants de Tunisie et d'Europe pour deux jours de keynotes, ateliers et un Doctoral Consortium.",
+    "subtitle": "TUNCIS 2026 réunit chercheurs, ingénieurs et doctorants de Tunisie et d'Europe pour deux jours de keynotes, ateliers et un Doctoral Consortium.",
     "registerNow": "S'inscrire maintenant",
     "viewProgramme": "Voir le Programme",
     "keyDates": "Dates Clés",
@@ -19,7 +19,9 @@
     "keynotes": { "title": "Keynotes", "desc": "Interventions de chercheurs en IA de Tunisie et d'Europe." },
     "workshops": { "title": "Ateliers Collaboratifs", "desc": "Sessions pratiques reliant recherche et pratique industrielle." },
     "consortium": { "title": "Doctoral Consortium", "desc": "Un espace dédié aux doctorants pour présenter et recevoir des retours." },
-    "nvidia": { "title": "Certification NVIDIA", "desc": "Parcours de formation certifiante optionnel pour les participants." }
+    "nvidia": { "title": "Certification NVIDIA", "desc": "Parcours de formation certifiante optionnel pour les participants." },
+    "partnersLabel": "Nos Partenaires",
+    "partnersTitle": "Co-construire l'innovation ensemble"
   },
   "milestones": {
     "submission": "Date Limite de Soumission",
@@ -40,8 +42,9 @@
     "status": "Statut",
     "statusOptions": {
       "researcher": "Chercheur",
-      "practitioner": "Praticien",
-      "phd": "Doctorant"
+      "engineer": "Ingénieur",
+      "phd": "Doctorant",
+      "other": "Autre"
     },
     "participation": "Options de Participation",
     "doctoralConsortium": "Doctoral Consortium",
@@ -56,10 +59,13 @@
     "submitting": "Envoi en cours...",
     "confirmedTitle": "Inscription Confirmée",
     "confirmedMessage": "Merci de vous être inscrit à TUNCIS 2026. Un e-mail de confirmation vous sera envoyé sous peu.",
-    "errorFallback": "Veuillez vérifier le formulaire et réessayer."
+    "errorFallback": "Veuillez vérifier le formulaire et réessayer.",
+    "feesTitle": "Frais d'inscription",
+    "feesText": "Frais d'inscription : 400 DT pour les 2 journées avec hébergement à l'hôtel + 100 DT si formation certifiante NVIDIA (mêmes tarifs en Euros pour les chercheurs étrangers, places limitées).",
+    "feesNote": "Ces tarifs peuvent changer."
   },
   "footer": {
-    "description": "Conférence Tunisienne sur l'Intelligence Artificielle et l'Innovation Scientifique. Organisée par TunAISia en partenariat avec Horizon University et les principales institutions tunisiennes.",
+    "description": "Conférence Tunisienne sur l'Intelligence Artificielle et l'Innovation Scientifique.",
     "event": "Événement",
     "contact": "Contact",
     "rights": "© 2026 TUNCIS. Tous droits réservés."
@@ -67,27 +73,101 @@
   "programme": {
     "title": "Programme",
     "subtitle": "23–24 octobre 2026 · Green Park Hotel, Sousse",
-    "day1": "Jour 1 — 23 octobre",
-    "day2": "Jour 2 — 24 octobre",
-    "note": "Programme susceptible d'être modifié par le comité d'organisation."
+    "day1": "Jour 1 - 23 octobre",
+    "day2": "Jour 2 - 24 octobre",
+    "note": "Programme susceptible d'être modifié par le comité d'organisation.",
+    "pendingNote": "Contenu à fournir par le comité : intitulés définitifs des ateliers, horaires, noms des facilitateurs et rapporteurs."
   },
   "cfc": {
-    "title": "Appel à Communications",
-    "subtitle": "Soumettez vos travaux de recherche au Doctoral Consortium de TUNCIS 2026 et partagez-les avec des chercheurs de Tunisie et d'Europe.",
-    "topicsTitle": "Thématiques de Recherche",
-    "topicsPending": "Les thématiques détaillées seront publiées par le comité d'organisation. Les soumissions doivent porter sur l'Intelligence Artificielle, de la recherche au déploiement industriel.",
-    "guidelinesTitle": "Consignes de Soumission",
-    "guidelinesText": "Les soumissions doivent être des travaux originaux et inédits, en lien avec les thématiques ci-dessus. Les soumissions au Doctoral Consortium doivent inclure un résumé de la problématique, de la méthodologie et de l'état d'avancement.",
-    "submitCta": "Soumettre via le Formulaire d'Inscription",
-    "datesTitle": "Dates Importantes"
-  },
+  "badge": "Appel à Projets de Recherche Innovants",
+  "title": "Transformez Votre Recherche en Impact",
+  "intro": "Travaillez-vous sur une idée de recherche innovante capable de résoudre des défis concrets ? Soumettez votre projet pour la session de pitch de projets de recherche innovants et recevez les retours d'universitaires et d'experts industriels de premier plan.",
+  "context": "Nous invitons chercheurs, enseignants-chercheurs, doctorants, ingénieurs et innovateurs à soumettre leurs projets de recherche les plus prometteurs. Les participants sélectionnés présenteront leurs projets devant un jury de chercheurs seniors, de leaders industriels et d'acteurs de l'innovation.",
+  "objectivesTitle": "Objectifs",
+  "objectives": [
+    "Promouvoir une recherche innovante à fort impact.",
+    "Favoriser la collaboration entre le monde académique et industriel.",
+    "Encourager les initiatives de recherche interdisciplinaires.",
+    "Identifier les projets à fort potentiel de transfert technologique et de commercialisation.",
+    "Faciliter la mise en réseau avec des partenaires industriels et des experts en recherche."
+  ],
+  "topicsTitle": "Thématiques d'Intérêt",
+  "topics": [
+    "Intelligence Artificielle & Machine Learning",
+    "Data Science & Big Data",
+    "Cybersécurité & Vie Privée",
+    "Internet des Objets (IoT)",
+    "Robotique & Systèmes Autonomes",
+    "Fabrication Intelligente",
+    "Santé Numérique",
+    "Technologies Durables",
+    "Villes Intelligentes",
+    "Industrie 4.0",
+    "Transformation Numérique",
+    "Technologies Émergentes"
+  ],
+  "evaluationTitle": "Critères d'Évaluation",
+  "evaluation": [
+    "Originalité scientifique et innovation",
+    "Pertinence industrielle et impact sociétal",
+    "Faisabilité technique",
+    "Dimension interdisciplinaire",
+    "Potentiel de transfert technologique ou de commercialisation",
+    "Qualité et clarté du pitch"
+  ],
+  "pitchTitle": "Format du Pitch",
+  "pitchPresentation": "5 minutes de présentation",
+  "pitchDiscussion": "5 minutes d'échange avec le jury",
+  "pitchAddressTitle": "La présentation doit aborder :",
+  "pitchContent": [
+    "Le problème abordé",
+    "La solution innovante proposée",
+    "Les contributions scientifiques et technologiques",
+    "L'impact attendu",
+    "Les applications industrielles potentielles",
+    "La feuille de route de développement future"
+  ],
+  "whoTitle": "Qui Peut Postuler ?",
+  "who": [
+    "Chercheurs",
+    "Enseignants-chercheurs",
+    "Doctorants",
+    "Chercheurs post-doctoraux",
+    "Ingénieurs de recherche",
+    "Équipes de recherche multidisciplinaires"
+  ],
+  "benefitsTitle": "Avantages pour les Projets Sélectionnés",
+  "benefits": [
+    "Présentez votre travail à des chercheurs seniors et experts industriels.",
+    "Recevez des retours constructifs d'un jury multidisciplinaire.",
+    "Explorez des partenariats de recherche et industriels.",
+    "Augmentez la visibilité de votre recherche.",
+    "Identifiez des opportunités de financement et de collaboration."
+  ],
+  "submissionTitle": "Modalités de Soumission",
+  "submissionIntro": "Les candidats sont invités à soumettre :",
+  "submission": [
+    "Titre du projet",
+    "Résumé (maximum 500 mots)",
+    "Investigateur principal et membres de l'équipe",
+    "Mots-clés",
+    "Impact attendu",
+    "Niveau de maturité technologique (le cas échéant)"
+  ],
+  "submitCta": "Soumettre via le Formulaire d'Inscription"
+},
   "committees": {
     "title": "Comités",
     "subtitle": "Organisé par TunAISia, en partenariat avec les principales universités tunisiennes.",
     "organizing": "Comité d'Organisation",
     "scientific": "Comité Scientifique",
+    "direction": "Direction",
+    "comingSoon": "Liste à venir",
     "leadership": "Direction",
     "roles": {
+      "chair": "Président",
+      "coChair": "Co-président",
+      "organisationChair": "Président d'organisation",
       "coordination": "Coordination générale",
       "coChairConsortium": "Co-chair, consortium doctoral"
     }

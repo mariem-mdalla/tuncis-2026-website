@@ -4,6 +4,10 @@ import { useTranslation } from 'react-i18next';
 import { Presentation, Users, GraduationCap, Award } from 'lucide-react';
 import Timeline from '../components/TimeLine';
 
+import aisLogo from '../assets/logos/The-Association-for-Information-Systems-AIS-Logo.webp';
+import horizonLogo from '../assets/logos/horizon.png';
+import uSousseLogo from '../assets/logos/universite-de-sousse.png';
+
 export default function Home() {
   const { t } = useTranslation();
 
@@ -102,6 +106,38 @@ export default function Home() {
                 </motion.div>
               );
             })}
+          </div>
+
+          {/* Partners Section */}
+          <div className="mt-32">
+            <p className="uppercase tracking-wider text-xs text-tuncis-blue font-bold mb-3 flex items-center gap-2 justify-center">
+              <span className="w-8 h-0.5 bg-tuncis-yellow inline-block"></span> {t('home.partnersLabel')} <span className="w-8 h-0.5 bg-tuncis-yellow inline-block"></span>
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl text-tuncis-blue mb-16 font-bold text-center">
+              {t('home.partnersTitle')}
+            </h2>
+            
+            <div className="flex flex-row flex-nowrap justify-center items-stretch gap-6 sm:gap-10 md:gap-12">
+              {[
+                { src: uSousseLogo, alt: "Université de Sousse" },
+                { src: aisLogo,     alt: "Association for Information Systems" },
+                { src: horizonLogo, alt: "Horizon University" },
+              ].map((logo, idx) => (
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -6, scale: 1.03 }}
+                  className="bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center hover:shadow-xl transition-all duration-300 p-6"
+                  style={{ minHeight: '200px', minWidth: '240px', maxWidth: '320px', flex: '1 1 0' }}
+                >
+                  <img
+                    src={logo.src}
+                    alt={logo.alt}
+                    className="w-full h-full object-contain opacity-85 hover:opacity-100 transition-opacity"
+                    style={{ maxHeight: '150px' }}
+                  />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

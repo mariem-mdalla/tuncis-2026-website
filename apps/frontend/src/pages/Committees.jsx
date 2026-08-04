@@ -3,9 +3,10 @@ import { Building2, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const leadership = [
-  { name: "Takoua Abdellatif", roleKey: "roles.coordination", affiliation: "Eniso / Sousse University" },
-  { name: "Narjès Bellamine Ben Saoud", roleKey: "roles.coChairConsortium", affiliation: "ENSI / Manouba University" },
-  { name: "Chaker Essid", roleKey: "roles.coChairConsortium", affiliation: "FST / Tunis El Manar University" },
+  { name: "Imed Boughzala", roleKey: "roles.chair", affiliation: "Institut Mines-Télécom" },
+  { name: "Narjès Bellamine Ben Saoud", roleKey: "roles.coChair", affiliation: "ENSI / Manouba University" },
+  { name: "Chaker Essid", roleKey: "roles.coChair", affiliation: "FST / Tunis El Manar University" },
+  { name: "Takoua Abdellatif", roleKey: "roles.organisationChair", affiliation: "Eniso / Sousse University" },
 ];
 
 const organizing = [
@@ -86,8 +87,21 @@ export default function Committees() {
       </section>
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 -mt-8 relative z-20 space-y-16">
-        <CommitteeGrid title={t('committees.leadership')} members={leadership} />
+        <CommitteeGrid title={t('committees.direction')} members={leadership} />
         <CommitteeGrid title={t('committees.organizing')} members={organizing} />
+        
+        {/* Scientific Committee Placeholder */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+        >
+          <h2 className="font-heading text-2xl font-bold text-tuncis-blue mb-8 pb-3 border-b-2 border-tuncis-yellow/30 inline-block">{t('committees.scientific')}</h2>
+          <div className="bg-white border border-gray-100 p-8 rounded-2xl shadow-sm flex items-center justify-center min-h-[160px]">
+            {/* // TODO: Replace with real Comité Scientifique members once provided by Mahdi */}
+            <p className="text-tuncis-gray italic text-lg">{t('committees.comingSoon')}</p>
+          </div>
+        </motion.div>
       </section>
     </motion.main>
   );
