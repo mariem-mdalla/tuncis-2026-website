@@ -117,7 +117,7 @@ export default function Home() {
               {t('home.partnersTitle')}
             </h2>
             
-            <div className="flex flex-row flex-nowrap justify-center items-stretch gap-6 sm:gap-10 md:gap-12">
+            <div className="flex flex-row flex-wrap justify-center items-stretch gap-6 sm:gap-10 md:gap-12">
               {[
                 { src: uSousseLogo, alt: "Université de Sousse" },
                 { src: aisLogo,     alt: "Association for Information Systems" },
@@ -127,7 +127,7 @@ export default function Home() {
                   key={idx}
                   whileHover={{ y: -6, scale: 1.03 }}
                   className="bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center hover:shadow-xl transition-all duration-300 p-6"
-                  style={{ minHeight: '200px', minWidth: '240px', maxWidth: '320px', flex: '1 1 0' }}
+                  style={{ minHeight: '200px', minWidth: '240px', maxWidth: '320px', flex: '1 1 auto' }}
                 >
                   <img
                     src={logo.src}
