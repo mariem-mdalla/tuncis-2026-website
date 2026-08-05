@@ -1,11 +1,20 @@
 const express = require("express");
 const cors = require("cors");
+const nodemailer = require("nodemailer");
 const { db } = require("./db");
 const { registrations } = require("./db/schema");
 const { registrationSchema } = require("./validation/registrationSchema");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_APP_PASSWORD,
+  },
+});
 
 app.use(cors({ origin: true }));
 app.use(express.json());
@@ -29,6 +38,18 @@ app.post("/registrations", async (req, res) => {
       .insert(registrations)
       .values(parsed.data)
       .returning();
+
+    try {
+      await transporter.sendMail({
+        from: `"TUNCIS 2026" <${process.env.EMAIL_USER}>`,
+        to: parsed.data.email,
+        subject: "Registration Confirmed — TUNCIS 2026",
+        html: `<p>Hi ${parsed.data.fullName},</p>
+               <p>Your registration for TUNCIS 2026 (October 23–24, Green Park Hotel, Sousse) is confirmed. We look forward to seeing you!</p>`,
+      });
+    } catch (emailErr) {
+      console.error("Email failed to send:", emailErr);
+    }
 
     res.status(201).json({ success: true, data: inserted });
   } catch (err) {
