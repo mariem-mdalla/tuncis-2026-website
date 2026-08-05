@@ -15,6 +15,7 @@
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
     "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
     "drizzle-orm": "^0.45.2",
     "express": "^5.2.1",
     "firebase-admin": "^13.6.0",
@@ -22,7 +23,6 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "dotenv": "^17.4.2",
     "drizzle-kit": "^0.31.10",
     "firebase-functions-test": "^3.4.1"
   },
