@@ -57,7 +57,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const API_BASE = "https://tuncis-2026-website.onrender.com";
+const API_BASE = "/api";
 
 export default function Registration() {
   const { t } = useTranslation();

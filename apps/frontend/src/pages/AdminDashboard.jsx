@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { LogIn, Search, Download, Users, Award, HelpCircle, ShieldAlert } from 'lucide-react';
 
-const API_BASE = "https://tuncis-2026-website.onrender.com";
+const API_BASE = "/api";
 const ADMIN_USER = "admin";
 const ADMIN_PASS = "Tuncis2026!";
 
