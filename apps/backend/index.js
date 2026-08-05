@@ -51,7 +51,7 @@ app.post("/registrations", async (req, res) => {
     transporter.sendMail({
       from: `"TUNCIS 2026" <${process.env.EMAIL_USER}>`,
       to: parsed.data.email,
-      subject: "Registration Confirmed — TUNCIS 2026",
+      subject: "Registration Confirmed - TUNCIS 2026",
       html: `<p>Hi ${parsed.data.fullName},</p>
              <p>Your registration for TUNCIS 2026 (October 23–24, Green Park Hotel, Sousse) is confirmed. We look forward to seeing you!</p>`,
     }).catch(emailErr => {
