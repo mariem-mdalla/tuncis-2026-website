@@ -165,9 +165,9 @@
     "comingSoon": "Liste à venir",
     "leadership": "Direction",
     "roles": {
-      "chair": "Président",
-      "coChair": "Co-président",
-      "organisationChair": "Président d'organisation",
+      "chair": "Chair",
+      "coChair": "Co-chair",
+      "organisationChair": "Organisation chair",
       "coordination": "Coordination générale",
       "coChairConsortium": "Co-chair, consortium doctoral"
     }
