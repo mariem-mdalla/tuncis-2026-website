@@ -1,4 +1,3 @@
-const functions = require("firebase-functions");
 const express = require("express");
 const cors = require("cors");
 const { db } = require("./db");
@@ -6,6 +5,7 @@ const { registrations } = require("./db/schema");
 const { registrationSchema } = require("./validation/registrationSchema");
 
 const app = express();
+const PORT = process.env.PORT || 3001;
 
 app.use(cors({ origin: true }));
 app.use(express.json());
@@ -37,4 +37,17 @@ app.post("/registrations", async (req, res) => {
   }
 });
 
-exports.api = functions.https.onRequest(app);
+// GET registrations endpoint for the Admin Dashboard
+app.get("/registrations", async (req, res) => {
+  try {
+    const data = await db.select().from(registrations);
+    res.json(data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: "Could not retrieve registrations." });
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
