@@ -8,6 +8,7 @@ import CallForCommunications from './pages/CallForCommunications';
 import Committees from './pages/Committees';
 import Registration from './pages/Registration';
 import PracticalInfo from './pages/PracticalInfo';
+import AdminDashboard from './pages/AdminDashboard';
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
             <Route path="/committees" element={<Committees />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/practical-info" element={<PracticalInfo />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </div>
         <Footer />

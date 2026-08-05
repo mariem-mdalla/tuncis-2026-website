@@ -1,4 +1,4 @@
-import { MapPin, Calendar, Mail, Hash } from 'lucide-react';
+import { MapPin, Calendar, Mail, Hash, Link as LinkIcon } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 export default function Footer() {
   const { t } = useTranslation();
@@ -32,10 +32,16 @@ export default function Footer() {
         </div>
         <div>
           <p className="uppercase tracking-wider text-tuncis-yellow text-xs font-bold mb-4">{t('footer.contact')}</p>
-          <a href="mailto:tuncis2026@horizon-tech.tn" className="text-white/80 hover:text-tuncis-yellow transition-colors flex items-center gap-3">
-            <Mail size={16} className="text-tuncis-yellow" />
-            tuncis2026@horizon-tech.tn
-          </a>
+          <div className="space-y-3">
+            <a href="mailto:tuncis2026@horizon-tech.tn" className="text-white/80 hover:text-tuncis-yellow transition-colors flex items-center gap-3">
+              <Mail size={16} className="text-tuncis-yellow" />
+              tuncis2026@horizon-tech.tn
+            </a>
+            <a href="https://www.linkedin.com/company/tunaisia" target="_blank" rel="noopener noreferrer" className="text-white/80 hover:text-tuncis-yellow transition-colors flex items-center gap-3">
+              <LinkIcon size={16} className="text-tuncis-yellow" />
+              TunAISia LinkedIn
+            </a>
+          </div>
         </div>
       </div>
       <div className="border-t border-white/10 py-5 text-center text-xs text-white/40">

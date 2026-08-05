@@ -57,7 +57,7 @@ const itemVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const API_BASE = "http://127.0.0.1:5001/tuncis-2026/us-central1/api";
+const API_BASE = "https://tuncis-2026-website.onrender.com";
 
 export default function Registration() {
   const { t } = useTranslation();
@@ -100,6 +100,10 @@ export default function Registration() {
       const data = await res.json();
 
       if (!res.ok) {
+        if (data.errors) {
+          const firstError = Object.values(data.errors)[0];
+          throw new Error(Array.isArray(firstError) ? firstError[0] : t('registration.errorFallback'));
+        }
         throw new Error(data.message || t('registration.errorFallback'));
       }
 
