@@ -39,17 +39,16 @@ app.post("/registrations", async (req, res) => {
       .values(parsed.data)
       .returning();
 
-    try {
-      await transporter.sendMail({
-        from: `"TUNCIS 2026" <${process.env.EMAIL_USER}>`,
-        to: parsed.data.email,
-        subject: "Registration Confirmed — TUNCIS 2026",
-        html: `<p>Hi ${parsed.data.fullName},</p>
-               <p>Your registration for TUNCIS 2026 (October 23–24, Green Park Hotel, Sousse) is confirmed. We look forward to seeing you!</p>`,
-      });
-    } catch (emailErr) {
+    // Send confirmation email asynchronously without blocking the response
+    transporter.sendMail({
+      from: `"TUNCIS 2026" <${process.env.EMAIL_USER}>`,
+      to: parsed.data.email,
+      subject: "Registration Confirmed — TUNCIS 2026",
+      html: `<p>Hi ${parsed.data.fullName},</p>
+             <p>Your registration for TUNCIS 2026 (October 23–24, Green Park Hotel, Sousse) is confirmed. We look forward to seeing you!</p>`,
+    }).catch(emailErr => {
       console.error("Email failed to send:", emailErr);
-    }
+    });
 
     res.status(201).json({ success: true, data: inserted });
   } catch (err) {
