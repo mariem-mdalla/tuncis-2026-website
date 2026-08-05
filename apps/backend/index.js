@@ -1,6 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const nodemailer = require("nodemailer");
+const dns = require("dns");
+
+// Render often fails with IPv6 for outgoing connections like Gmail SMTP.
+// This forces Node to use IPv4 instead.
+dns.setDefaultResultOrder("ipv4first");
+
 const { db } = require("./db");
 const { registrations } = require("./db/schema");
 const { registrationSchema } = require("./validation/registrationSchema");
@@ -24,9 +30,11 @@ app.get("/health", (req, res) => {
 });
 
 app.post("/registrations", async (req, res) => {
+  console.log("📥 Received registration request:", req.body);
   const parsed = registrationSchema.safeParse(req.body);
 
   if (!parsed.success) {
+    console.error("❌ Validation Error:", parsed.error.flatten().fieldErrors);
     return res.status(400).json({
       success: false,
       errors: parsed.error.flatten().fieldErrors,
