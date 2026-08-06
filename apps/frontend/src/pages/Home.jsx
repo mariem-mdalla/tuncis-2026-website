@@ -120,14 +120,14 @@ export default function Home() {
               {t('home.partnersTitle')}
             </h2>
             
-            <div className="flex flex-row flex-wrap justify-center items-stretch gap-6 sm:gap-10 md:gap-12">
+            <div className="flex flex-row flex-wrap justify-center items-center gap-6 sm:gap-10 md:gap-12">
               {[
-                { src: uSousseLogo,  alt: "Université de Sousse",              maxH: '130px' },
-                { src: utmLogo,      alt: "Université de Tunis El Manar",       maxH: '110px' },
-                { src: manoubaLogo,  alt: "Université de la Manouba",           maxH: '110px' },
-                { src: tunaisiaLogo, alt: "TunAISia",                           maxH: '130px', href: "https://www.linkedin.com/company/tunaisia" },
-                { src: aisLogo,      alt: "Association for Information Systems", maxH: '130px', href: "https://www.linkedin.com/company/tunaisia" },
-                { src: horizonLogo,  alt: "Horizon University",                 maxH: '110px' },
+                { src: uSousseLogo,  alt: "Université de Sousse" },
+                { src: utmLogo,      alt: "Université de Tunis El Manar" },
+                { src: manoubaLogo,  alt: "Université de la Manouba" },
+                { src: tunaisiaLogo, alt: "TunAISia",                            href: "https://www.linkedin.com/company/tunaisia" },
+                { src: aisLogo,      alt: "Association for Information Systems",  href: "https://www.linkedin.com/company/tunaisia" },
+                { src: horizonLogo,  alt: "Horizon University" },
               ].map((logo, idx) => {
                 const CardElement = logo.href ? 'a' : 'div';
                 const cardProps = logo.href ? { href: logo.href, target: "_blank", rel: "noopener noreferrer" } : {};
@@ -137,14 +137,14 @@ export default function Home() {
                     key={idx}
                     whileHover={{ y: -6, scale: 1.03 }}
                     className="bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center hover:shadow-xl transition-all duration-300 p-6"
-                    style={{ minHeight: '160px', minWidth: '200px', maxWidth: '280px', flex: '1 1 auto' }}
+                    style={{ height: '160px', width: '220px', flexShrink: 0 }}
                   >
                     <CardElement {...cardProps} className="w-full h-full flex items-center justify-center">
                       <img
                         src={logo.src}
                         alt={logo.alt}
-                        className="w-full h-full object-contain opacity-85 hover:opacity-100 transition-opacity"
-                        style={{ maxHeight: logo.maxH }}
+                        style={{ height: '100px', width: 'auto', maxWidth: '100%', objectFit: 'contain', opacity: 0.85 }}
+                        className="hover:opacity-100 transition-opacity"
                       />
                     </CardElement>
                   </motion.div>
