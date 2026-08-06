@@ -122,28 +122,39 @@ export default function Home() {
             
             <div className="flex flex-row flex-wrap justify-center items-center gap-6 sm:gap-10 md:gap-12">
               {[
-                { src: uSousseLogo,  alt: "Université de Sousse" },
-                { src: utmLogo,      alt: "Université de Tunis El Manar" },
-                { src: manoubaLogo,  alt: "Université de la Manouba" },
-                { src: tunaisiaLogo, alt: "TunAISia",                            href: "https://www.linkedin.com/company/tunaisia" },
-                { src: aisLogo,      alt: "Association for Information Systems",  href: "https://www.linkedin.com/company/tunaisia" },
-                { src: horizonLogo,  alt: "Horizon University" },
+                { src: uSousseLogo,  alt: "Université de Sousse",
+                  cardStyle: { height: '200px', width: '260px' },
+                  imgStyle: { height: '140px', width: 'auto', transform: 'scale(1.5)', transformOrigin: 'center' } },
+                { src: utmLogo,      alt: "Université de Tunis El Manar",
+                  cardStyle: { height: '200px', width: '260px' },
+                  imgStyle: { height: '140px', width: 'auto' } },
+                { src: manoubaLogo,  alt: "Université de la Manouba",
+                  cardStyle: { height: '200px', width: '260px' },
+                  imgStyle: { height: '140px', width: 'auto' } },
+                { src: tunaisiaLogo, alt: "TunAISia", href: "https://www.linkedin.com/company/tunaisia",
+                  cardStyle: { height: '200px', width: '260px' },
+                  imgStyle: { height: '140px', width: 'auto', transform: 'scale(1.6)', transformOrigin: 'center' } },
+                { src: aisLogo,      alt: "Association for Information Systems", href: "https://www.linkedin.com/company/tunaisia",
+                  cardStyle: { height: '200px', width: '380px' },
+                  imgStyle: { width: '90%', height: 'auto' } },
+                { src: horizonLogo,  alt: "Horizon University",
+                  cardStyle: { height: '200px', width: '260px' },
+                  imgStyle: { height: '140px', width: 'auto' } },
               ].map((logo, idx) => {
                 const CardElement = logo.href ? 'a' : 'div';
                 const cardProps = logo.href ? { href: logo.href, target: "_blank", rel: "noopener noreferrer" } : {};
-                
                 return (
                   <motion.div
                     key={idx}
                     whileHover={{ y: -6, scale: 1.03 }}
-                    className="bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center hover:shadow-xl transition-all duration-300 p-6"
-                    style={{ height: '160px', width: '220px', flexShrink: 0 }}
+                    className="bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center hover:shadow-xl transition-all duration-300 p-4 overflow-hidden"
+                    style={{ flexShrink: 0, ...logo.cardStyle }}
                   >
                     <CardElement {...cardProps} className="w-full h-full flex items-center justify-center">
                       <img
                         src={logo.src}
                         alt={logo.alt}
-                        style={{ height: '100px', width: 'auto', maxWidth: '100%', objectFit: 'contain', opacity: 0.85 }}
+                        style={{ objectFit: 'contain', opacity: 0.85, maxWidth: '100%', ...logo.imgStyle }}
                         className="hover:opacity-100 transition-opacity"
                       />
                     </CardElement>
