@@ -122,12 +122,12 @@ export default function Home() {
             
             <div className="flex flex-row flex-wrap justify-center items-stretch gap-6 sm:gap-10 md:gap-12">
               {[
-                { src: uSousseLogo, alt: "Université de Sousse" },
-                { src: utmLogo, alt: "Université de Tunis El Manar" },
-                { src: manoubaLogo, alt: "Université de la Manouba" },
-                { src: tunaisiaLogo, alt: "TunAISia", href: "https://www.linkedin.com/company/tunaisia" },
-                { src: aisLogo,     alt: "Association for Information Systems", href: "https://www.linkedin.com/company/tunaisia" },
-                { src: horizonLogo, alt: "Horizon University" },
+                { src: uSousseLogo,  alt: "Université de Sousse",              maxH: '130px' },
+                { src: utmLogo,      alt: "Université de Tunis El Manar",       maxH: '110px' },
+                { src: manoubaLogo,  alt: "Université de la Manouba",           maxH: '110px' },
+                { src: tunaisiaLogo, alt: "TunAISia",                           maxH: '130px', href: "https://www.linkedin.com/company/tunaisia" },
+                { src: aisLogo,      alt: "Association for Information Systems", maxH: '130px', href: "https://www.linkedin.com/company/tunaisia" },
+                { src: horizonLogo,  alt: "Horizon University",                 maxH: '110px' },
               ].map((logo, idx) => {
                 const CardElement = logo.href ? 'a' : 'div';
                 const cardProps = logo.href ? { href: logo.href, target: "_blank", rel: "noopener noreferrer" } : {};
@@ -144,7 +144,7 @@ export default function Home() {
                         src={logo.src}
                         alt={logo.alt}
                         className="w-full h-full object-contain opacity-85 hover:opacity-100 transition-opacity"
-                        style={{ maxHeight: '110px' }}
+                        style={{ maxHeight: logo.maxH }}
                       />
                     </CardElement>
                   </motion.div>
