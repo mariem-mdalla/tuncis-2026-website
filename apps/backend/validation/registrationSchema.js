@@ -6,10 +6,13 @@ const registrationSchema = z.object({
   phone: z.string().min(6, "Phone number is required"),
   affiliation: z.string().min(1, "Affiliation is required"),
   status: z.enum(["Researcher", "Engineer", "PhD Student", "Other"]),
-  doctoralConsortium: z.boolean(),
+  category: z.enum(["local", "intl"]).optional(),
+  day1: z.boolean(),
+  day2: z.boolean(),
   galaDinner: z.boolean(),
   nvidiaCertification: z.boolean(),
   dietaryRestrictions: z.string().optional(),
+  totalAmountDue: z.string().optional(),
 });
 
 module.exports = { registrationSchema };

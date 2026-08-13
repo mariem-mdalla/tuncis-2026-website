@@ -60,7 +60,8 @@ export default function AdminDashboard() {
 
   // Statistics calculation
   const total = registrations.length;
-  const docConsortiumCount = registrations.filter(r => r.doctoralConsortium).length;
+  const day1Count = registrations.filter(r => r.day1).length;
+  const day2Count = registrations.filter(r => r.day2).length;
   const galaDinnerCount = registrations.filter(r => r.galaDinner).length;
   const nvidiaCount = registrations.filter(r => r.nvidiaCertification).length;
 
@@ -81,7 +82,7 @@ export default function AdminDashboard() {
   const exportToCSV = () => {
     if (filtered.length === 0) return;
 
-    const headers = ["ID", "Full Name", "Email", "Phone", "Affiliation", "Status", "Doctoral Consortium", "Gala Dinner", "NVIDIA Certification", "Dietary Restrictions", "Date Registered"];
+    const headers = ["ID", "Full Name", "Email", "Phone", "Affiliation", "Status", "Category", "Day 1", "Day 2", "Gala Dinner", "NVIDIA Certification", "Dietary Restrictions", "Date Registered"];
     const rows = filtered.map(r => [
       r.id,
       r.fullName,
@@ -89,7 +90,9 @@ export default function AdminDashboard() {
       r.phone,
       r.affiliation,
       r.status,
-      r.doctoralConsortium ? "Yes" : "No",
+      r.category || 'local',
+      r.day1 ? "Yes" : "No",
+      r.day2 ? "Yes" : "No",
       r.galaDinner ? "Yes" : "No",
       r.nvidiaCertification ? "Yes" : "No",
       r.dietaryRestrictions || "None",
@@ -190,10 +193,11 @@ export default function AdminDashboard() {
 
       <section className="max-w-7xl mx-auto px-6 py-10">
         {/* Statistics Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
           {[
             { label: 'Total Registrations', value: total, icon: Users, color: 'text-tuncis-blue' },
-            { label: 'Doctoral Consortium', value: docConsortiumCount, icon: HelpCircle, color: 'text-indigo-600' },
+            { label: 'Day 1 Attendees', value: day1Count, icon: Award, color: 'text-sky-600' },
+            { label: 'Day 2 Attendees', value: day2Count, icon: Award, color: 'text-violet-600' },
             { label: 'Gala Dinners', value: galaDinnerCount, icon: Award, color: 'text-rose-600' },
             { label: 'NVIDIA Certifications', value: nvidiaCount, icon: Award, color: 'text-emerald-600' }
           ].map((stat, i) => (
@@ -263,7 +267,8 @@ export default function AdminDashboard() {
                     <th className="py-4 px-6">Contact info</th>
                     <th className="py-4 px-6">Affiliation</th>
                     <th className="py-4 px-6">Status</th>
-                    <th className="py-4 px-6 text-center">Consortium</th>
+                    <th className="py-4 px-6 text-center">Day 1</th>
+                    <th className="py-4 px-6 text-center">Day 2</th>
                     <th className="py-4 px-6 text-center">Gala</th>
                     <th className="py-4 px-6 text-center">NVIDIA</th>
                     <th className="py-4 px-6">Dietary Details</th>
@@ -283,9 +288,14 @@ export default function AdminDashboard() {
                           {r.status}
                         </span>
                       </td>
+                      <td className="py-4 px-6">
+                        <span className={`inline-block font-bold text-xs px-2.5 py-1 rounded-full ${r.day1 ? 'bg-sky-50 text-sky-700 border border-sky-200' : 'bg-gray-50 text-gray-400'}`}>
+                          {r.day1 ? 'Yes' : 'No'}
+                        </span>
+                      </td>
                       <td className="py-4 px-6 text-center">
-                        <span className={`inline-block font-bold text-xs px-2.5 py-1 rounded-full ${r.doctoralConsortium ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-gray-50 text-gray-400'}`}>
-                          {r.doctoralConsortium ? 'Yes' : 'No'}
+                        <span className={`inline-block font-bold text-xs px-2.5 py-1 rounded-full ${r.day2 ? 'bg-violet-50 text-violet-700 border border-violet-200' : 'bg-gray-50 text-gray-400'}`}>
+                          {r.day2 ? 'Yes' : 'No'}
                         </span>
                       </td>
                       <td className="py-4 px-6 text-center">

@@ -3,10 +3,9 @@ import { Building2, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 const leadership = [
-  { name: "Imed Boughzala", roleKey: "roles.chair", affiliation: "Institut Mines-Télécom" },
-  { name: "Narjès Bellamine Ben Saoud", roleKey: "roles.coChair", affiliation: "ENSI / Manouba University" },
-  { name: "Chaker Essid", roleKey: "roles.coChair", affiliation: "FST / Tunis El Manar University" },
-  { name: "Takoua Abdellatif", roleKey: "roles.organisationChair", affiliation: "Eniso / Sousse University" },
+  { name: "Imed Boughzala", roleKey: "roles.chair", affiliation: "ENSIIE" },
+  { name: "Narjès Bellamine Ben Saoud", roleKey: "roles.tuncisCoChair", affiliation: "ENSI / Manouba University" },
+  { name: "Takoua Abdellatif", roleKey: "roles.tuncisCoChair", affiliation: "Eniso / Sousse University" },
 ];
 
 const organizing = [

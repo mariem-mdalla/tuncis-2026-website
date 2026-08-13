@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { Menu, X } from 'lucide-react';
+import aisLogo from '../assets/logos/The-Association-for-Information-Systems-AIS-Logo.webp';
+import tunaisiaLogo from '../assets/logos/tunaisia_logo.png';
 
 function LanguageSwitcher() {
   const { i18n } = useTranslation();
@@ -51,10 +53,23 @@ export default function Header() {
   return (
     <header className={`sticky top-0 z-50 text-white transition-all duration-300 ${headerClass}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        <Link to="/" className="font-heading text-xl sm:text-2xl tracking-wide flex items-center gap-1" onClick={handleNavClick}>
-          <span className="font-bold">TUNCIS</span>
-          <span className="text-tuncis-yellow">2026</span>
-        </Link>
+        <div className="flex items-center gap-3 sm:gap-4">
+          <Link to="/" className="font-heading text-xl sm:text-2xl tracking-wide flex items-center gap-1 transition-transform hover:scale-105" onClick={handleNavClick}>
+            <span className="font-bold">TUNCIS</span>
+            <span className="text-tuncis-yellow">2026</span>
+          </Link>
+          <div className="h-6 w-px bg-white/20 hidden sm:block"></div>
+          <img 
+            src={tunaisiaLogo} 
+            alt="TunAISa Logo" 
+            className="h-20 sm:h-24 w-auto object-contain drop-shadow-sm scale-110" 
+          />
+          <img 
+            src={aisLogo} 
+            alt="AIS Logo" 
+            className="h-7 sm:h-8 object-contain brightness-0 invert opacity-90 drop-shadow-md" 
+          />
+        </div>
 
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-6">

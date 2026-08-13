@@ -62,9 +62,10 @@ const API_BASE = "/api";
 export default function Registration() {
   const { t } = useTranslation();
   const [form, setForm] = useState({
-    fullName: '', email: '', phone: '', affiliation: '', status: 'Researcher',
+    fullName: '', email: '', phone: '', affiliation: '', status: 'Researcher', category: 'local'
   });
-  const [consortium, setConsortium] = useState(null);
+  const [day1, setDay1] = useState('Yes');
+  const [day2, setDay2] = useState(null);
   const [gala, setGala] = useState(null);
   const [nvidia, setNvidia] = useState(null);
   const [dietary, setDietary] = useState('');
@@ -78,6 +79,16 @@ export default function Registration() {
     setForm({ ...form, phone: value || '' });
   };
 
+  const calculateTotal = () => {
+    const isLocal = form.category === 'local';
+    let total = 0;
+    if (day1 === 'Yes') total += isLocal ? 150 : 70; // Day 1
+    if (day2 === 'Yes') total += isLocal ? 200 : 130; // Day 2 package (hotel included)
+    if (gala === 'Yes') total += isLocal ? 100 : 50;  // Gala Dinner
+    if (nvidia === 'Yes') total += isLocal ? 130 : 100; // NVIDIA
+    return isLocal ? `${total} DT` : `${total} €`;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus('submitting');
@@ -85,10 +96,12 @@ export default function Registration() {
   
     const payload = {
       ...form,
-      doctoralConsortium: consortium === 'Yes',
+      day1: day1 === 'Yes',
+      day2: day2 === 'Yes',
       galaDinner: gala === 'Yes',
       nvidiaCertification: nvidia === 'Yes',
       dietaryRestrictions: dietary,
+      totalAmountDue: calculateTotal(),
     };
 
     try {
@@ -210,6 +223,15 @@ export default function Registration() {
                     <option value="Other">{t('registration.statusOptions.other')}</option>
                   </select>
                 </div>
+                <div className="sm:col-span-2">
+                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.category')} *</label>
+                  <select
+                    name="category" value={form.category} onChange={handleChange}
+                    className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-sm">
+                    <option value="local">{t('registration.categoryOptions.local')}</option>
+                    <option value="intl">{t('registration.categoryOptions.intl')}</option>
+                  </select>
+                </div>
               </div>
             </motion.div>
 
@@ -219,7 +241,8 @@ export default function Registration() {
                 <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.participation')}</h2>
               </div>
               <div className="divide-y divide-gray-100">
-                <YesNoToggle label={t('registration.doctoralConsortium')} value={consortium} onChange={setConsortium} t={t} />
+                <YesNoToggle label={t('registration.day1')} value={day1} onChange={setDay1} t={t} />
+                <YesNoToggle label={t('registration.day2')} value={day2} onChange={setDay2} t={t} />
                 <YesNoToggle label={t('registration.galaDinner')} value={gala} onChange={setGala} t={t} />
                 <YesNoToggle label={t('registration.nvidiaCertification')} value={nvidia} onChange={setNvidia} t={t} />
               </div>
@@ -245,8 +268,12 @@ export default function Registration() {
                 <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">4</div>
                 <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.feesTitle')}</h2>
               </div>
-              <div className="bg-tuncis-blue rounded-xl p-6 space-y-3">
-                <p className="text-white/90 text-sm leading-relaxed">{t('registration.feesText')}</p>
+              <div className="bg-tuncis-blue rounded-xl p-6">
+                <p className="text-white/90 text-sm leading-relaxed mb-4">{t('registration.feesText')}</p>
+                <div className="bg-white/10 rounded-lg p-4 flex items-center justify-between border border-white/20 mb-3">
+                  <span className="text-white font-bold">{t('registration.totalDue')}</span>
+                  <span className="text-tuncis-yellow text-2xl font-bold font-heading">{calculateTotal()}</span>
+                </div>
                 <p className="text-white/60 text-xs italic">{t('registration.feesNote')}</p>
               </div>
             </motion.div>

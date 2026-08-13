@@ -10,15 +10,15 @@
     "eyebrow": "October 23–24, 2026 · Sousse, Tunisia",
     "themePrefix": "From research to industrial deployment:",
     "themeHighlight": "co-construct innovation in AI",
-    "subtitle": "TUNCIS 2026 brings together researchers, engineers, and PhD students from Tunisia and Europe for two days of keynotes, workshops, and a Doctoral Consortium.",
+    "subtitle": "TUNCIS 2026 brings together professors, researchers, PhD students, and engineers from Tunisia and internationally for two days of keynotes, workshops, and a Doctoral Consortium.",
     "registerNow": "Register Now",
     "viewProgramme": "View Programme",
     "keyDates": "Key Dates",
     "highlightsLabel": "Highlights",
     "highlightsTitle": "What to expect at TUNCIS 2026",
-    "keynotes": { "title": "Keynotes", "desc": "Talks from leading AI researchers across Tunisia and Europe." },
+    "keynotes": { "title": "Keynotes", "desc": "Talks from leading AI researchers across Tunisia and internationally." },
     "workshops": { "title": "Collaborative Workshops", "desc": "Hands-on sessions bridging research and industry practice." },
-    "consortium": { "title": "Doctoral Consortium", "desc": "A dedicated track for PhD students to present and get feedback." },
+    "consortium": { "title": "Doctoral Consortium", "desc": "A 5-minute pitch format to receive feedback from professionals." },
     "nvidia": { "title": "NVIDIA Certification", "desc": "Optional certified training track for attendees." },
     "partnersLabel": "Our Partners",
     "partnersTitle": "Co-constructing innovation together"
@@ -46,7 +46,14 @@
       "phd": "PhD Student",
       "other": "Other"
     },
+    "category": "Participant Category",
+    "categoryOptions": {
+      "local": "Local (Tunisia)",
+      "intl": "International (Tunisians abroad & others)"
+    },
     "participation": "Participation Options",
+    "day1": "Day 1 Conference (23 Oct)",
+    "day2": "Day 2 Conference + Hotel Night (24 Oct)",
     "doctoralConsortium": "Doctoral Consortium",
     "galaDinner": "Gala Dinner",
     "nvidiaCertification": "NVIDIA AI Certification",
@@ -61,8 +68,9 @@
     "confirmedMessage": "Thank you for registering for TUNCIS 2026. A confirmation email will follow shortly.",
     "errorFallback": "Please check the form and try again.",
     "feesTitle": "Registration Fees",
-    "feesText": "Registration fees: 400 TND for both days including hotel accommodation + 100 TND for the NVIDIA certification training (same rates in Euros for international researchers, limited seats).",
-    "feesNote": "These rates are subject to change."
+    "feesText": "Day 1 (Conference): 150 DT / 70 €. Day 2 (Conference + Hotel): +200 DT / +130 €. Gala Dinner: +100 DT / +50 €. NVIDIA Certification: +130 DT / +100 €.",
+    "feesNote": "These rates are subject to change.",
+    "totalDue": "Total Amount Due:"
   },
   "footer": {
     "description": "Tunisian Conference on Artificial Intelligence and Scientific Innovation.",
@@ -158,15 +166,15 @@
 },
   "committees": {
     "title": "Committees",
-    "subtitle": "Organized by TunAISia, in partnership with leading Tunisian universities.",
+    "subtitle": "Organized by TunAISa, in partnership with leading Tunisian universities.",
     "organizing": "Organizing Committee",
     "scientific": "Scientific Committee",
-    "direction": "Direction",
+    "direction": "Chairs",
     "comingSoon": "List coming soon",
-    "leadership": "Leadership",
+    "leadership": "Chairs",
     "roles": {
-      "chair": "Chair",
-      "coChair": "Co-chair",
+      "chair": "TunAISa President",
+      "tuncisCoChair": "Tuncis Co-chair",
       "organisationChair": "Organisation chair",
       "coordination": "General Coordination",
       "coChairConsortium": "Co-chair, Doctoral Consortium"
