@@ -53,21 +53,21 @@ export default function Header() {
   return (
     <header className={`sticky top-0 z-50 text-white transition-all duration-300 ${headerClass}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-        <div className="flex items-center gap-3 sm:gap-4">
-          <Link to="/" className="font-heading text-xl sm:text-2xl tracking-wide flex items-center gap-1 transition-transform hover:scale-105" onClick={handleNavClick}>
+        <div className="flex items-center gap-2 sm:gap-4 min-w-0">
+          <Link to="/" className="font-heading text-lg sm:text-2xl tracking-wide flex items-center gap-1 transition-transform hover:scale-105 shrink-0" onClick={handleNavClick}>
             <span className="font-bold">TUNCIS</span>
             <span className="text-tuncis-yellow">2026</span>
           </Link>
-          <div className="h-6 w-px bg-white/20 hidden sm:block"></div>
+          <div className="h-6 w-px bg-white/20 hidden sm:block shrink-0"></div>
           <img 
             src={tunaisiaLogo} 
             alt="TunAISa Logo" 
-            className="h-20 sm:h-24 w-auto object-contain drop-shadow-sm scale-110" 
+            className="hidden sm:block h-20 w-auto object-contain drop-shadow-sm shrink-0" 
           />
           <img 
             src={aisLogo} 
             alt="AIS Logo" 
-            className="h-7 sm:h-8 object-contain brightness-0 invert opacity-90 drop-shadow-md" 
+            className="hidden sm:block h-8 object-contain brightness-0 invert opacity-90 drop-shadow-md shrink-0" 
           />
         </div>
 
@@ -102,6 +102,11 @@ export default function Header() {
       {/* Mobile dropdown */}
       {menuOpen && (
         <div className="lg:hidden bg-tuncis-blue/95 backdrop-blur-md border-t border-white/10 px-4 pb-4 pt-2 space-y-1 shadow-lg">
+          {/* Logos row in mobile menu */}
+          <div className="flex items-center gap-4 py-3 border-b border-white/10">
+            <img src={tunaisiaLogo} alt="TunAISa Logo" className="h-12 w-auto object-contain" />
+            <img src={aisLogo} alt="AIS Logo" className="h-7 object-contain brightness-0 invert opacity-90" />
+          </div>
           {[
             { to: '/programme', label: t('nav.programme') },
             { to: '/call-for-communications', label: t('nav.callForCommunications') },
