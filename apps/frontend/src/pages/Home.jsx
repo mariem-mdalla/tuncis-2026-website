@@ -55,9 +55,27 @@ export default function Home() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
-            className="text-white/80 max-w-2xl text-lg md:text-xl mb-10 leading-relaxed"
+            className="text-white/80 max-w-2xl text-lg md:text-xl mb-4 leading-relaxed"
           >
             {t('home.subtitle')}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.35 }}
+            className="text-white/70 max-w-2xl text-base md:text-lg mb-4 leading-relaxed"
+          >
+            {t('home.para1')}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-white/70 max-w-2xl text-base md:text-lg mb-10 leading-relaxed"
+          >
+            {t('home.para2')}
           </motion.p>
 
           <motion.div
