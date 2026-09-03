@@ -10,6 +10,8 @@ import uSousseLogo from '../assets/logos/universite-de-sousse.png';
 import manoubaLogo from '../assets/logos/manouba-removebg-preview.png';
 import tunaisiaLogo from '../assets/logos/tunaisia_logo.png';
 import utmLogo from '../assets/logos/utm.png';
+import riadiLogo from '../assets/logos/riadi-log.png';
+import sercomLogo from '../assets/logos/sercom.png';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -149,15 +151,21 @@ export default function Home() {
                 { src: manoubaLogo,  alt: "Université de la Manouba",
                   cardStyle: { height: '200px', width: '260px' },
                   imgStyle: { height: '140px', width: 'auto' } },
-                { src: tunaisiaLogo, alt: "TunAISia", href: "https://www.linkedin.com/company/tunaisia",
+                { src: tunaisiaLogo, alt: "TunAISia",
                   cardStyle: { height: '200px', width: '260px' },
                   imgStyle: { height: '140px', width: 'auto', transform: 'scale(1.6)', transformOrigin: 'center' } },
-                { src: aisLogo,      alt: "Association for Information Systems", href: "https://www.linkedin.com/company/tunaisia",
+                { src: aisLogo,      alt: "Association for Information Systems",
                   cardStyle: { height: '200px', width: '380px' },
                   imgStyle: { width: '90%', height: 'auto' } },
                 { src: horizonLogo,  alt: "Horizon University",
                   cardStyle: { height: '200px', width: '260px' },
                   imgStyle: { height: '140px', width: 'auto' } },
+                { src: riadiLogo,    alt: "Laboratoire RIADI",
+                  cardStyle: { height: '200px', width: '260px' },
+                  imgStyle: { height: '170px', width: 'auto', transform: 'scale(1.3)', transformOrigin: 'center' } },
+                { src: sercomLogo,   alt: "SERCOM",
+                  cardStyle: { height: '200px', width: '260px' },
+                  imgStyle: { height: '120px', width: 'auto' } },
               ].map((logo, idx) => {
                 const CardElement = logo.href ? 'a' : 'div';
                 const cardProps = logo.href ? { href: logo.href, target: "_blank", rel: "noopener noreferrer" } : {};
