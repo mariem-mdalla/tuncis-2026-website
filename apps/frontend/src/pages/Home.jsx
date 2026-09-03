@@ -12,6 +12,7 @@ import tunaisiaLogo from '../assets/logos/tunaisia_logo.png';
 import utmLogo from '../assets/logos/utm.png';
 import riadiLogo from '../assets/logos/riadi-log.png';
 import sercomLogo from '../assets/logos/sercom.png';
+import latisLogo from '../assets/logos/Latis-logo.png';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -144,28 +145,31 @@ export default function Home() {
               {[
                 { src: uSousseLogo,  alt: "Université de Sousse",
                   cardStyle: { height: '200px', width: '260px' },
-                  imgStyle: { height: '140px', width: 'auto', transform: 'scale(1.5)', transformOrigin: 'center' } },
+                  imgStyle: { transform: 'scale(1.5)', transformOrigin: 'center' } },
                 { src: utmLogo,      alt: "Université de Tunis El Manar",
                   cardStyle: { height: '200px', width: '260px' },
-                  imgStyle: { height: '140px', width: 'auto' } },
+                  imgStyle: {} },
                 { src: manoubaLogo,  alt: "Université de la Manouba",
                   cardStyle: { height: '200px', width: '260px' },
-                  imgStyle: { height: '140px', width: 'auto' } },
+                  imgStyle: {} },
                 { src: tunaisiaLogo, alt: "TunAISia",
                   cardStyle: { height: '200px', width: '260px' },
-                  imgStyle: { height: '140px', width: 'auto', transform: 'scale(1.6)', transformOrigin: 'center' } },
+                  imgStyle: { transform: 'scale(1.6)', transformOrigin: 'center' } },
                 { src: aisLogo,      alt: "Association for Information Systems",
                   cardStyle: { height: '200px', width: '380px' },
-                  imgStyle: { width: '90%', height: 'auto' } },
+                  imgStyle: { width: '90%' } },
                 { src: horizonLogo,  alt: "Horizon University",
                   cardStyle: { height: '200px', width: '260px' },
-                  imgStyle: { height: '140px', width: 'auto' } },
+                  imgStyle: {} },
                 { src: riadiLogo,    alt: "Laboratoire RIADI",
                   cardStyle: { height: '200px', width: '260px' },
-                  imgStyle: { height: '170px', width: 'auto', transform: 'scale(1.3)', transformOrigin: 'center' } },
+                  imgStyle: { transform: 'scale(1.3)', transformOrigin: 'center' } },
                 { src: sercomLogo,   alt: "SERCOM",
                   cardStyle: { height: '200px', width: '260px' },
-                  imgStyle: { height: '120px', width: 'auto' } },
+                  imgStyle: {} },
+                { src: latisLogo,   alt: "LATIS",
+                  cardStyle: { height: '200px', width: '260px' },
+                  imgStyle: {} },
               ].map((logo, idx) => {
                 const CardElement = logo.href ? 'a' : 'div';
                 const cardProps = logo.href ? { href: logo.href, target: "_blank", rel: "noopener noreferrer" } : {};
@@ -180,7 +184,7 @@ export default function Home() {
                       <img
                         src={logo.src}
                         alt={logo.alt}
-                        style={{ objectFit: 'contain', opacity: 0.85, maxWidth: '100%', ...logo.imgStyle }}
+                        style={{ width: '100%', height: '100%', objectFit: 'contain', opacity: 0.85, ...logo.imgStyle }}
                         className="hover:opacity-100 transition-opacity"
                       />
                     </CardElement>

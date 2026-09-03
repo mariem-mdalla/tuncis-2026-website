@@ -57,7 +57,7 @@
     "day1": "Jour 1 Conférence (23 oct)",
     "day2": "Jour 2 Conférence + Nuit à l'Hôtel (24 oct)",
     "doctoralConsortium": "Doctoral Consortium",
-    "galaDinner": "Dîner de Gala",
+    "galaDinner": "Dîner Gala",
     "nvidiaCertification": "Certification NVIDIA",
     "yes": "Oui",
     "no": "Non",
@@ -70,7 +70,7 @@
     "confirmedMessage": "Merci de vous être inscrit à TUNCIS 2026. Un e-mail de confirmation vous sera envoyé sous peu.",
     "errorFallback": "Veuillez vérifier le formulaire et réessayer.",
     "feesTitle": "Frais d'inscription",
-    "feesText": "Jour 1 (Conférence) : 150 DT / 70 €. Jour 2 (Conférence + Hôtel) : +200 DT / +130 €. Dîner de Gala : +100 DT / +50 €. Certification NVIDIA : +130 DT / +100 €.",
+    "feesText": "Jour 1 (Conférence) : 150 DT / 70 €. Jour 2 (Conférence + Hôtel) : +200 DT / +130 €. Dîner Gala : +100 DT / +50 €. Certification NVIDIA : +130 DT / +100 €.",
     "feesNote": "Ces tarifs peuvent changer.",
     "totalDue": "Montant Total :"
   },
