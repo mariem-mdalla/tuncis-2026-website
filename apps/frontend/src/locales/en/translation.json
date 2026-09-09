@@ -1,10 +1,10 @@
-{
+﻿{
   "nav": {
     "programme": "Programme",
     "callForCommunications": "Call for Communications",
     "committees": "Committees",
     "practicalInfo": "Practical Info",
-    "register": "Register"
+    "register": "Register", "homeLink": "Home", "submit": "Submit", "people": "Committees & Keynotes", "participate": "Participate", "about": "About", "bestPaper": "Best Paper Award", "nvidiaCert": "NVIDIA Certification", "partners": "Partners"
   },
   "home": {
     "eyebrow": "October 23–24, 2026 · Sousse, Tunisia",
@@ -13,17 +13,28 @@
     "subtitle": "TUNCIS 2026 brings together on October 23–24, 2026 in Sousse an intentionally small community (places are limited) around a dual ambition.",
     "para1": "Reconnect Tunisian research, locally and internationally. Many Tunisian researchers work today in European laboratories, often at the highest level of their discipline, and maintain ties with colleagues back home that are more affective than operational. TUNCIS aims to transform these ties into real collaborations.",
     "para2": "Bridge research and industrial practice. Between a published result and an AI system actually running in production, the gap remains considerable.",
-    "registerNow": "Register Now",
+    "submitAbstract": "Submit Your Abstract",
     "viewProgramme": "View Programme",
+    "learnMore": "Learn more",
     "keyDates": "Key Dates",
     "highlightsLabel": "Highlights",
     "highlightsTitle": "What to expect at TUNCIS 2026",
     "keynotes": { "title": "Keynotes", "desc": "Talks from leading AI researchers across Tunisia and internationally." },
     "workshops": { "title": "Collaborative Workshops", "desc": "Hands-on sessions bridging research and industry practice." },
-    "consortium": { "title": "Doctoral Consortium", "desc": "A 5-minute pitch format to receive feedback from professionals." },
-    "nvidia": { "title": "NVIDIA Certification", "desc": "Optional certified training track for attendees." },
+    "consortium": { "title": "Research Consortium", "desc": "A 5-minute pitch format for researchers to receive feedback from senior academics and industry experts." },
+    "nvidia": { "title": "NVIDIA Certification", "desc": "Optional certified training track for attendees, provided by Horizon University." },
     "partnersLabel": "Our Partners",
-    "partnersTitle": "Co-constructing innovation together"
+    "partnersTitle": "Co-constructing innovation together",
+    "partnersSubtitle": "TUNCIS 2026 is supported by leading Tunisian universities, research labs, and international organizations.",
+    "viewAllPartners": "View All Partners",
+    "sousseCaption": "Sousse, Tunisia — Conference venue",
+    "countdown": {
+      "label": "Conference Countdown",
+      "days": "Days",
+      "hours": "Hours",
+      "minutes": "Min",
+      "seconds": "Sec"
+    }
   },
   "milestones": {
     "submission": "Submission Deadline",
@@ -31,6 +42,13 @@
     "registrationDeadline": "Registration Deadline",
     "programmePublished": "Final Programme Published",
     "event": "TUNCIS 2026"
+  },
+  "dates": {
+    "submission": "Sep 20, 2026",
+    "acceptance": "Sep 30, 2026",
+    "registrationDeadline": "Oct 7, 2026",
+    "programmePublished": "Oct 10, 2026",
+    "event": "Oct 23–24, 2026"
   },
   "registration": {
     "title": "Registration",
@@ -193,3 +211,4 @@
     "contact": "Contact"
   }
 }
+

@@ -1,35 +1,61 @@
-import { useTranslation } from 'react-i18next';
+﻿import { useTranslation } from "react-i18next";
+import { FileText, Bell, UserCheck, LayoutList, Calendar } from "lucide-react";
 
-export default function Timeline() {
+const milestoneConfig = [
+  { icon: FileText,   statusKey: "firm",     dateKey: "dates.submission",           labelKey: "milestones.submission" },
+  { icon: Bell,       statusKey: "upcoming", dateKey: "dates.acceptance",            labelKey: "milestones.acceptance" },
+  { icon: UserCheck,  statusKey: "upcoming", dateKey: "dates.registrationDeadline",  labelKey: "milestones.registrationDeadline" },
+  { icon: LayoutList, statusKey: "upcoming", dateKey: "dates.programmePublished",    labelKey: "milestones.programmePublished" },
+  { icon: Calendar,   statusKey: "event",    dateKey: "dates.event",                 labelKey: "milestones.event" },
+];
+
+const statusStyles = {
+  firm:     { bg: "bg-red-50",     border: "border-red-100",     text: "text-red-700",    badge: "bg-red-600 text-white", label: "FIRM" },
+  upcoming: { bg: "bg-blue-50",    border: "border-blue-100",    text: "text-blue-700",   badge: "bg-gray-500 text-white", label: "UPCOMING" },
+  event:    { bg: "bg-yellow-50",  border: "border-yellow-100",  text: "text-yellow-700", badge: "bg-tuncis-yellow text-tuncis-blue", label: "EVENT" },
+};
+
+export default function KeyDates() {
   const { t } = useTranslation();
 
-  const milestones = [
-    { date: "Sep 15, 2026", label: t('milestones.submission') },
-    { date: "Sep 30, 2026", label: t('milestones.acceptance') },
-    { date: "Oct 7, 2026", label: t('milestones.registrationDeadline') },
-    { date: "Oct 10, 2026", label: t('milestones.programmePublished') },
-    { date: "Oct 23–24, 2026", label: t('milestones.event') },
-  ];
-
   return (
-    <section className="bg-tuncis-bg py-14">
-      <div className="max-w-6xl mx-auto px-6">
-        <p className="uppercase tracking-wider text-xs text-tuncis-blue font-bold mb-8">
-          {t('home.keyDates')}
-        </p>
-        <div className="relative">
-          <div className="hidden md:block absolute top-2 left-0 right-0 h-px bg-tuncis-blue/20" />
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4">
-            {milestones.map((m, i) => (
-              <div key={i} className="relative pl-6 md:pl-0">
-                <div className="md:mb-4 w-3 h-3 rounded-full bg-tuncis-yellow border-2 border-tuncis-blue absolute md:static left-0 top-1" />
-                <p className="font-heading text-tuncis-blue text-lg">{m.date}</p>
-                <p className="text-sm text-tuncis-gray mt-1">{m.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+      {/* Header */}
+      <div className="p-5 border-b border-gray-100 flex items-center justify-between bg-gray-50/50">
+        <h3 className="font-heading font-bold text-xl text-tuncis-blue">{t("home.keyDates")}</h3>
+        <Calendar size={20} className="text-tuncis-blue opacity-50" />
       </div>
-    </section>
+
+      {/* List */}
+      <div className="p-5 space-y-4">
+        {milestoneConfig.map((m, i) => {
+          const Icon = m.icon;
+          const style = statusStyles[m.statusKey];
+          return (
+            <div
+              key={i}
+              className={`flex items-start gap-4 p-4 rounded-xl border transition-all hover:shadow-md ${style.bg} ${style.border}`}
+            >
+              <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm border border-gray-100">
+                <Icon size={18} className={style.text} />
+              </div>
+              <div className="flex-1">
+                <div className="flex flex-wrap items-center gap-2 mb-1.5">
+                  <span className="font-bold text-tuncis-blue">
+                    {t(m.labelKey)}
+                  </span>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md tracking-wide ${style.badge}`}>
+                    {style.label}
+                  </span>
+                </div>
+                <p className={`font-bold text-lg ${style.text}`}>
+                  {t(m.dateKey)}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }

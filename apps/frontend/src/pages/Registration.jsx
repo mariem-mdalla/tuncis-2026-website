@@ -1,301 +1,324 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { Check, ChevronDown } from 'lucide-react';
-import PhoneInput, { getCountryCallingCode } from 'react-phone-number-input';
-import 'react-phone-number-input/style.css';
-import { useTranslation } from 'react-i18next';
+﻿import { useState } from "react";
+import { motion } from "framer-motion";
+import { Check, ChevronDown } from "lucide-react";
+import PhoneInput, { getCountryCallingCode } from "react-phone-number-input";
+import "react-phone-number-input/style.css";
+import { useTranslation } from "react-i18next";
 
-function YesNoToggle({ label, value, onChange, t }) {
-  return (
-    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-4">
-      <span className="text-tuncis-blue font-medium">{label}</span>
-      <div className="flex gap-2">
-        {['Yes', 'No'].map((opt) => (
-          <button
-            key={opt}
-            type="button"
-            onClick={() => onChange(opt)}
-            className={`px-5 py-2 rounded-full text-sm font-bold transition-all ${
-              value === opt
-                ? 'bg-tuncis-blue text-white shadow-md'
-                : 'bg-tuncis-bg text-tuncis-gray hover:bg-tuncis-blue/10 border border-gray-200'
-            }`}
-          >
-            {opt === 'Yes' ? t('registration.yes') : t('registration.no')}
-          </button>
-        ))}
+// ── Fee Table Data (order matters — Gala is last) ──────────────────
+const FEE_ROWS = [
+  { key: "day1",          label: "Day 1 – Conference (Oct 23)",             local: 170, intl: 70 },
+  { key: "day2",          label: "Day 2 – Conference (Oct 24)",             local: 120, intl: 40 },
+  { key: "accommodation", label: "Accommodation (workshop rate)",           local: 170, intl: 70,  note: "TBC – à confirmer" },
+  { key: "nvidia",        label: "NVIDIA Certification",                    local: 130, intl: 100 },
+  { key: "gala",          label: "Gala Dinner",                             local: 100, intl: 40 },
+];
+
+// ── Helpers ────────────────────────────────────────────────────────
+const CustomCountrySelect = ({ value, onChange, labels, options, iconComponent: Icon }) => (
+  <div className="PhoneInputCountry relative flex items-center gap-2 h-full">
+    {Icon && (
+      <div className="w-5 h-4 overflow-hidden rounded-[2px] shadow-sm">
+        <Icon country={value} label={labels ? labels[value] : value} />
       </div>
-    </div>
-  );
-}
+    )}
+    <span className="text-sm font-medium text-tuncis-blue whitespace-nowrap">
+      {value ? `+${getCountryCallingCode(value)} ${labels ? labels[value] : value}` : "Intl"}
+    </span>
+    <ChevronDown size={14} className="text-tuncis-gray/70 ml-1" />
+    <select
+      value={value || ""}
+      onChange={e => onChange(e.target.value || undefined)}
+      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+    >
+      {options.map(({ value, label }) => (
+        <option key={value || "ZZ"} value={value || ""}>
+          {label} {value && `+${getCountryCallingCode(value)}`}
+        </option>
+      ))}
+    </select>
+  </div>
+);
 
-const CustomCountrySelect = ({ value, onChange, labels, options, iconComponent: Icon }) => {
-  return (
-    <div className="PhoneInputCountry relative flex items-center gap-2 h-full">
-      {Icon && <div className="w-5 h-4 overflow-hidden rounded-[2px] shadow-sm"><Icon country={value} label={labels ? labels[value] : value} /></div>}
-      <span className="text-sm font-medium text-tuncis-blue whitespace-nowrap">
-        {value ? `+${getCountryCallingCode(value)} ${labels ? labels[value] : value}` : 'Intl'}
-      </span>
-      <ChevronDown size={14} className="text-tuncis-gray/70 ml-1" />
-      <select
-        value={value || ''}
-        onChange={(event) => onChange(event.target.value || undefined)}
-        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-      >
-        {options.map(({ value, label }) => (
-          <option key={value || 'ZZ'} value={value || ''}>
-            {label} {value && `+${getCountryCallingCode(value)}`}
-          </option>
-        ))}
-      </select>
-    </div>
-  );
-};
+const inputClass =
+  "w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm";
 
-const itemVariants = {
-  hidden: { opacity: 0, y: 12 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const API_BASE = "/api";
+const REGISTRATION_OPEN = true; // ← flip to false to show "not yet open" message
 
 export default function Registration() {
   const { t } = useTranslation();
   const [form, setForm] = useState({
-    fullName: '', email: '', phone: '', affiliation: '', status: 'Researcher', category: 'local'
+    fullName: "", email: "", phone: "", affiliation: "", status: "Researcher", category: "local",
   });
-  const [day1, setDay1] = useState('Yes');
-  const [day2, setDay2] = useState(null);
-  const [gala, setGala] = useState(null);
-  const [nvidia, setNvidia] = useState(null);
-  const [dietary, setDietary] = useState('');
-  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
-  const [errorMsg, setErrorMsg] = useState('');
+  const [checked, setChecked] = useState({
+    day1: false, day2: false, accommodation: false, nvidia: false, gala: false,
+  });
+  const [dietary, setDietary] = useState("");
+  const [submitStatus, setSubmitStatus] = useState("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-  const handlePhoneChange = (value) => {
-    setForm({ ...form, phone: value || '' });
-  };
+  const isLocal    = form.category === "local";
+  const currency   = isLocal ? "DT" : "€";
+  const total      = FEE_ROWS.reduce((sum, row) => sum + (checked[row.key] ? (isLocal ? row.local : row.intl) : 0), 0);
+  const toggleRow  = key => setChecked(p => ({ ...p, [key]: !p[key] }));
+  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
-  const calculateTotal = () => {
-    const isLocal = form.category === 'local';
-    let total = 0;
-    if (day1 === 'Yes') total += isLocal ? 150 : 70; // Day 1
-    if (day2 === 'Yes') total += isLocal ? 200 : 130; // Day 2 package (hotel included)
-    if (gala === 'Yes') total += isLocal ? 100 : 50;  // Gala Dinner
-    if (nvidia === 'Yes') total += isLocal ? 130 : 100; // NVIDIA
-    return isLocal ? `${total} DT` : `${total} €`;
-  };
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    setStatus('submitting');
-    setErrorMsg('');
-  
-    const payload = {
-      ...form,
-      day1: day1 === 'Yes',
-      day2: day2 === 'Yes',
-      galaDinner: gala === 'Yes',
-      nvidiaCertification: nvidia === 'Yes',
-      dietaryRestrictions: dietary,
-      totalAmountDue: calculateTotal(),
-    };
-
+    setSubmitStatus("submitting");
+    setErrorMsg("");
     try {
-      const res = await fetch(`${API_BASE}/registrations`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+      const res = await fetch("/api/registrations", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, ...checked, dietary, total: `${total} ${currency}` }),
       });
       const data = await res.json();
-
-      if (!res.ok) {
-        if (data.errors) {
-          const firstError = Object.values(data.errors)[0];
-          throw new Error(Array.isArray(firstError) ? firstError[0] : t('registration.errorFallback'));
-        }
-        throw new Error(data.message || t('registration.errorFallback'));
-      }
-
-      setStatus('success');
+      if (!res.ok) throw new Error(data.message || t("registration.errorFallback"));
+      setSubmitStatus("success");
     } catch (err) {
-      setStatus('error');
+      setSubmitStatus("error");
       setErrorMsg(err.message);
     }
   };
 
-  if (status === 'success') {
+  // ── NOT YET OPEN ───────────────────────────────────────────────
+  if (!REGISTRATION_OPEN) {
     return (
       <motion.main
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.35, ease: 'easeOut' }}
-        className="bg-tuncis-bg min-h-screen flex items-center justify-center px-4"
+        className="bg-tuncis-bg min-h-screen pb-20"
       >
-        <div className="text-center max-w-md">
-          <div className="w-14 h-14 rounded-full bg-tuncis-blue/10 flex items-center justify-center mx-auto mb-6">
-            <Check size={28} className="text-tuncis-blue" />
+        <section className="bg-tuncis-blue text-white py-16 sm:py-20 relative overflow-hidden">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tuncis-yellow/10 via-transparent to-transparent" />
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
+            <h1 className="font-heading text-4xl sm:text-5xl font-bold mb-3">{t("registration.title")}</h1>
+            <p className="text-white/70 text-lg">{t("registration.subtitle")}</p>
           </div>
-          <h1 className="font-heading text-2xl sm:text-3xl text-tuncis-blue mb-3 font-bold">
-            {t('registration.confirmedTitle')}
-          </h1>
-          <p className="text-tuncis-gray">
-            {t('registration.confirmedMessage')}
-          </p>
+        </section>
+        <section className="max-w-2xl mx-auto px-4 sm:px-6 py-20 text-center">
+          <div className="bg-white border border-gray-100 shadow-xl rounded-3xl p-8 sm:p-14">
+            <div className="w-20 h-20 rounded-full bg-tuncis-yellow/10 flex items-center justify-center mx-auto mb-6 text-4xl">⏳</div>
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-tuncis-blue mb-4">Registration Not Yet Open</h2>
+            <p className="text-tuncis-gray text-lg leading-relaxed mb-10">
+              Registration opens once abstract acceptances are confirmed — check back after <strong>September 30, 2026</strong>.
+            </p>
+            <div className="text-left">
+              <p className="text-xs uppercase font-bold tracking-wider text-tuncis-blue mb-4 flex items-center gap-2">
+                <span className="w-6 h-0.5 bg-tuncis-yellow inline-block" /> Indicative Fees
+              </p>
+              <div className="rounded-xl border border-gray-100 overflow-x-auto">
+                <table className="w-full text-sm min-w-[340px]">
+                  <thead className="bg-tuncis-blue text-white">
+                    <tr>
+                      <th className="text-left px-4 py-3 font-semibold">Item</th>
+                      <th className="text-right px-4 py-3 font-semibold">Local (DT)</th>
+                      <th className="text-right px-4 py-3 font-semibold">Intl (€)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {FEE_ROWS.map((row, i) => (
+                      <tr key={row.key} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                        <td className="px-4 py-3 text-gray-700">
+                          {row.label}
+                          {row.note && <span className="block text-xs text-amber-600 mt-0.5">⚠ {row.note}</span>}
+                        </td>
+                        <td className="px-4 py-3 text-right font-bold text-tuncis-blue">
+                          {row.local === 170 && row.key === "accommodation" ? "~170" : row.local}
+                        </td>
+                        <td className="px-4 py-3 text-right font-bold text-tuncis-blue">
+                          {row.key === "accommodation" ? "~70" : row.intl}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="text-xs text-gray-400 italic mt-3">* Accommodation rate to be confirmed.</p>
+            </div>
+          </div>
+        </section>
+      </motion.main>
+    );
+  }
+
+  // ── SUCCESS ────────────────────────────────────────────────────
+  if (submitStatus === "success") {
+    return (
+      <motion.main initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="bg-tuncis-bg min-h-screen flex items-center justify-center px-4">
+        <div className="text-center max-w-md">
+          <div className="w-16 h-16 rounded-full bg-tuncis-blue/10 flex items-center justify-center mx-auto mb-6">
+            <Check size={32} className="text-tuncis-blue" />
+          </div>
+          <h1 className="font-heading text-3xl text-tuncis-blue mb-3 font-bold">{t("registration.confirmedTitle")}</h1>
+          <p className="text-tuncis-gray">{t("registration.confirmedMessage")}</p>
         </div>
       </motion.main>
     );
   }
 
+  // ── FORM ───────────────────────────────────────────────────────
   return (
     <motion.main
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.35, ease: 'easeOut' }}
+      transition={{ duration: 0.4 }}
       className="bg-tuncis-bg min-h-screen pb-20"
     >
+      {/* Hero */}
       <section className="bg-tuncis-blue text-white py-16 sm:py-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tuncis-yellow/10 via-transparent to-transparent" />
         <div className="max-w-3xl mx-auto px-4 sm:px-6 relative z-10">
-          <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl mb-3 font-bold">{t('registration.title')}</h1>
-          <p className="text-white/80 text-base sm:text-lg">
-            {t('registration.subtitle')}
-          </p>
+          <h1 className="font-heading text-4xl sm:text-5xl font-bold mb-3">{t("registration.title")}</h1>
+          <p className="text-white/70 text-lg">{t("registration.subtitle")}</p>
         </div>
       </section>
 
       <section className="max-w-3xl mx-auto px-4 sm:px-6 py-12">
-        <motion.form
-          onSubmit={handleSubmit}
-          initial="hidden"
-          animate="visible"
-          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
-          className="bg-white border border-gray-100 shadow-lg rounded-2xl overflow-hidden"
-        >
-          <div className="h-1.5 bg-gradient-to-r from-tuncis-blue via-tuncis-blue to-tuncis-yellow" />
+        <form onSubmit={handleSubmit} className="space-y-8">
 
-          <div className="p-6 sm:p-10 space-y-10">
-            <motion.div variants={itemVariants}>
-              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-100">
-                <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">1</div>
-                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.personalInfo')}</h2>
+          {/* ─ 1. Personal Info ─ */}
+          <div className="bg-white border border-gray-100 shadow-sm rounded-2xl overflow-hidden">
+            <div className="bg-tuncis-blue/5 border-b border-gray-100 px-6 py-4 flex items-center gap-3">
+              <div className="w-7 h-7 rounded-full bg-tuncis-blue flex items-center justify-center text-white text-xs font-bold shrink-0">1</div>
+              <h2 className="font-heading font-bold text-tuncis-blue text-lg">{t("registration.personalInfo")}</h2>
+            </div>
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-bold text-tuncis-blue mb-1.5">{t("registration.fullName")} *</label>
+                <input name="fullName" value={form.fullName} onChange={handleChange} required type="text" className={inputClass} />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.fullName')} *</label>
-                  <input
-                    name="fullName" value={form.fullName} onChange={handleChange} required
-                    type="text" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
-                </div>
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.email')} *</label>
-                  <input
-                    name="email" value={form.email} onChange={handleChange} required
-                    type="email" className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
-                </div>
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.phone')} *</label>
-                  <PhoneInput
-                    defaultCountry="TN"
-                    value={form.phone}
-                    onChange={handlePhoneChange}
-                    className="tuncis-phone-layout"
-                    countrySelectComponent={CustomCountrySelect}
-                  />
-                </div>
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.affiliation')} *</label>
-                  <input
-                    name="affiliation" value={form.affiliation} onChange={handleChange} required
-                    type="text" placeholder={t('registration.affiliationPlaceholder')} className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none text-sm" />
-                </div>
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.status')} *</label>
-                  <select
-                    name="status" value={form.status} onChange={handleChange}
-                    className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-sm">
-                    <option value="Researcher">{t('registration.statusOptions.researcher')}</option>
-                    <option value="Engineer">{t('registration.statusOptions.engineer')}</option>
-                    <option value="PhD Student">{t('registration.statusOptions.phd')}</option>
-                    <option value="Other">{t('registration.statusOptions.other')}</option>
-                  </select>
-                </div>
-                <div className="sm:col-span-2">
-                  <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.category')} *</label>
-                  <select
-                    name="category" value={form.category} onChange={handleChange}
-                    className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none appearance-none cursor-pointer text-sm">
-                    <option value="local">{t('registration.categoryOptions.local')}</option>
-                    <option value="intl">{t('registration.categoryOptions.intl')}</option>
-                  </select>
-                </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-bold text-tuncis-blue mb-1.5">{t("registration.email")} *</label>
+                <input name="email" value={form.email} onChange={handleChange} required type="email" className={inputClass} />
               </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
-                <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">2</div>
-                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.participation')}</h2>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-bold text-tuncis-blue mb-1.5">{t("registration.phone")} *</label>
+                <PhoneInput defaultCountry="TN" value={form.phone} onChange={v => setForm({ ...form, phone: v || "" })} className="tuncis-phone-layout" countrySelectComponent={CustomCountrySelect} />
               </div>
-              <div className="divide-y divide-gray-100">
-                <YesNoToggle label={t('registration.day1')} value={day1} onChange={setDay1} t={t} />
-                <YesNoToggle label={t('registration.day2')} value={day2} onChange={setDay2} t={t} />
-                <YesNoToggle label={t('registration.galaDinner')} value={gala} onChange={setGala} t={t} />
-                <YesNoToggle label={t('registration.nvidiaCertification')} value={nvidia} onChange={setNvidia} t={t} />
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-bold text-tuncis-blue mb-1.5">{t("registration.affiliation")} *</label>
+                <input name="affiliation" value={form.affiliation} onChange={handleChange} required type="text" placeholder={t("registration.affiliationPlaceholder")} className={inputClass} />
               </div>
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
-                <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">3</div>
-                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.additionalInfo')}</h2>
+              <div>
+                <label className="block text-sm font-bold text-tuncis-blue mb-1.5">{t("registration.status")} *</label>
+                <select name="status" value={form.status} onChange={handleChange} className={`${inputClass} appearance-none cursor-pointer`}>
+                  <option value="Researcher">{t("registration.statusOptions.researcher")}</option>
+                  <option value="Engineer">{t("registration.statusOptions.engineer")}</option>
+                  <option value="PhD Student">{t("registration.statusOptions.phd")}</option>
+                  <option value="Other">{t("registration.statusOptions.other")}</option>
+                </select>
               </div>
-              <label className="block text-sm font-bold text-tuncis-blue mb-2">{t('registration.dietary')}</label>
-              <textarea
-                value={dietary}
-                onChange={(e) => setDietary(e.target.value)}
-                rows="3"
-                placeholder={t('registration.dietaryPlaceholder')}
-                className="w-full bg-tuncis-bg border border-gray-200 rounded-xl px-4 py-3 focus:border-tuncis-blue focus:ring-2 focus:ring-tuncis-blue/20 focus:bg-white transition-all outline-none resize-none text-sm"
-              />
-            </motion.div>
-
-            <motion.div variants={itemVariants}>
-              <div className="flex items-center gap-3 mb-4 pb-4 border-b border-gray-100">
-                <div className="w-8 h-8 shrink-0 rounded-full bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue font-bold text-sm">4</div>
-                <h2 className="font-heading text-lg sm:text-xl text-tuncis-blue font-bold">{t('registration.feesTitle')}</h2>
+              <div>
+                <label className="block text-sm font-bold text-tuncis-blue mb-1.5">{t("registration.category")} *</label>
+                <select name="category" value={form.category} onChange={handleChange} className={`${inputClass} appearance-none cursor-pointer`}>
+                  <option value="local">{t("registration.categoryOptions.local")}</option>
+                  <option value="intl">{t("registration.categoryOptions.intl")}</option>
+                </select>
               </div>
-              <div className="bg-tuncis-blue rounded-xl p-6">
-                <p className="text-white/90 text-sm leading-relaxed mb-4">{t('registration.feesText')}</p>
-                <div className="bg-white/10 rounded-lg p-4 flex items-center justify-between border border-white/20 mb-3">
-                  <span className="text-white font-bold">{t('registration.totalDue')}</span>
-                  <span className="text-tuncis-yellow text-2xl font-bold font-heading">{calculateTotal()}</span>
-                </div>
-                <p className="text-white/60 text-xs italic">{t('registration.feesNote')}</p>
-              </div>
-            </motion.div>
-
-            {status === 'error' && (
-              <motion.p variants={itemVariants} className="text-red-600 text-sm">
-                {errorMsg}
-              </motion.p>
-            )}
-
-            <motion.div variants={itemVariants}>
-              <button
-                type="submit"
-                disabled={status === 'submitting'}
-                className="w-full flex items-center justify-center gap-2 bg-tuncis-yellow text-tuncis-blue font-bold px-8 py-4 rounded-xl hover:bg-[#e5c235] active:scale-95 transition-all shadow-md shadow-tuncis-yellow/20 text-base disabled:opacity-50"
-              >
-                <Check size={20} />
-                {status === 'submitting' ? t('registration.submitting') : t('registration.submit')}
-              </button>
-            </motion.div>
+            </div>
           </div>
-        </motion.form>
+
+          {/* ─ 2. Participation — interactive fee TABLE ─ */}
+          <div className="bg-white border border-gray-100 shadow-sm rounded-2xl overflow-hidden">
+            <div className="bg-tuncis-blue/5 border-b border-gray-100 px-6 py-4 flex items-center gap-3">
+              <div className="w-7 h-7 rounded-full bg-tuncis-blue flex items-center justify-center text-white text-xs font-bold shrink-0">2</div>
+              <h2 className="font-heading font-bold text-tuncis-blue text-lg">{t("registration.participation")}</h2>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm min-w-[400px]">
+                <thead>
+                  <tr className="bg-tuncis-blue text-white">
+                    <th className="w-12 px-4 py-3 text-center">✓</th>
+                    <th className="text-left px-4 py-3 font-semibold">Item</th>
+                    <th className="text-right px-4 py-3 font-semibold whitespace-nowrap">Local (DT)</th>
+                    <th className="text-right px-4 py-3 font-semibold whitespace-nowrap">Intl (€)</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {FEE_ROWS.map((row, i) => {
+                    const isChecked = checked[row.key];
+                    return (
+                      <tr
+                        key={row.key}
+                        onClick={() => toggleRow(row.key)}
+                        className={`cursor-pointer transition-colors select-none ${
+                          isChecked
+                            ? "bg-tuncis-yellow/10 border-l-4 border-l-tuncis-yellow"
+                            : i % 2 === 0 ? "bg-white hover:bg-gray-50" : "bg-gray-50/60 hover:bg-gray-100"
+                        }`}
+                      >
+                        {/* Checkbox cell */}
+                        <td className="px-4 py-4 text-center">
+                          <div className={`w-5 h-5 rounded border-2 flex items-center justify-center mx-auto transition-all ${
+                            isChecked ? "bg-tuncis-blue border-tuncis-blue" : "border-gray-300 bg-white"
+                          }`}>
+                            {isChecked && <Check size={11} className="text-white" strokeWidth={3} />}
+                          </div>
+                        </td>
+                        {/* Label cell */}
+                        <td className="px-4 py-4">
+                          <p className={`font-medium ${isChecked ? "text-tuncis-blue" : "text-gray-700"}`}>{row.label}</p>
+                          {row.note && <p className="text-xs text-amber-600 mt-0.5">⚠ {row.note}</p>}
+                        </td>
+                        {/* Local price */}
+                        <td className={`px-4 py-4 text-right font-bold tabular-nums ${isChecked && isLocal ? "text-tuncis-blue text-base" : "text-gray-500"}`}>
+                          {row.key === "accommodation" ? "~170" : row.local} DT
+                        </td>
+                        {/* Intl price */}
+                        <td className={`px-4 py-4 text-right font-bold tabular-nums ${isChecked && !isLocal ? "text-tuncis-blue text-base" : "text-gray-500"}`}>
+                          {row.key === "accommodation" ? "~70" : row.intl} €
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+                {/* Running total row */}
+                <tfoot>
+                  <tr className="bg-tuncis-blue/5 border-t-2 border-tuncis-blue/20">
+                    <td colSpan={2} className="px-4 py-4">
+                      <span className="font-bold text-tuncis-blue">{t("registration.totalDue")}</span>
+                    </td>
+                    <td colSpan={2} className="px-4 py-4 text-right">
+                      <span className="font-black text-2xl text-tuncis-blue font-heading">
+                        {total} {currency}
+                      </span>
+                    </td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <p className="px-6 py-3 text-xs text-gray-400 italic border-t border-gray-100">
+              * Accommodation rate to be confirmed. Click any row to select / deselect.
+            </p>
+          </div>
+
+          {/* ─ 3. Additional Info ─ */}
+          <div className="bg-white border border-gray-100 shadow-sm rounded-2xl overflow-hidden">
+            <div className="bg-tuncis-blue/5 border-b border-gray-100 px-6 py-4 flex items-center gap-3">
+              <div className="w-7 h-7 rounded-full bg-tuncis-blue flex items-center justify-center text-white text-xs font-bold shrink-0">3</div>
+              <h2 className="font-heading font-bold text-tuncis-blue text-lg">{t("registration.additionalInfo")}</h2>
+            </div>
+            <div className="p-6">
+              <label className="block text-sm font-bold text-tuncis-blue mb-1.5">{t("registration.dietary")}</label>
+              <textarea value={dietary} onChange={e => setDietary(e.target.value)} rows="3" placeholder={t("registration.dietaryPlaceholder")} className={`${inputClass} resize-none`} />
+            </div>
+          </div>
+
+          {submitStatus === "error" && (
+            <p className="text-red-600 text-sm bg-red-50 border border-red-200 rounded-xl px-4 py-3">{errorMsg}</p>
+          )}
+
+          <button
+            type="submit"
+            disabled={submitStatus === "submitting"}
+            className="w-full flex items-center justify-center gap-2 bg-tuncis-yellow text-tuncis-blue font-bold px-8 py-4 rounded-xl hover:bg-yellow-400 active:scale-95 transition-all shadow-lg text-base disabled:opacity-50"
+          >
+            <Check size={20} />
+            {submitStatus === "submitting" ? t("registration.submitting") : t("registration.submit")}
+          </button>
+        </form>
       </section>
     </motion.main>
   );

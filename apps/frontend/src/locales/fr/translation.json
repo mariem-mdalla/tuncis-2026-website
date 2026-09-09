@@ -1,10 +1,18 @@
-{
+﻿{
   "nav": {
     "programme": "Programme",
     "callForCommunications": "Appel à Communications",
     "committees": "Comités",
     "practicalInfo": "Infos Pratiques",
-    "register": "S'inscrire"
+    "register": "S'inscrire",
+    "homeLink": "Accueil",
+    "submit": "Soumettre",
+    "people": "Comités & Keynotes",
+    "participate": "Participer",
+    "about": "À Propos",
+    "bestPaper": "Prix du Meilleur Article",
+    "nvidiaCert": "Certification NVIDIA",
+    "partners": "Partenaires"
   },
   "home": {
     "eyebrow": "23–24 octobre 2026 · Sousse, Tunisie",
@@ -13,17 +21,28 @@
     "subtitle": "TUNCIS 2026 réunit les 23 et 24 octobre 2026 à Sousse une communauté volontairement restreinte (les places sont limitées) autour d'une double ambition.",
     "para1": "Reconnecter la recherche tunisienne, ici et à l'international. De nombreux chercheurs tunisiens exercent aujourd'hui dans des laboratoires européens, souvent au meilleur niveau de leur discipline, et entretiennent avec leurs collègues restés au pays des liens plus affectifs qu'opérationnels. TUNCIS entend transformer ces liens en collaborations réelles.",
     "para2": "Rapprocher la recherche et le terrain industriel. Entre un résultat publié et un système d'IA qui tourne réellement en production, l'écart reste considérable.",
-    "registerNow": "S'inscrire maintenant",
+    "submitAbstract": "Soumettre votre Résumé",
     "viewProgramme": "Voir le Programme",
+    "learnMore": "En savoir plus",
     "keyDates": "Dates Clés",
     "highlightsLabel": "Temps Forts",
     "highlightsTitle": "À quoi s'attendre à TUNCIS 2026",
     "keynotes": { "title": "Keynotes", "desc": "Interventions de chercheurs en IA de Tunisie et à l'international." },
     "workshops": { "title": "Ateliers Collaboratifs", "desc": "Sessions pratiques reliant recherche et pratique industrielle." },
-    "consortium": { "title": "Doctoral Consortium", "desc": "Au format de pitch (5min) pour recevoir des retours de professionnels." },
-    "nvidia": { "title": "Certification NVIDIA", "desc": "Parcours de formation certifiante optionnel pour les participants." },
+    "consortium": { "title": "Consortium de Recherche", "desc": "Format de pitch (5 min) pour recevoir des retours de chercheurs seniors et d'experts industriels." },
+    "nvidia": { "title": "Certification NVIDIA", "desc": "Parcours de formation certifiante optionnel pour les participants, fourni par Horizon University." },
     "partnersLabel": "Nos Partenaires",
-    "partnersTitle": "Co-construire l'innovation ensemble"
+    "partnersTitle": "Co-construire l'innovation ensemble",
+    "partnersSubtitle": "TUNCIS 2026 est soutenu par les principales universités tunisiennes, laboratoires de recherche et organisations internationales.",
+    "viewAllPartners": "Voir Tous les Partenaires",
+    "sousseCaption": "Sousse, Tunisie — Lieu de la conférence",
+    "countdown": {
+      "label": "Compte à Rebours",
+      "days": "Jours",
+      "hours": "Heures",
+      "minutes": "Min",
+      "seconds": "Sec"
+    }
   },
   "milestones": {
     "submission": "Date Limite de Soumission",
@@ -31,6 +50,13 @@
     "registrationDeadline": "Date Limite d'Inscription",
     "programmePublished": "Programme Final Publié",
     "event": "TUNCIS 2026"
+  },
+  "dates": {
+    "submission": "20 sep. 2026",
+    "acceptance": "30 sep. 2026",
+    "registrationDeadline": "7 oct. 2026",
+    "programmePublished": "10 oct. 2026",
+    "event": "23–24 oct. 2026"
   },
   "registration": {
     "title": "Inscription",
@@ -89,83 +115,83 @@
     "pendingNote": "Contenu à fournir par le comité : intitulés définitifs des ateliers, horaires, noms des facilitateurs et rapporteurs."
   },
   "cfc": {
-  "badge": "Appel à Projets de Recherche Innovants",
-  "title": "Transformez Votre Recherche en Impact",
-  "intro": "Travaillez-vous sur une idée de recherche innovante capable de résoudre des défis concrets ? Soumettez votre projet pour la session de pitch de projets de recherche innovants et recevez les retours d'universitaires et d'experts industriels de premier plan.",
-  "context": "Nous invitons chercheurs, enseignants-chercheurs, doctorants, ingénieurs et innovateurs à soumettre leurs projets de recherche les plus prometteurs. Les participants sélectionnés présenteront leurs projets devant un jury de chercheurs seniors, de leaders industriels et d'acteurs de l'innovation.",
-  "objectivesTitle": "Objectifs",
-  "objectives": [
-    "Promouvoir une recherche innovante à fort impact.",
-    "Favoriser la collaboration entre le monde académique et industriel.",
-    "Encourager les initiatives de recherche interdisciplinaires.",
-    "Identifier les projets à fort potentiel de transfert technologique et de commercialisation.",
-    "Faciliter la mise en réseau avec des partenaires industriels et des experts en recherche."
-  ],
-  "topicsTitle": "Thématiques d'Intérêt",
-  "topics": [
-    "Intelligence Artificielle & Machine Learning",
-    "Data Science & Big Data",
-    "Cybersécurité & Vie Privée",
-    "Internet des Objets (IoT)",
-    "Robotique & Systèmes Autonomes",
-    "Fabrication Intelligente",
-    "Santé Numérique",
-    "Technologies Durables",
-    "Villes Intelligentes",
-    "Industrie 4.0",
-    "Transformation Numérique",
-    "Technologies Émergentes"
-  ],
-  "evaluationTitle": "Critères d'Évaluation",
-  "evaluation": [
-    "Originalité scientifique et innovation",
-    "Pertinence industrielle et impact sociétal",
-    "Faisabilité technique",
-    "Dimension interdisciplinaire",
-    "Potentiel de transfert technologique ou de commercialisation",
-    "Qualité et clarté du pitch"
-  ],
-  "pitchTitle": "Format du Pitch",
-  "pitchPresentation": "5 minutes de présentation",
-  "pitchDiscussion": "5 minutes d'échange avec le jury",
-  "pitchAddressTitle": "La présentation doit aborder :",
-  "pitchContent": [
-    "Le problème abordé",
-    "La solution innovante proposée",
-    "Les contributions scientifiques et technologiques",
-    "L'impact attendu",
-    "Les applications industrielles potentielles",
-    "La feuille de route de développement future"
-  ],
-  "whoTitle": "Qui Peut Postuler ?",
-  "who": [
-    "Chercheurs",
-    "Enseignants-chercheurs",
-    "Doctorants",
-    "Chercheurs post-doctoraux",
-    "Ingénieurs de recherche",
-    "Équipes de recherche multidisciplinaires"
-  ],
-  "benefitsTitle": "Avantages pour les Projets Sélectionnés",
-  "benefits": [
-    "Présentez votre travail à des chercheurs seniors et experts industriels.",
-    "Recevez des retours constructifs d'un jury multidisciplinaire.",
-    "Explorez des partenariats de recherche et industriels.",
-    "Augmentez la visibilité de votre recherche.",
-    "Identifiez des opportunités de financement et de collaboration."
-  ],
-  "submissionTitle": "Modalités de Soumission",
-  "submissionIntro": "Les candidats sont invités à soumettre :",
-  "submission": [
-    "Titre du projet",
-    "Résumé (maximum 500 mots)",
-    "Investigateur principal et membres de l'équipe",
-    "Mots-clés",
-    "Impact attendu",
-    "Niveau de maturité technologique (le cas échéant)"
-  ],
-  "submitCta": "Soumettre via le Formulaire d'Inscription"
-},
+    "badge": "Appel à Projets de Recherche Innovants",
+    "title": "Transformez Votre Recherche en Impact",
+    "intro": "Travaillez-vous sur une idée de recherche innovante capable de résoudre des défis concrets ? Soumettez votre projet pour la session de pitch de projets de recherche innovants et recevez les retours d'universitaires et d'experts industriels de premier plan.",
+    "context": "Nous invitons chercheurs, enseignants-chercheurs, doctorants, ingénieurs et innovateurs à soumettre leurs projets de recherche les plus prometteurs. Les participants sélectionnés présenteront leurs projets devant un jury de chercheurs seniors, de leaders industriels et d'acteurs de l'innovation.",
+    "objectivesTitle": "Objectifs",
+    "objectives": [
+      "Promouvoir une recherche innovante à fort impact.",
+      "Favoriser la collaboration entre le monde académique et industriel.",
+      "Encourager les initiatives de recherche interdisciplinaires.",
+      "Identifier les projets à fort potentiel de transfert technologique et de commercialisation.",
+      "Faciliter la mise en réseau avec des partenaires industriels et des experts en recherche."
+    ],
+    "topicsTitle": "Thématiques d'Intérêt",
+    "topics": [
+      "Intelligence Artificielle & Machine Learning",
+      "Data Science & Big Data",
+      "Cybersécurité & Vie Privée",
+      "Internet des Objets (IoT)",
+      "Robotique & Systèmes Autonomes",
+      "Fabrication Intelligente",
+      "Santé Numérique",
+      "Technologies Durables",
+      "Villes Intelligentes",
+      "Industrie 4.0",
+      "Transformation Numérique",
+      "Technologies Émergentes"
+    ],
+    "evaluationTitle": "Critères d'Évaluation",
+    "evaluation": [
+      "Originalité scientifique et innovation",
+      "Pertinence industrielle et impact sociétal",
+      "Faisabilité technique",
+      "Dimension interdisciplinaire",
+      "Potentiel de transfert technologique ou de commercialisation",
+      "Qualité et clarté du pitch"
+    ],
+    "pitchTitle": "Format du Pitch",
+    "pitchPresentation": "5 minutes de présentation",
+    "pitchDiscussion": "5 minutes d'échange avec le jury",
+    "pitchAddressTitle": "La présentation doit aborder :",
+    "pitchContent": [
+      "Le problème abordé",
+      "La solution innovante proposée",
+      "Les contributions scientifiques et technologiques",
+      "L'impact attendu",
+      "Les applications industrielles potentielles",
+      "La feuille de route de développement future"
+    ],
+    "whoTitle": "Qui Peut Postuler ?",
+    "who": [
+      "Chercheurs",
+      "Enseignants-chercheurs",
+      "Doctorants",
+      "Chercheurs post-doctoraux",
+      "Ingénieurs de recherche",
+      "Équipes de recherche multidisciplinaires"
+    ],
+    "benefitsTitle": "Avantages pour les Projets Sélectionnés",
+    "benefits": [
+      "Présentez votre travail à des chercheurs seniors et experts industriels.",
+      "Recevez des retours constructifs d'un jury multidisciplinaire.",
+      "Explorez des partenariats de recherche et industriels.",
+      "Augmentez la visibilité de votre recherche.",
+      "Identifiez des opportunités de financement et collaboration."
+    ],
+    "submissionTitle": "Modalités de Soumission",
+    "submissionIntro": "Les candidats sont invités à soumettre :",
+    "submission": [
+      "Titre du projet",
+      "Résumé (maximum 500 mots)",
+      "Investigateur principal et membres de l'équipe",
+      "Mots-clés",
+      "Impact attendu",
+      "Niveau de maturité technologique (le cas échéant)"
+    ],
+    "submitCta": "Soumettre via le Formulaire"
+  },
   "committees": {
     "title": "Comités",
     "subtitle": "Organisé par TunAISa, en partenariat avec les principales universités tunisiennes.",

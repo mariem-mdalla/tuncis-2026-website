@@ -14,7 +14,30 @@ body {
   font-family: var(--font-body);
   color: var(--color-tuncis-gray);
   background-color: #ffffff;
+  /* Prevent horizontal overflow on mobile */
+  overflow-x: hidden;
 }
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Prevent images from overflowing their containers */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent any element from causing horizontal scroll */
+.max-w-7xl,
+.max-w-6xl,
+.max-w-5xl,
+.max-w-4xl,
+.max-w-3xl,
+.max-w-2xl {
+  width: 100%;
+}
+
 
 :focus-visible {
   outline: 2px solid var(--color-tuncis-yellow);
