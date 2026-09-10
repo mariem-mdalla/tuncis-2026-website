@@ -193,37 +193,25 @@ app.post("/registrations", async (req, res) => {
       `
     });
 
-    transporter.sendMail({
-      from: `"TUNCIS 2026" <${SENDER_EMAIL}>`,
-      to: ORGANIZER_EMAIL,
-      subject: `[New Registration] ${fullName} (${affiliation}) - TUNCIS 2026`,
-      html: organizerHtml,
-    }).catch(err => console.error("Failed to send registration email to organizer:", err));
-
-    // Email 2: Confirmation to Registrant
-    const attendeeHtml = wrapEmailHtml({
-      title: "Registration Confirmation — TUNCIS 2026",
-      subtitle: `Dear ${fullName}, thank you for registering for TUNCIS 2026!`,
-      contentHtml: `
-        <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
-          We are delighted to confirm your registration for the <strong>Tunisian Conference on Artificial Intelligence and Scientific Innovation (TUNCIS 2026)</strong>.
-        </p>
-        <p style="font-size: 14px; font-weight: 700; color: #022c5e; margin-bottom: 8px;">
-          Summary of Your Registration:
-        </p>
-        ${renderTableRows(registrationTableRows)}
-        <p style="font-size: 13px; color: #64748b; margin-top: 20px; line-height: 1.6;">
-          <strong>Payment & Next Steps:</strong> Payment instructions will be communicated to you by the organizing committee. Please keep this email for your records.
-        </p>
-      `
-    });
-
-    transporter.sendMail({
-      from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
-      to: email,
-      subject: "Registration Confirmed - TUNCIS 2026",
-      html: attendeeHtml,
-    }).catch(err => console.error("Failed to send registration email to attendee:", err));
+    try {
+      await Promise.all([
+        transporter.sendMail({
+          from: `"TUNCIS 2026" <${SENDER_EMAIL}>`,
+          to: ORGANIZER_EMAIL,
+          subject: `[New Registration] ${fullName} (${affiliation}) - TUNCIS 2026`,
+          html: organizerHtml,
+        }),
+        transporter.sendMail({
+          from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
+          to: email,
+          subject: "Registration Confirmed - TUNCIS 2026",
+          html: attendeeHtml,
+        }),
+      ]);
+      console.log(`Registration emails sent successfully to organizer (${ORGANIZER_EMAIL}) and registrant (${email})`);
+    } catch (mailErr) {
+      console.error("Failed to send registration emails:", mailErr);
+    }
 
     res.status(201).json({ success: true, data: inserted || parsed.data });
   } catch (err) {
@@ -275,43 +263,31 @@ app.post("/abstracts", upload.single("file"), async (req, res) => {
       `
     });
 
-    transporter.sendMail({
-      from: `"TUNCIS 2026 Submissions" <${SENDER_EMAIL}>`,
-      to: ORGANIZER_EMAIL,
-      subject: `[Abstract Submission] ${fullName} - TUNCIS 2026`,
-      html: organizerHtml,
-      attachments: [
-        {
-          filename: file.originalname,
-          content: file.buffer,
-        },
-      ],
-    }).catch(err => console.error("Failed to send abstract email to organizer:", err));
-
-    // Email 2: Confirmation to Applicant
-    const applicantHtml = wrapEmailHtml({
-      title: "Abstract Submission Received — TUNCIS 2026",
-      subtitle: `Dear ${fullName}, thank you for submitting your abstract.`,
-      contentHtml: `
-        <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
-          We have successfully received your abstract for the <strong>Innovative Research Project Pitch Session</strong> at TUNCIS 2026.
-        </p>
-        <p style="font-size: 14px; font-weight: 700; color: #022c5e; margin-bottom: 8px;">
-          Submission Summary:
-        </p>
-        ${renderTableRows(abstractTableRows)}
-        <p style="font-size: 13px; color: #64748b; margin-top: 20px; line-height: 1.6;">
-          <strong>Review Process:</strong> Our scientific review committee will review your submission and contact you with notification results before <strong>September 30, 2026</strong>.
-        </p>
-      `
-    });
-
-    transporter.sendMail({
-      from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
-      to: email,
-      subject: "Abstract Submission Confirmation - TUNCIS 2026",
-      html: applicantHtml,
-    }).catch(err => console.error("Failed to send abstract email to applicant:", err));
+    try {
+      await Promise.all([
+        transporter.sendMail({
+          from: `"TUNCIS 2026 Submissions" <${SENDER_EMAIL}>`,
+          to: ORGANIZER_EMAIL,
+          subject: `[Abstract Submission] ${fullName} - TUNCIS 2026`,
+          html: organizerHtml,
+          attachments: [
+            {
+              filename: file.originalname,
+              content: file.buffer,
+            },
+          ],
+        }),
+        transporter.sendMail({
+          from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
+          to: email,
+          subject: "Abstract Submission Confirmation - TUNCIS 2026",
+          html: applicantHtml,
+        }),
+      ]);
+      console.log(`Abstract emails sent successfully to organizer (${ORGANIZER_EMAIL}) and applicant (${email})`);
+    } catch (mailErr) {
+      console.error("Failed to send abstract emails:", mailErr);
+    }
 
     res.status(201).json({
       success: true,
