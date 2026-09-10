@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      busboy:
+        specifier: ^1.6.0
+        version: 1.6.0
     devDependencies:
       turbo:
         specifier: ^2.10.5
@@ -57,6 +61,9 @@ importers:
       '@neondatabase/serverless':
         specifier: ^1.1.0
         version: 1.1.0
+      busboy:
+        specifier: ^1.6.0
+        version: 1.6.0
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@neondatabase/serverless@1.1.0)(@opentelemetry/api@1.9.1)
