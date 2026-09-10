@@ -1,4 +1,4 @@
-﻿import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route } from "react-router";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -9,6 +9,7 @@ import Committees from "./pages/Committees";
 import Registration from "./pages/Registration";
 import PracticalInfo from "./pages/PracticalInfo";
 import AdminDashboard from "./pages/AdminDashboard";
+import BestPaperAward from "./pages/BestPaperAward";
 
 // Temporary placeholders for new pages
 function PlaceholderPage({ title }) {
@@ -39,7 +40,7 @@ export default function App() {
             {/* New Routes */}
             <Route path="/partners" element={<PlaceholderPage title="Partners" />} />
             <Route path="/about" element={<PlaceholderPage title="About TunAISia & AIS" />} />
-            <Route path="/best-paper-award" element={<PlaceholderPage title="Best Paper Award" />} />
+            <Route path="/best-paper-award" element={<BestPaperAward />} />
             <Route path="/nvidia-certification" element={<PlaceholderPage title="NVIDIA Certification" />} />
           </Routes>
         </div>

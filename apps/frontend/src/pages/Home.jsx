@@ -129,14 +129,14 @@ export default function Home() {
               <div className="bg-tuncis-blue text-white p-6 rounded-t-2xl shadow-md border-b-4 border-tuncis-yellow">
                 <p className="font-heading text-lg sm:text-xl font-medium flex items-center gap-3">
                   <span className="text-2xl">🚀</span>
-                  The ACS/IEEE 23rd International Conference on Computer Systems and Applications
+                  {t("home.bannerTitle")}
                 </p>
               </div>
 
               {/* Welcome Title */}
               <div>
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-tuncis-blue italic">
-                  Welcome to <span className="text-red-600 not-italic">TUNCIS 2026!</span>
+                  {t("home.welcomePrefix")} <span className="text-red-600 not-italic">{t("home.welcomeHighlight")}</span>
                 </h2>
                 <div className="w-24 h-1 bg-tuncis-yellow mt-6 rounded-full" />
               </div>

@@ -4,13 +4,13 @@ import { Clock } from "lucide-react";
 
 function CountdownUnit({ value, label }) {
   return (
-    <div className="flex flex-col items-center gap-2">
-      <div className="bg-tuncis-blue rounded-xl w-14 h-16 sm:w-16 sm:h-20 flex items-center justify-center shadow-md">
+    <div className="flex min-w-0 flex-col items-center gap-2">
+      <div className="bg-tuncis-blue rounded-xl w-full max-w-[64px] h-14 sm:max-w-[72px] sm:h-20 flex items-center justify-center shadow-md">
         <span className="font-heading text-2xl sm:text-3xl font-bold text-white tabular-nums">
           {String(value).padStart(2, "0")}
         </span>
       </div>
-      <span className="text-tuncis-gray text-xs uppercase tracking-wide font-medium">{label}</span>
+      <span className="text-tuncis-gray text-[10px] sm:text-xs uppercase tracking-wide font-medium text-center leading-tight">{label}</span>
     </div>
   );
 }
@@ -48,7 +48,7 @@ export default function Countdown() {
         <Clock size={20} className="text-blue-600" />
       </div>
 
-      <div className="flex gap-2 sm:gap-4 justify-between mb-6">
+      <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 sm:gap-4 mb-6">
         <CountdownUnit value={time.days}    label={t("home.countdown.days")} />
         <CountdownUnit value={time.hours}   label={t("home.countdown.hours")} />
         <CountdownUnit value={time.minutes} label={t("home.countdown.minutes")} />
@@ -56,7 +56,7 @@ export default function Countdown() {
       </div>
 
       <div className="border-t border-gray-100 pt-4 text-center">
-        <p className="text-tuncis-gray text-sm">📅 {t("dates.event")} | Sousse, Tunisia</p>
+        <p className="text-tuncis-gray text-sm break-words">📅 {t("dates.event")} | Sousse, Tunisia</p>
       </div>
     </div>
   );

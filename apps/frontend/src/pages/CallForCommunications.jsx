@@ -40,25 +40,21 @@ function SectionCard({ icon: Icon, title, children, className = "" }) {
 }
 
 function SubmissionModal({ isOpen, onClose }) {
+  const { t } = useTranslation();
   const [file, setFile] = useState(null);
   const [status, setStatus] = useState("idle"); // idle | submitting | success
-  
+
   if (!isOpen) return null;
 
   const handleFileChange = (e) => {
-    if (e.target.files[0]) {
-      setFile(e.target.files[0]);
-    }
+    if (e.target.files[0]) setFile(e.target.files[0]);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setStatus("submitting");
-    
-    // Simulating API call for UI purposes
-    setTimeout(() => {
-      setStatus("success");
-    }, 2000);
+    // TODO: wire to real email API
+    setTimeout(() => setStatus("success"), 2000);
   };
 
   return (
@@ -70,10 +66,7 @@ function SubmissionModal({ isOpen, onClose }) {
           exit={{ opacity: 0, scale: 0.95 }}
           className="bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden relative"
         >
-          <button 
-            onClick={onClose}
-            className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 bg-gray-100 rounded-full p-1"
-          >
+          <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 bg-gray-100 rounded-full p-1">
             <X size={20} />
           </button>
 
@@ -83,68 +76,40 @@ function SubmissionModal({ isOpen, onClose }) {
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 text-green-600">
                   <CheckCircle2 size={32} />
                 </div>
-                <h3 className="font-heading text-2xl font-bold text-tuncis-blue mb-2">Submitted Successfully!</h3>
-                <p className="text-gray-600 mb-8">Thank you! Your abstract has been sent to our organizing committee for review.</p>
-                <button 
-                  onClick={onClose}
-                  className="bg-tuncis-blue text-white font-bold px-8 py-3 rounded-xl hover:bg-tuncis-blue-dark transition-colors"
-                >
-                  Close Window
+                <h3 className="font-heading text-2xl font-bold text-tuncis-blue mb-2">{t("cfc.modal.successTitle")}</h3>
+                <p className="text-gray-600 mb-8">{t("cfc.modal.successMessage")}</p>
+                <button onClick={onClose} className="bg-tuncis-blue text-white font-bold px-8 py-3 rounded-xl hover:bg-tuncis-blue-dark transition-colors">
+                  {t("cfc.modal.close")}
                 </button>
               </div>
             ) : (
               <>
-                <h3 className="font-heading text-2xl font-bold text-tuncis-blue mb-2">Submit Your Abstract</h3>
-                <p className="text-gray-500 text-sm mb-6">Please fill out your details and upload your PDF abstract.</p>
-                
+                <h3 className="font-heading text-2xl font-bold text-tuncis-blue mb-2">{t("cfc.modal.title")}</h3>
+                <p className="text-gray-500 text-sm mb-6">{t("cfc.modal.subtitle")}</p>
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-sm font-bold text-tuncis-blue mb-1">Full Name *</label>
-                    <input 
-                      type="text" 
-                      required 
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tuncis-yellow transition-all" 
-                      placeholder="e.g. Dr. Jane Doe"
-                    />
+                    <label className="block text-sm font-bold text-tuncis-blue mb-1">{t("cfc.modal.fullName")} *</label>
+                    <input type="text" required className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tuncis-yellow transition-all" placeholder={t("cfc.modal.fullNamePlaceholder")} />
                   </div>
                   <div>
-                    <label className="block text-sm font-bold text-tuncis-blue mb-1">Email Address *</label>
-                    <input 
-                      type="email" 
-                      required 
-                      className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tuncis-yellow transition-all" 
-                      placeholder="e.g. jane@university.edu"
-                    />
+                    <label className="block text-sm font-bold text-tuncis-blue mb-1">{t("cfc.modal.email")} *</label>
+                    <input type="email" required className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tuncis-yellow transition-all" placeholder={t("cfc.modal.emailPlaceholder")} />
                   </div>
-                  
                   <div>
-                    <label className="block text-sm font-bold text-tuncis-blue mb-1">Abstract File (PDF) *</label>
+                    <label className="block text-sm font-bold text-tuncis-blue mb-1">{t("cfc.modal.file")} *</label>
                     <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 bg-gray-50 text-center hover:bg-gray-100 transition-colors cursor-pointer relative">
-                      <input 
-                        type="file" 
-                        accept=".pdf" 
-                        required 
-                        onChange={handleFileChange}
-                        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                      />
+                      <input type="file" accept=".pdf" required onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
                       <UploadCloud size={32} className="mx-auto text-gray-400 mb-2" />
-                      <p className="text-sm text-gray-600 font-medium">
-                        {file ? file.name : "Click to upload or drag and drop"}
-                      </p>
-                      {!file && <p className="text-xs text-gray-400 mt-1">PDF format only (Max 5MB)</p>}
+                      <p className="text-sm text-gray-600 font-medium">{file ? file.name : t("cfc.modal.fileUpload")}</p>
+                      {!file && <p className="text-xs text-gray-400 mt-1">{t("cfc.modal.fileHint")}</p>}
                     </div>
                   </div>
-
                   <div className="pt-2">
-                    <button 
-                      type="submit" 
-                      disabled={status === "submitting"}
-                      className="w-full bg-tuncis-yellow text-tuncis-blue font-bold text-lg px-6 py-4 rounded-xl shadow-md hover:bg-yellow-400 hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2"
-                    >
+                    <button type="submit" disabled={status === "submitting"} className="w-full bg-tuncis-yellow text-tuncis-blue font-bold text-lg px-6 py-4 rounded-xl shadow-md hover:bg-yellow-400 hover:shadow-lg transition-all disabled:opacity-70 flex items-center justify-center gap-2">
                       {status === "submitting" ? (
-                        <><Loader2 size={20} className="animate-spin" /> Sending...</>
+                        <><Loader2 size={20} className="animate-spin" /> {t("cfc.modal.sending")}</>
                       ) : (
-                        "Submit Abstract"
+                        t("cfc.modal.submit")
                       )}
                     </button>
                   </div>
@@ -313,7 +278,7 @@ export default function CallForCommunications() {
             ))}
           </ul>
           <div className="border-t border-gray-100 pt-4 mt-2 text-xs text-tuncis-gray italic">
-            Selected projects will be presented before a distinguished panel of senior researchers and industry leaders.
+            {t("cfc.panelNote")}
           </div>
         </SectionCard>
 
@@ -330,10 +295,10 @@ export default function CallForCommunications() {
               <Mail size={32} />
             </div>
             <h2 className="font-heading text-2xl sm:text-3xl text-white font-bold mb-4">
-              Ready to submit your abstract?
+              {t("cfc.ctaTitle")}
             </h2>
             <p className="text-white/70 mb-10 max-w-xl mx-auto leading-relaxed">
-              Prepare your abstract as a PDF file and click below. Our team will review your submission and contact you with the result before <strong className="text-white">Sep 30, 2026</strong>.
+              {t("cfc.ctaBody")} <strong className="text-white">{t("cfc.ctaDeadline")}</strong>.
             </p>
             <button
               onClick={() => setIsModalOpen(true)}
@@ -342,7 +307,7 @@ export default function CallForCommunications() {
               <Mail size={24} />
               {t("cfc.submitCta")}
             </button>
-            <p className="text-white/50 text-sm mt-4">PDF format · Max 5 MB</p>
+            <p className="text-white/50 text-sm mt-4">{t("cfc.ctaFileHint")}</p>
           </div>
         </motion.div>
 

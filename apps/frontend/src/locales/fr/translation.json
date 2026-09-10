@@ -7,7 +7,7 @@
     "register": "S'inscrire",
     "homeLink": "Accueil",
     "submit": "Soumettre",
-    "people": "Comités & Keynotes",
+    "people": "Comités",
     "participate": "Participer",
     "about": "À Propos",
     "bestPaper": "Prix du Meilleur Article",
@@ -27,15 +27,30 @@
     "keyDates": "Dates Clés",
     "highlightsLabel": "Temps Forts",
     "highlightsTitle": "À quoi s'attendre à TUNCIS 2026",
-    "keynotes": { "title": "Keynotes", "desc": "Interventions de chercheurs en IA de Tunisie et à l'international." },
-    "workshops": { "title": "Ateliers Collaboratifs", "desc": "Sessions pratiques reliant recherche et pratique industrielle." },
-    "consortium": { "title": "Consortium de Recherche", "desc": "Format de pitch (5 min) pour recevoir des retours de chercheurs seniors et d'experts industriels." },
-    "nvidia": { "title": "Certification NVIDIA", "desc": "Parcours de formation certifiante optionnel pour les participants, fourni par Horizon University." },
+    "keynotes": {
+      "title": "Keynotes",
+      "desc": "Interventions de chercheurs en IA de Tunisie et à l'international."
+    },
+    "workshops": {
+      "title": "Ateliers Collaboratifs",
+      "desc": "Sessions pratiques reliant recherche et pratique industrielle."
+    },
+    "consortium": {
+      "title": "Consortium de Recherche",
+      "desc": "Format de pitch (5 min) pour recevoir des retours de chercheurs seniors et d'experts industriels."
+    },
+    "nvidia": {
+      "title": "Certification NVIDIA",
+      "desc": "Parcours de formation certifiante optionnel pour les participants, fourni par Horizon University."
+    },
     "partnersLabel": "Nos Partenaires",
     "partnersTitle": "Co-construire l'innovation ensemble",
     "partnersSubtitle": "TUNCIS 2026 est soutenu par les principales universités tunisiennes, laboratoires de recherche et organisations internationales.",
     "viewAllPartners": "Voir Tous les Partenaires",
     "sousseCaption": "Sousse, Tunisie — Lieu de la conférence",
+    "bannerTitle": "De la recherche à l'industrie : innovation en IA",
+    "welcomePrefix": "Bienvenue à",
+    "welcomeHighlight": "TUNCIS 2026 !",
     "countdown": {
       "label": "Compte à Rebours",
       "days": "Jours",
@@ -98,7 +113,15 @@
     "feesTitle": "Frais d'inscription",
     "feesText": "Jour 1 (Conférence) : 150 DT / 70 €. Jour 2 (Conférence + Hôtel) : +200 DT / +130 €. Dîner Gala : +100 DT / +50 €. Certification NVIDIA : +130 DT / +100 €.",
     "feesNote": "Ces tarifs peuvent changer.",
-    "totalDue": "Montant Total :"
+    "totalDue": "Montant Total :",
+    "fees": {
+      "day1": "Jour 1 – Conférence (23 Oct)",
+      "day2": "Jour 2 – Conférence (24 Oct)",
+      "accommodation": "Hébergement (tarif workshop)",
+      "accommodationNote": "À confirmer",
+      "nvidia": "Certification NVIDIA",
+      "gala": "Dîner Gala"
+    }
   },
   "footer": {
     "description": "Conférence Tunisienne sur l'Intelligence Artificielle et l'Innovation Scientifique.",
@@ -190,22 +213,48 @@
       "Impact attendu",
       "Niveau de maturité technologique (le cas échéant)"
     ],
-    "submitCta": "Soumettre via le Formulaire"
+    "submitCta": "Soumettre via le Formulaire",
+    "modal": {
+      "title": "Soumettre votre résumé",
+      "subtitle": "Veuillez remplir vos informations et télécharger votre résumé en PDF.",
+      "fullName": "Nom complet",
+      "fullNamePlaceholder": "ex. Dr. Jane Doe",
+      "email": "Adresse e-mail",
+      "emailPlaceholder": "ex. jane@université.tn",
+      "file": "Fichier résumé (PDF)",
+      "fileUpload": "Cliquez pour télécharger ou glissez-déposez",
+      "fileHint": "Format PDF uniquement (Max 5 Mo)",
+      "submit": "Envoyer le résumé",
+      "sending": "Envoi en cours...",
+      "successTitle": "Soumis avec succès !",
+      "successMessage": "Merci ! Votre résumé a été envoyé au comité d’organisation pour examen.",
+      "close": "Fermer"
+    },
+    "panelNote": "Les projets sélectionnés seront présentés devant un jury de chercheurs séniors et de leaders industriels.",
+    "ctaTitle": "Prêt·e à soumettre votre résumé ?",
+    "ctaBody": "Préparez votre résumé en PDF et cliquez ci-dessous. Notre équipe examinera votre soumission et vous contactera avant le",
+    "ctaDeadline": "30 sept. 2026",
+    "ctaFileHint": "Format PDF · Max 5 Mo"
   },
   "committees": {
-    "title": "Comités",
-    "subtitle": "Organisé par TunAISa, en partenariat avec les principales universités tunisiennes.",
-    "organizing": "Comité d'Organisation",
+    "title": "Comités & Keynotes",
+    "subtitle": "Les responsables académiques et organisationnels de TUNCIS 2026.",
+    "direction": "chairs",
     "scientific": "Comité Scientifique",
-    "direction": "Chairs",
-    "comingSoon": "Liste à venir",
-    "leadership": "Chairs",
+    "organizing": "Comité d’Organisation",
+    "comingSoon": "Les membres du Comité Scientifique seront annoncés prochainement.",
     "roles": {
-      "chair": "Président TunAISa",
-      "tuncisCoChair": "Tuncis Co-chair",
-      "organisationChair": "Organisation chair",
-      "coordination": "Coordination générale",
-      "coChairConsortium": "Co-chair, consortium doctoral"
+      "chair": "chair",
+      "tuncisCoChair": "Co-chair TUNCIS"
+    },
+    "imed": {
+      "bio": "Directeur Général (Doyen) de l’ENSIIE, France, et Président de TunAISa. Professeur Distingué en Systèmes d’Information, habilité à diriger des recherches en informatique et en sciences de gestion. Ses recherches portent sur l’intelligence numérique, la transformation numérique et la gouvernance des données. Il a auparavant occupé le poste de Doyen de la Faculté à IMT-BS, où il a fondé le groupe de recherche SMART²."
+    },
+    "narjes": {
+      "bio": "Directrice de l’ENSI et Directrice du Laboratoire RIADI, Université de la Manouba, Tunisie. Professeure au département des Systèmes d’Information et de l’Ingénierie de la Décision, elle enseigne le Génie Logiciel et l’Intelligence Artificielle. Titulaire d’un diplôme d’ingénieur de l’ENSEEIHT Toulouse, d’un doctorat de l’Université de Toulouse 1, et d’une HDR de l’ENSI. Ses recherches portent sur la modélisation et la simulation de systèmes socio-techniques complexes. Elle a également été boursière Fulbright à l’Université de Californie, Irvine."
+    },
+    "takoua": {
+      "bio": "Maître de Conférences à l’ENISo, Université de Sousse, et chercheuse au Laboratoire SERCOM, École Polytechnique de Tunisie. Titulaire d’un diplôme d’ingénieur de l’ENSIMAG (Grenoble, France), d’un doctorat de l’Université de Grenoble et d’une HDR de l’Université de Carthage. Ses recherches portent sur le Big Data, l’IoT et le Cloud Computing. Elle est co-fondatrice de l’Horizon School of Digital Technologies à Sousse et Ambassadrice NVIDIA en IA Générative."
     }
   },
   "practicalInfo": {
@@ -217,5 +266,17 @@
     "accommodation": "Hébergement",
     "accommodationPending": "Détails à confirmer par le comité d'organisation.",
     "contact": "Contact"
+  },
+  "bestPaper": {
+    "title": "Prix du Meilleur Article",
+    "heroSubtitle": "TUNCIS 2026 remettra un Prix du Meilleur Article pour récompenser les contributions de recherche exceptionnelles présentées lors de la conférence.",
+    "awardsTitle": "Le prix comprend :",
+    "award1": "Un certificat officiel, signé et tamponné par l’AIS (Association for Information Systems)",
+    "award2": "Annonce publique du papier gagnant lors de la conférence",
+    "award3": "Mise en valeur sur les réseaux sociaux officiels de TUNCIS 2026",
+    "selectionTitle": "Processus de Sélection",
+    "selectionText": "Le papier gagnant sera sélectionné par le ",
+    "selectionCommittee": "Comité Scientifique",
+    "selectionCriteria": " sur la base de l’originalité, de la rigueur scientifique et de la pertinence par rapport aux thèmes de la conférence."
   }
 }

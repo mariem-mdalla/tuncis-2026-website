@@ -117,7 +117,7 @@ export default function Header() {
           {/* Logos visible on lg screens and up */}
           <div className="hidden lg:flex items-center gap-4 shrink-0 pr-4">
             <img src={tunaisiaLogo} alt="TunAISa Logo" className="w-auto object-contain drop-shadow-sm" style={{ height: "92px" }} />
-            <img src={aisLogo} alt="AIS Logo" className="w-auto object-contain brightness-0 invert opacity-90 drop-shadow-md" style={{ height: "48px", marginRight: "0.25rem" }} />
+            <img src={aisLogo} alt="AIS Logo" className="w-auto object-contain brightness-0 invert opacity-90 drop-shadow-md" style={{ height: "38px", marginRight: "0.25rem" }} />
           </div>
         </div>
 
@@ -150,7 +150,7 @@ export default function Header() {
             {/* Logos */}
             <div className="flex justify-center items-center gap-3 py-3 px-2 border-b border-white/10 bg-transparent">
               <img src={tunaisiaLogo} alt="TunAISa Logo" className="w-auto object-contain drop-shadow-sm" style={{ height: "88px" }} />
-              <img src={aisLogo} alt="AIS Logo" className="w-auto object-contain brightness-0 invert drop-shadow-sm" style={{ height: "44px" }} />
+              <img src={aisLogo} alt="AIS Logo" className="w-auto object-contain brightness-0 invert drop-shadow-sm" style={{ height: "30px" }} />
             </div>
 
             {/* Flat links */}

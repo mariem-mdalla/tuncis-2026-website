@@ -1,10 +1,18 @@
-﻿{
+{
   "nav": {
     "programme": "Programme",
     "callForCommunications": "Call for Communications",
     "committees": "Committees",
     "practicalInfo": "Practical Info",
-    "register": "Register", "homeLink": "Home", "submit": "Submit", "people": "Committees & Keynotes", "participate": "Participate", "about": "About", "bestPaper": "Best Paper Award", "nvidiaCert": "NVIDIA Certification", "partners": "Partners"
+    "register": "Register",
+    "homeLink": "Home",
+    "submit": "Submit",
+    "people": "Committees",
+    "participate": "Participate",
+    "about": "About",
+    "bestPaper": "Best Paper Award",
+    "nvidiaCert": "NVIDIA Certification",
+    "partners": "Partners"
   },
   "home": {
     "eyebrow": "October 23–24, 2026 · Sousse, Tunisia",
@@ -19,17 +27,32 @@
     "keyDates": "Key Dates",
     "highlightsLabel": "Highlights",
     "highlightsTitle": "What to expect at TUNCIS 2026",
-    "keynotes": { "title": "Keynotes", "desc": "Talks from leading AI researchers across Tunisia and internationally." },
-    "workshops": { "title": "Collaborative Workshops", "desc": "Hands-on sessions bridging research and industry practice." },
-    "consortium": { "title": "Research Consortium", "desc": "A 5-minute pitch format for researchers to receive feedback from senior academics and industry experts." },
-    "nvidia": { "title": "NVIDIA Certification", "desc": "Optional certified training track for attendees, provided by Horizon University." },
+    "keynotes": {
+      "title": "Keynotes",
+      "desc": "Talks from leading AI researchers across Tunisia and internationally."
+    },
+    "workshops": {
+      "title": "Collaborative Workshops",
+      "desc": "Hands-on sessions bridging research and industry practice."
+    },
+    "consortium": {
+      "title": "Research Consortium",
+      "desc": "A 5-minute pitch format for researchers to receive feedback from senior academics and industry experts."
+    },
+    "nvidia": {
+      "title": "NVIDIA Certification",
+      "desc": "Optional certified training track for attendees, provided by Horizon University."
+    },
     "partnersLabel": "Our Partners",
     "partnersTitle": "Co-constructing innovation together",
     "partnersSubtitle": "TUNCIS 2026 is supported by leading Tunisian universities, research labs, and international organizations.",
     "viewAllPartners": "View All Partners",
     "sousseCaption": "Sousse, Tunisia — Conference venue",
+    "bannerTitle": "Research to Industry: AI Innovation",
+    "welcomePrefix": "Welcome to",
+    "welcomeHighlight": "TUNCIS 2026!",
     "countdown": {
-      "label": "Conference Countdown",
+      "label": "Countdown",
       "days": "Days",
       "hours": "Hours",
       "minutes": "Min",
@@ -90,7 +113,15 @@
     "feesTitle": "Registration Fees",
     "feesText": "Day 1 (Conference): 150 DT / 70 €. Day 2 (Conference + Hotel): +200 DT / +130 €. Gala Dinner: +100 DT / +50 €. NVIDIA Certification: +130 DT / +100 €.",
     "feesNote": "These rates are subject to change.",
-    "totalDue": "Total Amount Due:"
+    "totalDue": "Total Amount Due:",
+    "fees": {
+      "day1": "Day 1 – Conference (Oct 23)",
+      "day2": "Day 2 – Conference (Oct 24)",
+      "accommodation": "Accommodation (workshop rate)",
+      "accommodationNote": "TBC – to confirm",
+      "nvidia": "NVIDIA Certification",
+      "gala": "Gala Dinner"
+    }
   },
   "footer": {
     "description": "Tunisian Conference on Artificial Intelligence and Scientific Innovation.",
@@ -107,97 +138,123 @@
     "pendingNote": "Content to be provided by the committee: final workshop titles, schedule, and names of facilitators and rapporteurs."
   },
   "cfc": {
-  "badge": "Call for Innovative Research Projects",
-  "title": "Transform Your Research into Impact",
-  "intro": "Are you working on an innovative research idea with the potential to solve real-world challenges? Submit your project for the Innovative Research Project Pitch Session and get feedback from leading academics and industry experts.",
-  "context": "We invite researchers, faculty members, PhD students, engineers, and innovators to submit their most promising research projects. Selected participants will present their projects before a distinguished panel of senior researchers, industry leaders, and innovation stakeholders.",
-  "objectivesTitle": "Objectives",
-  "objectives": [
-    "Promote innovative, high-impact research.",
-    "Foster collaboration between academia and industry.",
-    "Encourage interdisciplinary research initiatives.",
-    "Identify projects with strong technology transfer and commercialization potential.",
-    "Facilitate networking with industrial partners and research experts."
-  ],
-  "topicsTitle": "Topics of Interest",
-  "topics": [
-    "Artificial Intelligence & Machine Learning",
-    "Data Science & Big Data",
-    "Cybersecurity & Privacy",
-    "Internet of Things (IoT)",
-    "Robotics & Autonomous Systems",
-    "Smart Manufacturing",
-    "Digital Health",
-    "Sustainable Technologies",
-    "Smart Cities",
-    "Industry 4.0",
-    "Digital Transformation",
-    "Emerging Technologies"
-  ],
-  "evaluationTitle": "Evaluation Criteria",
-  "evaluation": [
-    "Scientific originality and innovation",
-    "Industrial relevance and societal impact",
-    "Technical feasibility",
-    "Interdisciplinary dimension",
-    "Potential for technology transfer or commercialization",
-    "Quality and clarity of the pitch"
-  ],
-  "pitchTitle": "Pitch Format",
-  "pitchPresentation": "5 minutes presentation",
-  "pitchDiscussion": "5 minutes discussion with the jury",
-  "pitchAddressTitle": "The presentation should address:",
-  "pitchContent": [
-    "The problem being addressed",
-    "The proposed innovative solution",
-    "Scientific and technological contributions",
-    "Expected impact",
-    "Potential industrial applications",
-    "Future development roadmap"
-  ],
-  "whoTitle": "Who Can Apply?",
-  "who": [
-    "Researchers",
-    "Faculty members",
-    "PhD students",
-    "Postdoctoral researchers",
-    "Research engineers",
-    "Multidisciplinary research teams"
-  ],
-  "benefitsTitle": "Benefits for Selected Projects",
-  "benefits": [
-    "Present your work to senior researchers and industry experts.",
-    "Receive constructive feedback from a multidisciplinary jury.",
-    "Explore research and industrial partnerships.",
-    "Increase the visibility of your research.",
-    "Identify funding and collaboration opportunities."
-  ],
-  "submissionTitle": "Submission Requirements",
-  "submissionIntro": "Applicants are invited to submit:",
-  "submission": [
-    "Project title",
-    "Abstract (maximum 500 words)",
-    "Principal investigator and team members",
-    "Keywords",
-    "Expected impact",
-    "Technology Readiness Level (if applicable)"
-  ],
-  "submitCta": "Submit via Registration Form"
-},
+    "badge": "Call for Innovative Research Projects",
+    "title": "Transform Your Research into Impact",
+    "intro": "Are you working on an innovative research idea with the potential to solve real-world challenges? Submit your project for the Innovative Research Project Pitch Session and get feedback from leading academics and industry experts.",
+    "context": "We invite researchers, faculty members, PhD students, engineers, and innovators to submit their most promising research projects. Selected participants will present their projects before a distinguished panel of senior researchers, industry leaders, and innovation stakeholders.",
+    "objectivesTitle": "Objectives",
+    "objectives": [
+      "Promote innovative, high-impact research.",
+      "Foster collaboration between academia and industry.",
+      "Encourage interdisciplinary research initiatives.",
+      "Identify projects with strong technology transfer and commercialization potential.",
+      "Facilitate networking with industrial partners and research experts."
+    ],
+    "topicsTitle": "Topics of Interest",
+    "topics": [
+      "Artificial Intelligence & Machine Learning",
+      "Data Science & Big Data",
+      "Cybersecurity & Privacy",
+      "Internet of Things (IoT)",
+      "Robotics & Autonomous Systems",
+      "Smart Manufacturing",
+      "Digital Health",
+      "Sustainable Technologies",
+      "Smart Cities",
+      "Industry 4.0",
+      "Digital Transformation",
+      "Emerging Technologies"
+    ],
+    "evaluationTitle": "Evaluation Criteria",
+    "evaluation": [
+      "Scientific originality and innovation",
+      "Industrial relevance and societal impact",
+      "Technical feasibility",
+      "Interdisciplinary dimension",
+      "Potential for technology transfer or commercialization",
+      "Quality and clarity of the pitch"
+    ],
+    "pitchTitle": "Pitch Format",
+    "pitchPresentation": "5 minutes presentation",
+    "pitchDiscussion": "5 minutes discussion with the jury",
+    "pitchAddressTitle": "The presentation should address:",
+    "pitchContent": [
+      "The problem being addressed",
+      "The proposed innovative solution",
+      "Scientific and technological contributions",
+      "Expected impact",
+      "Potential industrial applications",
+      "Future development roadmap"
+    ],
+    "whoTitle": "Who Can Apply?",
+    "who": [
+      "Researchers",
+      "Faculty members",
+      "PhD students",
+      "Postdoctoral researchers",
+      "Research engineers",
+      "Multidisciplinary research teams"
+    ],
+    "benefitsTitle": "Benefits for Selected Projects",
+    "benefits": [
+      "Present your work to senior researchers and industry experts.",
+      "Receive constructive feedback from a multidisciplinary jury.",
+      "Explore research and industrial partnerships.",
+      "Increase the visibility of your research.",
+      "Identify funding and collaboration opportunities."
+    ],
+    "submissionTitle": "Submission Requirements",
+    "submissionIntro": "Applicants are invited to submit:",
+    "submission": [
+      "Project title",
+      "Abstract (maximum 500 words)",
+      "Principal investigator and team members",
+      "Keywords",
+      "Expected impact",
+      "Technology Readiness Level (if applicable)"
+    ],
+    "submitCta": "Submit via Registration Form",
+    "modal": {
+      "title": "Submit Your Abstract",
+      "subtitle": "Please fill out your details and upload your PDF abstract.",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "e.g. Dr. Jane Doe",
+      "email": "Email Address",
+      "emailPlaceholder": "e.g. jane@university.edu",
+      "file": "Abstract File (PDF)",
+      "fileUpload": "Click to upload or drag and drop",
+      "fileHint": "PDF format only (Max 5MB)",
+      "submit": "Submit Abstract",
+      "sending": "Sending...",
+      "successTitle": "Submitted Successfully!",
+      "successMessage": "Thank you! Your abstract has been sent to our organizing committee for review.",
+      "close": "Close Window"
+    },
+    "panelNote": "Selected projects will be presented before a distinguished panel of senior researchers and industry leaders.",
+    "ctaTitle": "Ready to submit your abstract?",
+    "ctaBody": "Prepare your abstract as a PDF file and click below. Our team will review your submission and contact you with the result before",
+    "ctaDeadline": "Sep 30, 2026",
+    "ctaFileHint": "PDF format · Max 5 MB"
+  },
   "committees": {
-    "title": "Committees",
-    "subtitle": "Organized by TunAISa, in partnership with leading Tunisian universities.",
-    "organizing": "Organizing Committee",
+    "title": "Committees & Keynotes",
+    "subtitle": "The academic and organizational leaders behind TUNCIS 2026.",
+    "direction": "Conference Chairs",
     "scientific": "Scientific Committee",
-    "direction": "Chairs",
-    "comingSoon": "List coming soon",
-    "leadership": "Chairs",
+    "organizing": "Organizing Committee",
+    "comingSoon": "Scientific Committee members will be announced soon.",
     "roles": {
-      "chair": "TunAISa President",
-      "tuncisCoChair": "Tuncis Co-chair",
-      "organisationChair": "Organisation chair",
-      "coordination": "General Coordination",
-      "coChairConsortium": "Co-chair, Doctoral Consortium"
+      "chair": "General Chair",
+      "tuncisCoChair": "TUNCIS Co-Chair"
+    },
+    "imed": {
+      "bio": "General Director (Dean) of ENSIIE, France, and President of TunAISa. A Distinguished Professor of Information Systems, HDR-accredited in Computer and Management Sciences, his research focuses on digital intelligence, digital transformation, and data governance. He previously served as Dean of Faculty at IMT-BS, where he founded the SMART² research group."
+    },
+    "narjes": {
+      "bio": "Director of ENSI (Ecole Nationale des Sciences de l’Informatique) and Director of the RIADI Laboratory, University of Manouba, Tunisia. A Professor in the Department of Information Systems and Decision Engineering, she teaches Software Engineering and Artificial Intelligence. She holds an engineering diploma from ENSEEIHT Toulouse, a PhD from the University of Toulouse 1, and an HDR from ENSI. Her research focuses on modeling and simulation of complex socio-technical systems, information systems, and multi-agent systems. She was also a Fulbright scholar at the University of California, Irvine."
+    },
+    "takoua": {
+      "bio": "Associate Professor at ENISo (National School of Engineers of Sousse), University of Sousse, and a researcher at the SERCOM Laboratory, Polytechnic School of Tunisia, University of Carthage. She holds an engineering degree from ENSIMAG (Grenoble, France), a PhD from Grenoble University, and an HDR from the University of Carthage. Her research focuses on Big Data, IoT, and Cloud Computing. She is also a co-founder of the Horizon School of Digital Technologies in Sousse, and an NVIDIA Ambassador in Generative AI."
     }
   },
   "practicalInfo": {
@@ -209,6 +266,17 @@
     "accommodation": "Accommodation",
     "accommodationPending": "Details to be confirmed by the organizing committee.",
     "contact": "Contact"
+  },
+  "bestPaper": {
+    "title": "Best Paper Award",
+    "heroSubtitle": "TUNCIS 2026 will present a Best Paper Award to recognize outstanding research contributions presented at the conference.",
+    "awardsTitle": "The award includes:",
+    "award1": "An official award certificate, signed and stamped by AIS (Association for Information Systems)",
+    "award2": "Public announcement of the winning paper during the conference",
+    "award3": "Recognition on TUNCIS 2026’s official social media channels",
+    "selectionTitle": "Selection Process",
+    "selectionText": "The winning paper will be selected by the ",
+    "selectionCommittee": "Scientific Committee",
+    "selectionCriteria": " based on originality, scientific rigor, and relevance to the conference themes."
   }
 }
-

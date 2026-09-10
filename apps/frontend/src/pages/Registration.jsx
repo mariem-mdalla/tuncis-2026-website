@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Check, ChevronDown } from "lucide-react";
 import PhoneInput, { getCountryCallingCode } from "react-phone-number-input";
@@ -6,12 +6,12 @@ import "react-phone-number-input/style.css";
 import { useTranslation } from "react-i18next";
 
 // ── Fee Table Data (order matters — Gala is last) ──────────────────
-const FEE_ROWS = [
-  { key: "day1",          label: "Day 1 – Conference (Oct 23)",             local: 170, intl: 70 },
-  { key: "day2",          label: "Day 2 – Conference (Oct 24)",             local: 120, intl: 40 },
-  { key: "accommodation", label: "Accommodation (workshop rate)",           local: 170, intl: 70,  note: "TBC – à confirmer" },
-  { key: "nvidia",        label: "NVIDIA Certification",                    local: 130, intl: 100 },
-  { key: "gala",          label: "Gala Dinner",                             local: 100, intl: 40 },
+const getFeeRows = (t) => [
+  { key: "day1",          label: t("registration.fees.day1"),             local: 170, intl: 70 },
+  { key: "day2",          label: t("registration.fees.day2"),             local: 120, intl: 40 },
+  { key: "accommodation", label: t("registration.fees.accommodation"),    local: 170, intl: 70,  note: t("registration.fees.accommodationNote") },
+  { key: "nvidia",        label: t("registration.fees.nvidia"),           local: 130, intl: 100 },
+  { key: "gala",          label: t("registration.fees.gala"),             local: 100, intl: 40 },
 ];
 
 // ── Helpers ────────────────────────────────────────────────────────
@@ -57,9 +57,10 @@ export default function Registration() {
   const [submitStatus, setSubmitStatus] = useState("idle");
   const [errorMsg, setErrorMsg] = useState("");
 
+  const feeRows = getFeeRows(t);
   const isLocal    = form.category === "local";
   const currency   = isLocal ? "DT" : "€";
-  const total      = FEE_ROWS.reduce((sum, row) => sum + (checked[row.key] ? (isLocal ? row.local : row.intl) : 0), 0);
+  const total      = feeRows.reduce((sum, row) => sum + (checked[row.key] ? (isLocal ? row.local : row.intl) : 0), 0);
   const toggleRow  = key => setChecked(p => ({ ...p, [key]: !p[key] }));
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
@@ -118,7 +119,7 @@ export default function Registration() {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {FEE_ROWS.map((row, i) => (
+                    {feeRows.map((row, i) => (
                       <tr key={row.key} className={i % 2 === 0 ? "bg-white" : "bg-gray-50"}>
                         <td className="px-4 py-3 text-gray-700">
                           {row.label}
@@ -237,7 +238,7 @@ export default function Registration() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-100">
-                  {FEE_ROWS.map((row, i) => {
+                  {feeRows.map((row, i) => {
                     const isChecked = checked[row.key];
                     return (
                       <tr
