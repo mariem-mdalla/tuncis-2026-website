@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation } from "react-router";
 import { useTranslation } from "react-i18next";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -116,8 +116,12 @@ export default function Header() {
           
           {/* Logos visible on lg screens and up */}
           <div className="hidden lg:flex items-center gap-4 shrink-0 pr-4">
-            <img src={tunaisiaLogo} alt="TunAISa Logo" className="w-auto object-contain drop-shadow-sm" style={{ height: "92px" }} />
-            <img src={aisLogo} alt="AIS Logo" className="w-auto object-contain brightness-0 invert opacity-90 drop-shadow-md" style={{ height: "38px", marginRight: "0.25rem" }} />
+            <Link to="/about" title="TunAISia & AIS" className="transition-opacity hover:opacity-80 flex items-center">
+              <img src={tunaisiaLogo} alt="TunAISa Logo" className="w-auto object-contain drop-shadow-sm" style={{ height: "92px" }} />
+            </Link>
+            <Link to="/about" title="TunAISia & AIS" className="transition-opacity hover:opacity-80 flex items-center">
+              <img src={aisLogo} alt="AIS Logo" className="w-auto object-contain brightness-0 invert opacity-90 drop-shadow-md" style={{ height: "38px", marginRight: "0.25rem" }} />
+            </Link>
           </div>
         </div>
 
@@ -149,8 +153,12 @@ export default function Header() {
 
             {/* Logos */}
             <div className="flex justify-center items-center gap-3 py-3 px-2 border-b border-white/10 bg-transparent">
-              <img src={tunaisiaLogo} alt="TunAISa Logo" className="w-auto object-contain drop-shadow-sm" style={{ height: "88px" }} />
-              <img src={aisLogo} alt="AIS Logo" className="w-auto object-contain brightness-0 invert drop-shadow-sm" style={{ height: "30px" }} />
+              <Link to="/about" onClick={handleNavClick} title="TunAISia & AIS" className="transition-opacity hover:opacity-80 flex items-center">
+                <img src={tunaisiaLogo} alt="TunAISa Logo" className="w-auto object-contain drop-shadow-sm" style={{ height: "88px" }} />
+              </Link>
+              <Link to="/about" onClick={handleNavClick} title="TunAISia & AIS" className="transition-opacity hover:opacity-80 flex items-center">
+                <img src={aisLogo} alt="AIS Logo" className="w-auto object-contain brightness-0 invert drop-shadow-sm" style={{ height: "30px" }} />
+              </Link>
             </div>
 
             {/* Flat links */}

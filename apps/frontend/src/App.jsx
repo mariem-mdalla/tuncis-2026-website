@@ -8,8 +8,9 @@ import CallForCommunications from "./pages/CallForCommunications";
 import Committees from "./pages/Committees";
 import Registration from "./pages/Registration";
 import PracticalInfo from "./pages/PracticalInfo";
-import AdminDashboard from "./pages/AdminDashboard";
 import BestPaperAward from "./pages/BestPaperAward";
+import Partners from "./pages/Partners";
+import About from "./pages/About";
 
 // Temporary placeholders for new pages
 function PlaceholderPage({ title }) {
@@ -35,11 +36,10 @@ export default function App() {
             <Route path="/committees" element={<Committees />} />
             <Route path="/register" element={<Registration />} />
             <Route path="/practical-info" element={<PracticalInfo />} />
-            <Route path="/admin" element={<AdminDashboard />} />
             
             {/* New Routes */}
-            <Route path="/partners" element={<PlaceholderPage title="Partners" />} />
-            <Route path="/about" element={<PlaceholderPage title="About TunAISia & AIS" />} />
+            <Route path="/partners" element={<Partners />} />
+            <Route path="/about" element={<About />} />
             <Route path="/best-paper-award" element={<BestPaperAward />} />
             <Route path="/nvidia-certification" element={<PlaceholderPage title="NVIDIA Certification" />} />
           </Routes>

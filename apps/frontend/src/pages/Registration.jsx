@@ -72,9 +72,23 @@ export default function Registration() {
       const res = await fetch("/api/registrations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, ...checked, dietary, total: `${total} ${currency}` }),
+        body: JSON.stringify({
+          fullName: form.fullName,
+          email: form.email,
+          phone: form.phone,
+          affiliation: form.affiliation,
+          status: form.status,
+          category: form.category,
+          day1: Boolean(checked.day1),
+          day2: Boolean(checked.day2),
+          accommodation: Boolean(checked.accommodation),
+          galaDinner: Boolean(checked.gala),
+          nvidiaCertification: Boolean(checked.nvidia),
+          dietaryRestrictions: dietary || "",
+          totalAmountDue: `${total} ${currency}`,
+        }),
       });
-      const data = await res.json();
+      const data = await res.json().catch(() => ({}));
       if (!res.ok) throw new Error(data.message || t("registration.errorFallback"));
       setSubmitStatus("success");
     } catch (err) {

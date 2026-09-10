@@ -1,13 +1,13 @@
-﻿import { Link } from "react-router";
+import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Users, Mic2, FileSearch } from "lucide-react";
+import { Users, Mic2, FileSearch, Calendar, MapPin, Award, Rocket, Sparkles, ArrowRight } from "lucide-react";
 import KeyDates from "../components/TimeLine";
 import Countdown from "../components/Countdown";
 
 import nvidiaLogo    from "../assets/logos/NVIDIA_logo.webp";
 import aisLogo       from "../assets/logos/The-Association-for-Information-Systems-AIS-Logo.webp";
-import horizonLogo   from "../assets/logos/horizon.png";
+import horizonLogo   from "../assets/logos/Horizon-logo.png";
 import uSousseLogo   from "../assets/logos/universite-de-sousse.png";
 import manoubaLogo   from "../assets/logos/manouba-removebg-preview.png";
 import tunaisiaLogo  from "../assets/logos/tunaisia_logo.png";
@@ -22,11 +22,12 @@ import soussePhoto   from "../assets/sousse-hover.jpg";
 
 export default function Home() {
   const { t } = useTranslation();
+  const themes = t("home.themesList", { returnObjects: true }) || [];
 
   const highlights = [
     { key: "keynotes", icon: Mic2, logo: null, link: null },
     { key: "workshops", icon: Users, logo: null, link: null },
-    { key: "consortium", icon: FileSearch, logo: null, link: "/research-consortium" },
+    { key: "consortium", icon: FileSearch, logo: null, link: "/call-for-communications" },
     { key: "nvidia", icon: null, logo: nvidiaLogo, link: "/nvidia-certification" },
   ];
 
@@ -49,20 +50,27 @@ export default function Home() {
     <main>
       {/* ── HERO SECTION ── */}
       <section className="relative min-h-[550px] sm:min-h-[650px] flex items-center overflow-hidden">
-        {/* Background Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: `url(${soussePhoto})` }}
-        />
-        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${soussePhoto})` }} />
         <div className="absolute inset-0 bg-tuncis-blue-dark/70" />
-        {/* Subtle yellow glow */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-tuncis-yellow/15 via-transparent to-transparent" />
-        
+
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-20">
           <div className="max-w-4xl text-left">
-            
-            {/* Title */}
+
+            {/* Conference name + date badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="flex items-center gap-3 mb-6"
+            >
+              <span className="font-heading text-tuncis-yellow text-2xl font-black tracking-wider">{t("home.heroTitle")}</span>
+              <span className="bg-tuncis-yellow/20 border border-tuncis-yellow/40 text-tuncis-yellow text-sm font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                {t("home.heroDates")}
+              </span>
+            </motion.div>
+
+            {/* Main title */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -74,7 +82,7 @@ export default function Home() {
               <span className="text-tuncis-yellow">{t("home.themeHighlight")}</span>
             </motion.h1>
 
-            {/* Sousse, Tunisia text */}
+            {/* Location */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -83,7 +91,7 @@ export default function Home() {
             >
               <span className="w-12 h-1 bg-tuncis-yellow inline-block rounded-full shadow-md" />
               <h2 className="font-heading text-2xl md:text-3xl text-white font-medium tracking-wide drop-shadow-md">
-                Sousse, Tunisia
+                {t("home.heroLocation")}
               </h2>
             </motion.div>
 
@@ -94,16 +102,10 @@ export default function Home() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="flex flex-wrap items-center gap-4"
             >
-              <Link
-                to="/call-for-communications"
-                className="bg-tuncis-yellow text-tuncis-blue font-bold px-8 py-3.5 rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(251,213,58,0.3)] hover:-translate-y-0.5"
-              >
+              <Link to="/call-for-communications" className="bg-tuncis-yellow text-tuncis-blue font-bold px-8 py-3.5 rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(251,213,58,0.3)] hover:-translate-y-0.5">
                 {t("home.submitAbstract")}
               </Link>
-              <Link
-                to="/programme"
-                className="border-2 border-white/40 text-white font-bold px-8 py-3.5 rounded-full hover:bg-white/10 transition-all backdrop-blur-sm hover:-translate-y-0.5"
-              >
+              <Link to="/programme" className="border-2 border-white/40 text-white font-bold px-8 py-3.5 rounded-full hover:bg-white/10 transition-all backdrop-blur-sm hover:-translate-y-0.5">
                 {t("home.viewProgramme")}
               </Link>
             </motion.div>
@@ -128,7 +130,7 @@ export default function Home() {
               {/* Blue Banner Header */}
               <div className="bg-tuncis-blue text-white p-6 rounded-t-2xl shadow-md border-b-4 border-tuncis-yellow">
                 <p className="font-heading text-lg sm:text-xl font-medium flex items-center gap-3">
-                  <span className="text-2xl">🚀</span>
+                  <Rocket size={24} className="text-tuncis-yellow shrink-0" />
                   {t("home.bannerTitle")}
                 </p>
               </div>
@@ -146,6 +148,120 @@ export default function Home() {
                 <p>{t("home.subtitle")}</p>
                 <p className="text-gray-600">{t("home.para1")}</p>
                 <p className="text-gray-600">{t("home.para2")}</p>
+              </div>
+
+              {/* Conference Highlights Grid — Matching reference layout */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 pt-6 border-t border-gray-100">
+                {/* Dates */}
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue shrink-0 mt-0.5">
+                    <Calendar size={22} className="text-tuncis-blue" />
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-tuncis-blue text-base leading-tight">
+                      {t("home.infoDates")}
+                    </p>
+                    <p className="text-gray-600 text-sm mt-1">
+                      {t("home.infoDatesVal")}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Format */}
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue shrink-0 mt-0.5">
+                    <Users size={22} className="text-tuncis-blue" />
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-tuncis-blue text-base leading-tight">
+                      {t("home.infoFormat")}
+                    </p>
+                    <p className="text-gray-600 text-sm mt-1">
+                      {t("home.infoFormatVal")}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Location */}
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue shrink-0 mt-0.5">
+                    <MapPin size={22} className="text-tuncis-blue" />
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-tuncis-blue text-base leading-tight">
+                      {t("home.infoLocation")}
+                    </p>
+                    <p className="text-gray-600 text-sm mt-1">
+                      {t("home.infoLocationVal")}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Organization */}
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-lg bg-tuncis-blue/10 flex items-center justify-center text-tuncis-blue shrink-0 mt-0.5">
+                    <Award size={22} className="text-tuncis-blue" />
+                  </div>
+                  <div>
+                    <p className="font-heading font-bold text-tuncis-blue text-base leading-tight">
+                      {t("home.infoOrg")}
+                    </p>
+                    <p className="text-gray-600 text-sm mt-1">
+                      {t("home.infoOrgVal")}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Featured NVIDIA AI Certification Callout */}
+              <div className="pt-6 border-t border-gray-100">
+                <div className="bg-gradient-to-r from-tuncis-blue-dark via-[#022c5e] to-tuncis-blue text-white rounded-2xl p-6 shadow-md border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 blur-3xl rounded-full pointer-events-none" />
+                  
+                  <div className="flex items-start gap-4 relative z-10">
+                    <div className="w-14 h-14 bg-white rounded-xl p-2 flex items-center justify-center shrink-0 shadow-sm">
+                      <img src={nvidiaLogo} alt="NVIDIA" className="max-h-8 w-auto object-contain" />
+                    </div>
+                    <div>
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 mb-1.5">
+                        {t("home.nvidiaBadge")}
+                      </span>
+                      <h3 className="font-heading font-bold text-lg text-white leading-snug">
+                        {t("home.nvidiaCalloutTitle")}
+                      </h3>
+                      <p className="text-white/75 text-xs sm:text-sm mt-1 max-w-xl leading-relaxed">
+                        {t("home.nvidiaCalloutDesc")}
+                      </p>
+                    </div>
+                  </div>
+
+                  <Link
+                    to="/nvidia-certification"
+                    className="inline-flex items-center gap-2 bg-tuncis-yellow hover:bg-white text-tuncis-blue font-bold text-sm px-5 py-3 rounded-xl transition-all shadow-md shrink-0 self-stretch sm:self-auto justify-center"
+                  >
+                    <span>{t("home.nvidiaCalloutCta")}</span>
+                    <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Key Conference Tracks & Themes to fill whitespace */}
+              <div className="pt-6 border-t border-gray-100">
+                <p className="font-heading font-bold text-tuncis-blue text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Sparkles size={16} className="text-tuncis-yellow" />
+                  <span>{t("home.themesTitle")}</span>
+                </p>
+                <div className="flex flex-wrap gap-2.5">
+                  {themes.map((theme, i) => (
+                    <span
+                      key={i}
+                      className="inline-flex items-center gap-2 bg-tuncis-bg border border-gray-200 text-gray-700 text-xs sm:text-sm font-medium px-3.5 py-2 rounded-xl hover:border-tuncis-blue/30 hover:bg-tuncis-blue/5 transition-colors"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-tuncis-yellow shrink-0" />
+                      {theme}
+                    </span>
+                  ))}
+                </div>
               </div>
             </motion.div>
 

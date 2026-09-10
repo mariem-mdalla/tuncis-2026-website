@@ -1,6 +1,6 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Clock } from "lucide-react";
+import { Clock, Calendar, MapPin } from "lucide-react";
 
 function CountdownUnit({ value, label }) {
   return (
@@ -55,8 +55,16 @@ export default function Countdown() {
         <CountdownUnit value={time.seconds} label={t("home.countdown.seconds")} />
       </div>
 
-      <div className="border-t border-gray-100 pt-4 text-center">
-        <p className="text-tuncis-gray text-sm break-words">📅 {t("dates.event")} | Sousse, Tunisia</p>
+      <div className="border-t border-gray-100 pt-4 flex flex-wrap items-center justify-center gap-2 text-xs text-tuncis-gray">
+        <div className="flex items-center gap-1.5">
+          <Calendar size={14} className="text-tuncis-blue shrink-0" />
+          <span className="font-medium">{t("dates.event")}</span>
+        </div>
+        <span className="text-gray-300 hidden sm:inline">•</span>
+        <div className="flex items-center gap-1.5">
+          <MapPin size={14} className="text-tuncis-blue shrink-0" />
+          <span className="font-medium">{t("home.infoLocationVal")}</span>
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-﻿{
+{
   "nav": {
     "programme": "Programme",
     "callForCommunications": "Appel à Communications",
@@ -57,7 +57,31 @@
       "hours": "Heures",
       "minutes": "Min",
       "seconds": "Sec"
-    }
+    },
+    "heroTitle": "TUNCIS 2026",
+    "heroDates": "23–24 octobre 2026",
+    "heroLocation": "Sousse, Tunisie",
+    "infoDates": "Dates de la Conférence",
+    "infoDatesVal": "23–24 octobre 2026",
+    "infoLocation": "Lieu",
+    "infoLocationVal": "Hôtel Marhaba Palace, Kantaoui, Sousse, Tunisie",
+    "infoFormat": "Format",
+    "infoFormatVal": "Conférence & Ateliers en présentiel",
+    "infoOrg": "Organisation",
+    "infoOrgVal": "TunAISia · Chapitre AIS",
+    "themesTitle": "Axes Thématiques de la Conférence",
+    "themesList": [
+      "Intelligence Artificielle & Apprentissage Automatique",
+      "Science des Données, Big Data & IoT",
+      "Transformation Numérique & Gouvernance des SI",
+      "IA Générative (Atelier Certifié NVIDIA)",
+      "Recherche Collaborative Horizon Europe",
+      "Consortium de Recherche & Forum Doctoral"
+    ],
+    "nvidiaBadge": "Certification à l’Honneur",
+    "nvidiaCalloutTitle": "Certification Officielle NVIDIA en IA",
+    "nvidiaCalloutDesc": "Bénéficiez d’une formation pratique et obtenez un certificat accrédité internationalement par le NVIDIA Deep Learning Institute (DLI) lors de TUNCIS 2026.",
+    "nvidiaCalloutCta": "Détails de la Certification"
   },
   "milestones": {
     "submission": "Date Limite de Soumission",
@@ -124,18 +148,37 @@
     }
   },
   "footer": {
-    "description": "Conférence Tunisienne sur l'Intelligence Artificielle et l'Innovation Scientifique.",
-    "event": "Événement",
-    "contact": "Contact",
-    "rights": "© 2026 TUNCIS. Tous droits réservés."
+    "description": "Conférence Tunisienne sur l’Intelligence Artificielle et l’Innovation Scientifique. Organisée par TunAISia et l’AIS.",
+    "rights": "© 2026 TUNCIS. Tous droits réservés.",
+    "colExplore": "Explorer",
+    "colAuthors": "Pour les Auteurs",
+    "colAttend": "Participer & Contact",
+    "links": {
+      "home": "Accueil",
+      "programme": "Programme",
+      "cfc": "Appel à Communications",
+      "committees": "Comités",
+      "partners": "Partenaires & Sponsors",
+      "bestPaper": "Prix du Meilleur Article",
+      "submitAbstract": "Soumettre un Résumé",
+      "keyDates": "Dates Clés",
+      "nvidiaCert": "Certification NVIDIA",
+      "researchConsortium": "Consortium de Recherche",
+      "registration": "Inscription & Tarifs",
+      "travelAccommodation": "Voyage & Hébergement",
+      "venue": "Lieu (Hôtel Marhaba Palace Kantaoui)",
+      "emailUs": "Contacter les Organisateurs"
+    }
   },
   "programme": {
     "title": "Programme",
-    "subtitle": "23–24 octobre 2026 · Green Park Hotel, Sousse",
+    "subtitle": "23–24 octobre 2026 · Hôtel Marhaba Palace, Kantaoui, Sousse",
     "day1": "Jour 1 - 23 octobre",
     "day2": "Jour 2 - 24 octobre",
     "note": "Programme susceptible d'être modifié par le comité d'organisation.",
-    "pendingNote": "Contenu à fournir par le comité : intitulés définitifs des ateliers, horaires, noms des facilitateurs et rapporteurs."
+    "pendingNote": "Contenu à fournir par le comité : intitulés définitifs des ateliers, horaires, noms des facilitateurs et rapporteurs.",
+    "speakerLouadi": "Conférencier Principal (Keynote)",
+    "speakerMardassi": "Modérateur : Atelier Projets Horizon Europe"
   },
   "cfc": {
     "badge": "Appel à Projets de Recherche Innovants",
@@ -259,13 +302,21 @@
   },
   "practicalInfo": {
     "title": "Informations Pratiques",
-    "subtitle": "Tout ce qu'il vous faut pour préparer votre venue à TUNCIS 2026.",
-    "venue": "Lieu",
-    "gettingThere": "Comment s'y rendre",
-    "gettingThereText": "Aéroports les plus proches : Enfidha–Hammamet (NBE) et Monastir Habib Bourguiba (MIR).",
-    "accommodation": "Hébergement",
-    "accommodationPending": "Détails à confirmer par le comité d'organisation.",
-    "contact": "Contact"
+    "subtitle": "Tout ce qu’il vous faut pour planifier votre voyage et assister à TUNCIS 2026 à Sousse.",
+    "venue": "Lieu de la Conférence",
+    "venueName": "Hôtel Marhaba Palace",
+    "venueCity": "Port El Kantaoui, Sousse, Tunisie",
+    "venueDescription": "Hôtel 5 étoiles de prestige en bord de mer à Port El Kantaoui, Sousse, offrant des infrastructures de conférence de premier ordre, des espaces de réunion et un cadre balnéaire d’exception pour TUNCIS 2026.",
+    "airportTransfers": "Proximité des Aéroports",
+    "monastirAirport": "Aéroport de Monastir (MIR) · ~25 min en taxi",
+    "enfidhaAirport": "Aéroport d’Enfidha (NBE) · ~35 min en taxi",
+    "viewMap": "Ouvrir dans Google Maps",
+    "gettingThere": "Accès & Vols",
+    "gettingThereText": "Aéroports internationaux les plus proches : Enfidha–Hammamet (NBE) et Monastir Habib Bourguiba (MIR). Liaisons rapides par autoroute et train depuis Tunis-Carthage (TUN).",
+    "accommodation": "Hébergement (Tarif Négocié)",
+    "accommodationPending": "Des tarifs d’hébergement négociés pour l’atelier seront proposés à l’hôtel de la conférence pour les participants inscrits (détails à confirmer).",
+    "contact": "Contact & Renseignements",
+    "inquiries": "Pour toute question relative au transport, à la logistique du lieu ou aux inscriptions :"
   },
   "bestPaper": {
     "title": "Prix du Meilleur Article",
@@ -278,5 +329,126 @@
     "selectionText": "Le papier gagnant sera sélectionné par le ",
     "selectionCommittee": "Comité Scientifique",
     "selectionCriteria": " sur la base de l’originalité, de la rigueur scientifique et de la pertinence par rapport aux thèmes de la conférence."
+  },
+  "partners": {
+    "title": "Partenaires & Sponsors",
+    "subtitle": "TUNCIS 2026 est rendu possible grâce au soutien de nos partenaires académiques et industriels.",
+    "academic": "Partenaires Académiques & Institutionnels",
+    "industrial": "Partenaires Industriels",
+    "contactTitle": "Devenir Partenaire",
+    "contactText": "Vous souhaitez devenir partenaire de TUNCIS 2026 ? Contactez-nous à",
+    "categories": {
+      "academic": "Institutions Académiques",
+      "research": "Laboratoires de Recherche",
+      "industrial": "Partenaires Industriels"
+    },
+    "items": {
+      "uSousse": {
+        "name": "Université de Sousse",
+        "desc": "Université publique d’excellence établie en 2004 à Sousse, offrant des formations de pointe et de la recherche en ingénierie, sciences, économie, droit et médecine."
+      },
+      "manouba": {
+        "name": "Université de la Manouba",
+        "desc": "Université tunisienne de référence, reconnue pour ses programmes d’enseignement supérieur et sa recherche avancée en informatique et systèmes d’information."
+      },
+      "utm": {
+        "name": "Université de Tunis El Manar (UTM)",
+        "desc": "Pôle universitaire et scientifique majeur en Tunisie, spécialisé dans les sciences fondamentales, la technologie, l’ingénierie et la recherche appliquée."
+      },
+      "eniso": {
+        "name": "ENISo",
+        "desc": "École Nationale d’Ingénieurs de Sousse, créée en 2005 au sein de l’Université de Sousse, spécialisée en génie informatique, télécommunications et mécatronique."
+      },
+      "horizon": {
+        "name": "Horizon University",
+        "desc": "Horizon School of Digital Technologies à Sousse, établissement d’enseignement supérieur axé sur les technologies numériques, l’intelligence artificielle et le génie logiciel."
+      },
+      "doctoral": {
+        "name": "École Doctorale",
+        "desc": "Structure doctorale soutenant la recherche scientifique d’excellence, les thèses doctorales et les collaborations académiques interuniversitaires."
+      },
+      "tunaisia": {
+        "name": "TunAISia",
+        "desc": "Chapitre tunisien de l’Association for Information Systems (AIS), œuvrant pour le rayonnement de la recherche et de la pratique des systèmes d’information."
+      },
+      "ais": {
+        "name": "Association for Information Systems (AIS)",
+        "desc": "La principale association professionnelle mondiale dédiée à la recherche, à l’enseignement et aux pratiques d’excellence dans les Systèmes d’Information."
+      },
+      "riadi": {
+        "name": "Laboratoire RIADI",
+        "desc": "Laboratoire de recherche de premier plan axé sur l’Intelligence Artificielle, les systèmes d’aide à la décision, la gestion de crise et le web sémantique."
+      },
+      "sercom": {
+        "name": "Laboratoire SERCOM",
+        "desc": "Laboratoire d’excellence spécialisé dans les télécommunications, les réseaux distribués, l’Internet des Objets (IoT), le cloud computing et le traitement du signal."
+      },
+      "larodec": {
+        "name": "Laboratoire LARODEC",
+        "desc": "Équipe de recherche spécialisée dans les systèmes d’aide à la décision, la modélisation de l’incertain, la science des données et les systèmes intelligents."
+      },
+      "sixcom": {
+        "name": "Laboratoire 6COM",
+        "desc": "Laboratoire de recherche dédié aux communications sans fil avancées, à l’optimisation des réseaux cellulaires et aux technologies de connectivité future."
+      },
+      "nvidia": {
+        "name": "NVIDIA Deep Learning Institute",
+        "desc": "Leader mondial du calcul accéléré et de l’IA, proposant des ateliers certifiants et des formations pratiques de haut niveau lors de TUNCIS 2026."
+      },
+      "deloitte": {
+        "name": "Deloitte",
+        "desc": "Cabinet international d’audit, de conseil stratégique, de gestion des risques, de fiscalité et d’accompagnement de la transformation digitale des organisations."
+      },
+      "draxl": {
+        "name": "Groupe DRÄXLMAIER",
+        "desc": "Équipementier automobile mondial de premier plan, spécialiste des faisceaux électriques, composants électroniques, intérieurs haut de gamme et batteries e-mobilité."
+      },
+      "leoni": {
+        "name": "Leoni",
+        "desc": "Fournisseur mondial de systèmes de câblage, de fils et de solutions technologiques pour la gestion de l’énergie et des données dans le secteur automobile et industriel."
+      },
+      "proxym": {
+        "name": "Groupe Proxym",
+        "desc": "Acteur majeur de la transformation numérique, développant des solutions logicielles d’entreprise, des plateformes cloud et des services digitaux innovants."
+      },
+      "novation": {
+        "name": "Novation City",
+        "desc": "Parc technologique et pôle de compétitivité dédié à l’industrie intelligente, aux mécatroniques, à l’IoT et au développement de l’innovation deep tech en Tunisie."
+      },
+      "wevioo": {
+        "name": "Wevioo",
+        "desc": "Cabinet international de conseil et de développement logiciel accompagnant les entreprises dans leurs projets de transformation digitale, IoT et supply chain."
+      }
+    }
+  },
+  "about": {
+    "title": "À Propos de TunAISia & AIS",
+    "subtitle": "Le leadership académique et la communauté internationale qui portent TUNCIS 2026.",
+    "tunaisiaTitle": "Qu’est-ce que TunAISia ?",
+    "tunaisiaBadge": "Chapitre Tunisien de l’AIS",
+    "tunaisiaDesc1": "TunAISia est le chapitre tunisien officiel de l’Association for Information Systems (AIS). Il rassemble des chercheurs, des professeurs universitaires, des doctorants et des professionnels des Systèmes d’Information en Tunisie et à l’international.",
+    "tunaisiaDesc2": "TunAISia constitue une passerelle scientifique reliant les universités, les écoles d’ingénieurs et les laboratoires de recherche tunisiens avec l’écosystème académique mondial de l’AIS, favorisant ainsi l’excellence de la recherche et la synergie université-industrie.",
+    "tunaisiaMissionTitle": "Missions & Objectifs de TunAISia",
+    "tunaisiaMissions": [
+      "Promouvoir la recherche scientifique d’excellence dans les Systèmes d’Information en Tunisie.",
+      "Renforcer les partenariats interdisciplinaires entre universités, laboratoires et acteurs industriels du numérique.",
+      "Accompagner les jeunes chercheurs et doctorants par le biais de consortiums de recherche, d’ateliers et de mentorat académique.",
+      "Organiser des conférences scientifiques de haut niveau, des ateliers pratiques et des formations certifiantes comme TUNCIS 2026.",
+      "Assurer le rayonnement et la représentation de la Tunisie au sein de la communauté internationale de l’AIS."
+    ],
+    "aisTitle": "Qu’est-ce que l’AIS ?",
+    "aisBadge": "Association Mondiale des Systèmes d’Information",
+    "aisDesc1": "Fondée en 1994, l’Association for Information Systems (AIS) est la principale association professionnelle mondiale dédiée à la recherche, à l’enseignement et aux pratiques d’excellence dans les Systèmes d’Information.",
+    "aisDesc2": "L’AIS regroupe des milliers de membres à travers plus de 100 pays. Elle édite des revues scientifiques de premier plan (telles que JAIS et CAIS), organise les conférences internationales majeures du domaine (ICIS, AMCIS, ECIS) et définit les référentiels pédagogiques mondiaux pour les formations en technologies numériques.",
+    "aisMissionTitle": "Piliers d’Excellence de l’AIS",
+    "aisMissions": [
+      "Éditer et diffuser les publications de référence mondiale en intelligence artificielle, gouvernance et technologies.",
+      "Offrir un réseau international de collaboration, de conférences et de partage de connaissances scientifiques.",
+      "Définir les normes et standards mondiaux pour l’enseignement et les carrières en Systèmes d’Information.",
+      "Soutenir les chapitres régionaux à travers le monde pour stimuler la recherche locale et l’innovation technologique."
+    ],
+    "visitAis": "Visiter le site officiel de l’AIS (aisnet.org)",
+    "partnershipTitle": "Synergie Collaborative pour TUNCIS 2026",
+    "partnershipDesc": "TUNCIS 2026 est co-organisée sous le patronage scientifique de TunAISia et de l’AIS. En collaboration étroite avec nos universités partenaires, nos laboratoires de recherche et nos sponsors industriels, cette conférence constitue le rendez-vous incontournable pour l’IA et l’innovation numérique en Tunisie."
   }
 }

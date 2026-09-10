@@ -41,8 +41,11 @@ function SectionCard({ icon: Icon, title, children, className = "" }) {
 
 function SubmissionModal({ isOpen, onClose }) {
   const { t } = useTranslation();
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [file, setFile] = useState(null);
-  const [status, setStatus] = useState("idle"); // idle | submitting | success
+  const [status, setStatus] = useState("idle"); // idle | submitting | success | error
+  const [errorMsg, setErrorMsg] = useState("");
 
   if (!isOpen) return null;
 
@@ -50,11 +53,33 @@ function SubmissionModal({ isOpen, onClose }) {
     if (e.target.files[0]) setFile(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!file) return;
     setStatus("submitting");
-    // TODO: wire to real email API
-    setTimeout(() => setStatus("success"), 2000);
+    setErrorMsg("");
+
+    try {
+      const formData = new FormData();
+      formData.append("fullName", fullName);
+      formData.append("email", email);
+      formData.append("file", file);
+
+      const res = await fetch("/api/abstracts", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(data.message || "Failed to submit abstract. Please try again.");
+      }
+      setStatus("success");
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+      setErrorMsg(err.message || "Network error. Please try again.");
+    }
   };
 
   return (
@@ -86,14 +111,35 @@ function SubmissionModal({ isOpen, onClose }) {
               <>
                 <h3 className="font-heading text-2xl font-bold text-tuncis-blue mb-2">{t("cfc.modal.title")}</h3>
                 <p className="text-gray-500 text-sm mb-6">{t("cfc.modal.subtitle")}</p>
+
+                {status === "error" && (
+                  <div className="mb-4 p-3 bg-red-50 border border-red-200 text-red-700 text-sm rounded-xl">
+                    {errorMsg}
+                  </div>
+                )}
+
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
                     <label className="block text-sm font-bold text-tuncis-blue mb-1">{t("cfc.modal.fullName")} *</label>
-                    <input type="text" required className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tuncis-yellow transition-all" placeholder={t("cfc.modal.fullNamePlaceholder")} />
+                    <input
+                      type="text"
+                      required
+                      value={fullName}
+                      onChange={e => setFullName(e.target.value)}
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tuncis-yellow transition-all text-sm"
+                      placeholder={t("cfc.modal.fullNamePlaceholder")}
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-tuncis-blue mb-1">{t("cfc.modal.email")} *</label>
-                    <input type="email" required className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tuncis-yellow transition-all" placeholder={t("cfc.modal.emailPlaceholder")} />
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={e => setEmail(e.target.value)}
+                      className="w-full border border-gray-200 rounded-xl px-4 py-3 bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-tuncis-yellow transition-all text-sm"
+                      placeholder={t("cfc.modal.emailPlaceholder")}
+                    />
                   </div>
                   <div>
                     <label className="block text-sm font-bold text-tuncis-blue mb-1">{t("cfc.modal.file")} *</label>

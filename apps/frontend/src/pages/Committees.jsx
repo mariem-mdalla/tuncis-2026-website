@@ -1,5 +1,5 @@
-﻿import { motion } from "framer-motion";
-import { Building2, User } from "lucide-react";
+import { motion } from "framer-motion";
+import { Building2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import imedImg from "../assets/chairs/imed-boughzela.png";
 import narjesImg from "../assets/chairs/narjes-bellamine-ben-saoud.png";
@@ -112,37 +112,39 @@ export default function Committees() {
           <h2 className="font-heading text-2xl font-bold text-tuncis-blue mb-8 pb-3 border-b-2 border-tuncis-yellow/40 inline-block">
             {t("committees.scientific")}
           </h2>
-          <div className="bg-white border border-gray-100 p-10 rounded-2xl shadow-sm flex items-center justify-center min-h-[140px]">
-            <p className="text-tuncis-gray italic text-lg">{t("committees.comingSoon")}</p>
+          <div className="bg-white border border-gray-100 p-10 rounded-2xl shadow-xs flex items-center justify-center min-h-[120px] text-center">
+            <p className="text-tuncis-gray italic text-base sm:text-lg">{t("committees.comingSoon")}</p>
           </div>
         </motion.div>
 
-        {/* 3 — Organizing Committee grid */}
+        {/* 3 — Organizing Committee (clean cards: name + affiliation only, no avatars) */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}>
-          <h2 className="font-heading text-2xl font-bold text-tuncis-blue mb-8 pb-3 border-b-2 border-tuncis-yellow/40 inline-block">
-            {t("committees.organizing")}
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="flex items-center justify-between mb-8 pb-3 border-b-2 border-tuncis-yellow/40">
+            <h2 className="font-heading text-2xl font-bold text-tuncis-blue">
+              {t("committees.organizing")}
+            </h2>
+            <span className="text-xs font-semibold uppercase tracking-wider text-tuncis-blue bg-tuncis-blue/5 px-3 py-1 rounded-full">
+              {organizing.length} Members
+            </span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
             {organizing.map((m, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
+                initial={{ opacity: 0, y: 12 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.05 }}
+                transition={{ delay: i * 0.04 }}
                 viewport={{ once: true }}
-                whileHover={{ y: -4 }}
-                className="bg-white border border-gray-100 p-5 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 flex items-start gap-4"
+                whileHover={{ y: -2 }}
+                className="bg-white border border-gray-100 hover:border-tuncis-blue/30 p-5 rounded-xl shadow-xs hover:shadow-md transition-all duration-300 border-l-4 border-l-tuncis-yellow group flex flex-col justify-center"
               >
-                <div className="w-11 h-11 bg-tuncis-blue/5 rounded-full flex items-center justify-center text-tuncis-blue shrink-0">
-                  <User size={20} />
-                </div>
-                <div>
-                  <p className="font-heading font-bold text-tuncis-blue leading-tight">{m.name}</p>
-                  <p className="text-xs text-tuncis-gray/70 flex items-center gap-1 mt-2">
-                    <Building2 size={11} className="text-tuncis-yellow shrink-0" />
-                    {m.affiliation}
-                  </p>
-                </div>
+                <h3 className="font-heading font-bold text-base sm:text-lg text-tuncis-blue group-hover:text-tuncis-blue-dark transition-colors">
+                  {m.name}
+                </h3>
+                <p className="text-xs sm:text-sm text-tuncis-gray/80 flex items-center gap-2 mt-1.5 font-medium">
+                  <Building2 size={14} className="text-tuncis-yellow/90 shrink-0" />
+                  <span>{m.affiliation}</span>
+                </p>
               </motion.div>
             ))}
           </div>

@@ -1,10 +1,10 @@
-﻿import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { User, Mic2 } from "lucide-react";
 
-const day1 = [
-  { time: "9H – 10H",      key: "keynote1", speaker: "Prof. Mohamed Louadi", speakerTitle: "Keynote Speaker" },
-  { time: "10H – 11H",     key: "workshops1", speaker: "Prof. Helmi Mardassi", speakerTitle: "Moderator: 'Horizon Europe projects'" },
+const getDay1 = (t) => [
+  { time: "9H – 10H",      key: "keynote1", speaker: "Prof. Mohamed Louadi", speakerTitle: t("programme.speakerLouadi") },
+  { time: "10H – 11H",     key: "workshops1", speaker: "Prof. Helmi Mardassi", speakerTitle: t("programme.speakerMardassi") },
   { time: "11H – 11H15",   key: "coffeeBreak1" },
   { time: "11H15 – 13H",   key: "workshops2" },
   { time: "13H – 14H30",   key: "lunch" },
@@ -136,7 +136,7 @@ export default function Programme() {
 
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 -mt-10 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <DaySchedule title={t("programme.day1")} items={day1} lang={lang} />
+          <DaySchedule title={t("programme.day1")} items={getDay1(t)} lang={lang} />
           <div className="space-y-6">
             <DaySchedule title={t("programme.day2")} items={day2} lang={lang} />
             <motion.p
