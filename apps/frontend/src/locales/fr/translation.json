@@ -81,7 +81,12 @@
     "nvidiaBadge": "Certification à l’Honneur",
     "nvidiaCalloutTitle": "Certification Officielle NVIDIA en IA",
     "nvidiaCalloutDesc": "Bénéficiez d’une formation pratique et obtenez un certificat accrédité internationalement par le NVIDIA Deep Learning Institute (DLI) lors de TUNCIS 2026.",
-    "nvidiaCalloutCta": "Détails de la Certification"
+    "nvidiaCalloutCta": "Détails de la Certification",
+    "bestPaperBadge": "Distinction Académique",
+    "bestPaperCalloutTitle": "Prix du Meilleur Article TUNCIS 2026",
+    "bestPaperCalloutDesc": "Récompenser les contributions scientifiques exceptionnelles par un certificat officiel signé et tamponné par l'AIS (Association for Information Systems).",
+    "bestPaperCalloutCta": "Détails du Prix",
+    "registerNow": "S'inscrire"
   },
   "milestones": {
     "submission": "Date Limite de Soumission",

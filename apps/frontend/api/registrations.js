@@ -193,24 +193,31 @@ export default async function handler(req, res) {
         `
       });
 
-      // On serverless, we await mail sending before returning
+      // Send emails independently — one failure must not block the other
+      console.log(`[Registration] Sending to organizer: ${ORGANIZER_EMAIL}, attendee: ${email}`);
+
       try {
-        await Promise.all([
-          transporter.sendMail({
-            from: `"TUNCIS 2026" <${SENDER_EMAIL}>`,
-            to: ORGANIZER_EMAIL,
-            subject: `[New Registration] ${fullName} (${affiliation}) - TUNCIS 2026`,
-            html: organizerHtml,
-          }),
-          transporter.sendMail({
-            from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
-            to: email,
-            subject: "Registration Confirmed - TUNCIS 2026",
-            html: attendeeHtml,
-          }),
-        ]);
+        await transporter.sendMail({
+          from: `"TUNCIS 2026" <${SENDER_EMAIL}>`,
+          to: ORGANIZER_EMAIL,
+          subject: `[New Registration] ${fullName} (${affiliation}) - TUNCIS 2026`,
+          html: organizerHtml,
+        });
+        console.log(`[Registration] Organizer email sent OK to ${ORGANIZER_EMAIL}`);
       } catch (mailErr) {
-        console.error("Failed to send registration email:", mailErr);
+        console.error(`[Registration] Organizer email FAILED:`, mailErr.message);
+      }
+
+      try {
+        await transporter.sendMail({
+          from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
+          to: email,
+          subject: "Registration Confirmed - TUNCIS 2026",
+          html: attendeeHtml,
+        });
+        console.log(`[Registration] Attendee email sent OK to ${email}`);
+      } catch (mailErr) {
+        console.error(`[Registration] Attendee email FAILED to ${email}:`, mailErr.message);
       }
 
       return res.status(201).json({ success: true, data: inserted || parsed.data });

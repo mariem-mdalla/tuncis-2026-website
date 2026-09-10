@@ -18,6 +18,12 @@ import larodecLogo   from "../assets/logos/larodec-logo.png";
 import sixComLogo    from "../assets/logos/6com-logo.png";
 import eniseLogo     from "../assets/logos/Logo_ENISo,_Tunisie.svg.webp";
 import doctoralLogo  from "../assets/logos/doctoral-school-logo.png";
+import deloitteLogo  from "../assets/logos/Logo_of_Deloitte.svg.webp";
+import draxlLogo     from "../assets/logos/draxlmaier-logo.png";
+import leoniLogo     from "../assets/logos/leoni-logo.png";
+import proxymLogo    from "../assets/logos/logo-proxym-png.png";
+import novationLogo  from "../assets/logos/Novation_logo.png";
+import weviooLogo    from "../assets/logos/wevioo-logo.png";
 import soussePhoto   from "../assets/sousse-hover.jpg";
 
 export default function Home() {
@@ -32,18 +38,30 @@ export default function Home() {
   ];
 
   const partners = [
-    { src: uSousseLogo,  alt: "Université de Sousse", cardStyle: { height: "200px", width: "260px" }, imgStyle: { transform: "scale(1.5)", transformOrigin: "center" } },
-    { src: utmLogo,      alt: "Université de Tunis El Manar", cardStyle: { height: "200px", width: "260px" }, imgStyle: {} },
-    { src: manoubaLogo,  alt: "Université de la Manouba", cardStyle: { height: "200px", width: "260px" }, imgStyle: {} },
-    { src: eniseLogo,    alt: "ENISo", cardStyle: { height: "200px", width: "260px" }, imgStyle: {} },
-    { src: tunaisiaLogo, alt: "TunAISia", cardStyle: { height: "200px", width: "260px" }, imgStyle: { transform: "scale(1.6)", transformOrigin: "center" } },
-    { src: aisLogo,      alt: "Association for Information Systems", cardStyle: { height: "200px", width: "380px" }, imgStyle: { width: "90%" } },
-    { src: horizonLogo,  alt: "Horizon University", cardStyle: { height: "200px", width: "260px" }, imgStyle: {} },
-    { src: riadiLogo,    alt: "Laboratoire RIADI", cardStyle: { height: "200px", width: "260px" }, imgStyle: { transform: "scale(1.3)", transformOrigin: "center" } },
-    { src: sercomLogo,   alt: "SERCOM", cardStyle: { height: "200px", width: "260px" }, imgStyle: {} },
-    { src: larodecLogo,  alt: "LARODEC", cardStyle: { height: "200px", width: "260px" }, imgStyle: {} },
-    { src: sixComLogo,   alt: "6COM", cardStyle: { height: "200px", width: "260px" }, imgStyle: { transform: "scale(1.1)", transformOrigin: "center" } },
-    { src: doctoralLogo, alt: "Doctoral School", cardStyle: { height: "200px", width: "260px" }, imgStyle: {} },
+    // Academic & Institutional
+    { src: uSousseLogo,  alt: "Université de Sousse", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.4)", transformOrigin: "center" } },
+    { src: utmLogo,      alt: "Université de Tunis El Manar", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: manoubaLogo,  alt: "Université de la Manouba", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: eniseLogo,    alt: "ENISo", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: tunaisiaLogo, alt: "TunAISia", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.5)", transformOrigin: "center" } },
+    { src: aisLogo,      alt: "Association for Information Systems", cardStyle: { height: "130px", width: "240px" }, imgStyle: { width: "90%" } },
+    { src: horizonLogo,  alt: "Horizon University", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: doctoralLogo, alt: "Doctoral School", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+
+    // Research Laboratories
+    { src: riadiLogo,    alt: "Laboratoire RIADI", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.2)", transformOrigin: "center" } },
+    { src: sercomLogo,   alt: "SERCOM", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: larodecLogo,  alt: "LARODEC", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: sixComLogo,   alt: "6COM", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.1)", transformOrigin: "center" } },
+
+    // Industrial Partners
+    { src: nvidiaLogo,   alt: "NVIDIA", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.1)", transformOrigin: "center" } },
+    { src: deloitteLogo, alt: "Deloitte", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: draxlLogo,    alt: "Dräxlmaier", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: leoniLogo,    alt: "Leoni", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: proxymLogo,   alt: "Proxym", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: novationLogo, alt: "Novation City", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: weviooLogo,   alt: "Wevioo", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.3)", transformOrigin: "center" } },
   ];
 
   return (
@@ -102,7 +120,10 @@ export default function Home() {
               transition={{ delay: 0.4, duration: 0.5 }}
               className="flex flex-wrap items-center gap-4"
             >
-              <Link to="/call-for-communications" className="bg-tuncis-yellow text-tuncis-blue font-bold px-8 py-3.5 rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(251,213,58,0.3)] hover:-translate-y-0.5">
+              <Link to="/register" className="bg-tuncis-yellow text-tuncis-blue font-bold px-8 py-3.5 rounded-full hover:bg-white transition-all shadow-[0_0_20px_rgba(251,213,58,0.3)] hover:-translate-y-0.5">
+                {t("home.registerNow")}
+              </Link>
+              <Link to="/call-for-communications" className="border-2 border-tuncis-yellow/90 text-tuncis-yellow font-bold px-8 py-3.5 rounded-full hover:bg-tuncis-yellow/10 transition-all backdrop-blur-sm hover:-translate-y-0.5">
                 {t("home.submitAbstract")}
               </Link>
               <Link to="/programme" className="border-2 border-white/40 text-white font-bold px-8 py-3.5 rounded-full hover:bg-white/10 transition-all backdrop-blur-sm hover:-translate-y-0.5">
@@ -240,6 +261,38 @@ export default function Home() {
                     className="inline-flex items-center gap-2 bg-tuncis-yellow hover:bg-white text-tuncis-blue font-bold text-sm px-5 py-3 rounded-xl transition-all shadow-md shrink-0 self-stretch sm:self-auto justify-center"
                   >
                     <span>{t("home.nvidiaCalloutCta")}</span>
+                    <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </div>
+
+              {/* Featured Best Paper Award Callout */}
+              <div className="pt-4">
+                <div className="bg-gradient-to-r from-[#172554] via-[#022c5e] to-[#1e3a8a] text-white rounded-2xl p-6 shadow-md border border-amber-400/30 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-48 h-48 bg-tuncis-yellow/10 blur-3xl rounded-full pointer-events-none" />
+                  
+                  <div className="flex items-start gap-4 relative z-10">
+                    <div className="w-14 h-14 bg-gradient-to-br from-amber-400 to-tuncis-yellow rounded-xl p-2.5 flex items-center justify-center shrink-0 shadow-md">
+                      <Award size={30} className="text-tuncis-blue" />
+                    </div>
+                    <div>
+                      <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold uppercase tracking-wider bg-tuncis-yellow/20 text-tuncis-yellow border border-tuncis-yellow/30 mb-1.5">
+                        {t("home.bestPaperBadge")}
+                      </span>
+                      <h3 className="font-heading font-bold text-lg text-white leading-snug">
+                        {t("home.bestPaperCalloutTitle")}
+                      </h3>
+                      <p className="text-white/75 text-xs sm:text-sm mt-1 max-w-xl leading-relaxed">
+                        {t("home.bestPaperCalloutDesc")}
+                      </p>
+                    </div>
+                  </div>
+
+                  <Link
+                    to="/best-paper-award"
+                    className="inline-flex items-center gap-2 bg-tuncis-yellow hover:bg-white text-tuncis-blue font-bold text-sm px-5 py-3 rounded-xl transition-all shadow-md shrink-0 self-stretch sm:self-auto justify-center"
+                  >
+                    <span>{t("home.bestPaperCalloutCta")}</span>
                     <ArrowRight size={15} />
                   </Link>
                 </div>
