@@ -60,14 +60,24 @@ function SubmissionModal({ isOpen, onClose }) {
     setErrorMsg("");
 
     try {
-      const formData = new FormData();
-      formData.append("fullName", fullName);
-      formData.append("email", email);
-      formData.append("file", file);
+      // Convert PDF to base64 so Vercel serverless can receive it reliably as JSON
+      const fileBase64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(",")[1]); // strip data:...;base64, prefix
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
 
       const res = await fetch("/api/abstracts", {
         method: "POST",
-        body: formData,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          fullName,
+          email,
+          fileBase64,
+          fileName: file.name,
+          fileSize: file.size,
+        }),
       });
 
       const data = await res.json().catch(() => ({}));
