@@ -11,7 +11,7 @@ export default function Footer() {
     { to: "/call-for-communications", labelKey: "cfc" },
     { to: "/committees",              labelKey: "committees" },
     { to: "/partners",                labelKey: "partners" },
-    { to: "/best-paper-award",        labelKey: "bestPaper" },
+    { to: "/best-project-award",      labelKey: "bestPaper" },
   ];
 
   const authorLinks = [

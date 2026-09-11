@@ -1,4 +1,4 @@
-{
+﻿{
   "nav": {
     "programme": "Programme",
     "callForCommunications": "Appel à Communications",
@@ -10,7 +10,7 @@
     "people": "Comités",
     "participate": "Participer",
     "about": "À Propos",
-    "bestPaper": "Prix du Meilleur Article",
+    "bestPaper": "Prix du Meilleur Projet",
     "nvidiaCert": "Certification NVIDIA",
     "partners": "Partenaires"
   },
@@ -83,10 +83,21 @@
     "nvidiaCalloutDesc": "Bénéficiez d’une formation pratique et obtenez un certificat accrédité internationalement par le NVIDIA Deep Learning Institute (DLI) lors de TUNCIS 2026.",
     "nvidiaCalloutCta": "Détails de la Certification",
     "bestPaperBadge": "Distinction Académique",
-    "bestPaperCalloutTitle": "Prix du Meilleur Article TUNCIS 2026",
-    "bestPaperCalloutDesc": "Récompenser les contributions scientifiques exceptionnelles par un certificat officiel signé et tamponné par l'AIS (Association for Information Systems).",
+    "bestPaperCalloutTitle": "Prix du Meilleur Projet",
+    "bestPaperCalloutDesc": "Récompenser les projets de recherche innovants et les présentations exceptionnelles par un certificat officiel signé et tamponné par l'AIS (Association for Information Systems).",
     "bestPaperCalloutCta": "Détails du Prix",
-    "registerNow": "S'inscrire"
+    "registerNow": "S'inscrire",
+    "aisSectionLabel": "Direction Académique",
+    "aisSectionTitle": "Sous l'égide de l'AIS et de TunAISia",
+    "aisSectionSubtitle": "TUNCIS 2026 est organisée sous le haut patronage académique de la plus grande association mondiale des systèmes d'information et de son chapitre tunisien.",
+    "aisCardBadge": "Association Mondiale",
+    "aisCardTitle": "Association for Information Systems (AIS)",
+    "aisCardDesc": "Fondée en 1994, l'Association for Information Systems (AIS) est la principale association professionnelle mondiale pour les chercheurs, enseignants et spécialistes des systèmes d'information dans plus de 100 pays. Elle parraine les conférences majeures (ICIS, AMCIS, ECIS) et édite des revues scientifiques de premier plan (JAIS, CAIS).",
+    "tunaisiaCardBadge": "Chapitre National",
+    "tunaisiaCardTitle": "Chapitre TunAISia",
+    "tunaisiaCardDesc": "Le chapitre officiel en Tunisie connectant les universités tunisiennes, les laboratoires de recherche et les leaders de l'industrie avec l'écosystème académique mondial de l'AIS, stimulant les partenariats scientifiques, les consortiums doctoraux et l'innovation en IA.",
+    "aisLearnMore": "En savoir plus sur l'AIS et TunAISia",
+    "aisOfficialWebsite": "Visiter le site officiel de l'AIS"
   },
   "milestones": {
     "submission": "Date Limite de Soumission",
@@ -164,7 +175,7 @@
       "cfc": "Appel à Communications",
       "committees": "Comités",
       "partners": "Partenaires & Sponsors",
-      "bestPaper": "Prix du Meilleur Article",
+      "bestPaper": "Prix du Meilleur Projet",
       "submitAbstract": "Soumettre un Résumé",
       "keyDates": "Dates Clés",
       "nvidiaCert": "Certification NVIDIA",
@@ -302,7 +313,7 @@
       "bio": "Directrice de l’ENSI et Directrice du Laboratoire RIADI, Université de la Manouba, Tunisie. Professeure au département des Systèmes d’Information et de l’Ingénierie de la Décision, elle enseigne le Génie Logiciel et l’Intelligence Artificielle. Titulaire d’un diplôme d’ingénieur de l’ENSEEIHT Toulouse, d’un doctorat de l’Université de Toulouse 1, et d’une HDR de l’ENSI. Ses recherches portent sur la modélisation et la simulation de systèmes socio-techniques complexes. Elle a également été boursière Fulbright à l’Université de Californie, Irvine."
     },
     "takoua": {
-      "bio": "Maître de Conférences à l’ENISo, Université de Sousse, et chercheuse au Laboratoire SERCOM, École Polytechnique de Tunisie. Titulaire d’un diplôme d’ingénieur de l’ENSIMAG (Grenoble, France), d’un doctorat de l’Université de Grenoble et d’une HDR de l’Université de Carthage. Ses recherches portent sur le Big Data, l’IoT et le Cloud Computing. Elle est co-fondatrice de l’Horizon School of Digital Technologies à Sousse et Ambassadrice NVIDIA en IA Générative."
+      "bio": "Maître de Conférences à l’ENISo, Université de Sousse, et chercheuse au Laboratoire SERCOM, École Polytechnique de Tunisie. Titulaire d’un diplôme d’ingénieur de l’ENSIMAG (Grenoble, France), d’un doctorat de l’Université de Grenoble et d’une HDR de l’Université de Carthage. Ses recherches portent sur le Big Data, l’IoT et le Cloud Computing. Elle est Ambassadrice NVIDIA en IA Générative."
     }
   },
   "practicalInfo": {
@@ -324,16 +335,16 @@
     "inquiries": "Pour toute question relative au transport, à la logistique du lieu ou aux inscriptions :"
   },
   "bestPaper": {
-    "title": "Prix du Meilleur Article",
-    "heroSubtitle": "TUNCIS 2026 remettra un Prix du Meilleur Article pour récompenser les contributions de recherche exceptionnelles présentées lors de la conférence.",
-    "awardsTitle": "Le prix comprend :",
-    "award1": "Un certificat officiel, signé et tamponné par l’AIS (Association for Information Systems)",
-    "award2": "Annonce publique du papier gagnant lors de la conférence",
-    "award3": "Mise en valeur sur les réseaux sociaux officiels de TUNCIS 2026",
+    "title": "Prix du Meilleur Projet",
+    "heroSubtitle": "TUNCIS 2026 décernera le Prix du Meilleur Projet afin de distinguer les projets de recherche innovants et les présentations exceptionnelles présentés lors de la conférence.",
+    "awardsTitle": "Le prix comprend :",
+    "award1": "Un certificat officiel de distinction, signé et tamponné par l'AIS (Association for Information Systems)",
+    "award2": "Annonce publique et cérémonie de remise des prix pour le projet lauréat durant la conférence",
+    "award3": "Mise en valeur sur les réseaux sociaux et canaux officiels de TUNCIS 2026",
     "selectionTitle": "Processus de Sélection",
-    "selectionText": "Le papier gagnant sera sélectionné par le ",
-    "selectionCommittee": "Comité Scientifique",
-    "selectionCriteria": " sur la base de l’originalité, de la rigueur scientifique et de la pertinence par rapport aux thèmes de la conférence."
+    "selectionText": "Le projet lauréat sera sélectionné par le ",
+    "selectionCommittee": "Comité Scientifique et Jury d'Évaluation",
+    "selectionCriteria": " sur la base de l'originalité, de la rigueur scientifique, de l'impact pratique et de la pertinence par rapport aux thèmes de la conférence."
   },
   "partners": {
     "title": "Partenaires & Sponsors",
@@ -455,5 +466,74 @@
     "visitAis": "Visiter le site officiel de l’AIS (aisnet.org)",
     "partnershipTitle": "Synergie Collaborative pour TUNCIS 2026",
     "partnershipDesc": "TUNCIS 2026 est co-organisée sous le patronage scientifique de TunAISia et de l’AIS. En collaboration étroite avec nos universités partenaires, nos laboratoires de recherche et nos sponsors industriels, cette conférence constitue le rendez-vous incontournable pour l’IA et l’innovation numérique en Tunisie."
+  },
+  "nvidiaPage": {
+    "badge": "Formation Officielle NVIDIA Deep Learning Institute (DLI)",
+    "title": "Développement Rapide d'Applications avec les LLM",
+    "heroSubtitle": "Délivrée par Horizon University en partenariat avec le NVIDIA Deep Learning Institute (DLI) dans le cadre de TUNCIS 2026.",
+    "deliveredBy": "Délivrée par",
+    "deliveryPartner": "Horizon University",
+    "accreditation": "Accréditée par le NVIDIA Deep Learning Institute",
+    "courseOverviewTitle": "Présentation du Cours",
+    "courseDesc": "Ce cours pratique offre une introduction concrète au développement d'applications d'entreprise fondées sur les grands modèles de langage (LLM). Les participants explorent les transformeurs, les modèles Hugging Face, les pipelines NLP, les architectures multimodales, la génération de texte scalable et les flux de travail agentiques basés sur LangChain, aboutissant à la conception d'une application intégrée propulsée par les LLM.",
+    "officialLinkText": "Consulter sur le catalogue officiel NVIDIA DLI",
+    "registerCta": "S'inscrire à TUNCIS et à la Formation",
+    "keyDetailsTitle": "Informations Clés de la Formation",
+    "details": {
+      "formatTitle": "Format",
+      "formatVal": "Atelier pratique et interactif",
+      "credentialTitle": "Certification",
+      "credentialVal": "Certificat de compétences officiel NVIDIA DLI",
+      "prereqTitle": "Prérequis",
+      "prereqVal": "Programmation Python de base et notions d'apprentissage profond",
+      "partnerTitle": "Partenaire de formation",
+      "partnerVal": "Horizon School of Digital Technologies"
+    },
+    "curriculumTitle": "Programme et Thèmes Abordés",
+    "curriculumDesc": "Maîtrisez les outils d'IA générative et de LLM de pointe à travers des sessions pratiques guidées :",
+    "topics": [
+      {
+        "title": "Fondements des Transformeurs et LLM",
+        "desc": "Compréhension de l'architecture transformer, des mécanismes d'attention et du paysage moderne des modèles de fondation."
+      },
+      {
+        "title": "Écosystème Hugging Face et Pipelines NLP",
+        "desc": "Exploitation du Hugging Face Hub, utilisation de pipelines pré-entraînés pour la classification, le résumé et la génération."
+      },
+      {
+        "title": "Génération de Texte Scalable et Ingénierie de Prompt",
+        "desc": "Méthodes avancées de prompting, stratégies d'échantillonnage, gestion de fenêtre de contexte et optimisation."
+      },
+      {
+        "title": "Architectures Multimodales",
+        "desc": "Manipulation de modèles de fondation multimodaux combinant le traitement du langage naturel et la vision par ordinateur."
+      },
+      {
+        "title": "LangChain et Flux de Travail Agentiques",
+        "desc": "Conception de chaînes autonomes, intégration d'outils externes, gestion de mémoire et sorties structurées."
+      },
+      {
+        "title": "Déploiement d'Applications d'Entreprise",
+        "desc": "Intégration de bout en bout et validation d'une application d'entreprise complète propulsée par LLM."
+      }
+    ],
+    "benefitsTitle": "Pourquoi obtenir cette certification NVIDIA ?",
+    "benefits": [
+      {
+        "title": "Certification Reconnue Mondialement",
+        "desc": "Obtenez un certificat officiel du NVIDIA Deep Learning Institute, vérifiable en ligne et valorisable à l'international."
+      },
+      {
+        "title": "Environnement Cloud GPU Dédié",
+        "desc": "Accès complet à des stations de travail accélérées par GPU NVIDIA avec tous les environnements préconfigurés."
+      },
+      {
+        "title": "Encadrement Académique d'Excellence",
+        "desc": "Co-animé par des formateurs certifiés de Horizon University, garantissant un accompagnement personnalisé."
+      }
+    ],
+    "calloutTitle": "Prêt à maîtriser les LLM d'entreprise avec NVIDIA ?",
+    "calloutSubtitle": "Le nombre de places pour ce parcours certifiant est strictement limité afin de garantir des ressources GPU dédiées et un suivi individuel.",
+    "enrollNow": "S'inscrire à la Conférence et à l'Atelier"
   }
 }

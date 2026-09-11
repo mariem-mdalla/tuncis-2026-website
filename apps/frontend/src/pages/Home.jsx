@@ -1,7 +1,7 @@
 import { Link } from "react-router";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Users, Mic2, FileSearch, Calendar, MapPin, Award, Rocket, Sparkles, ArrowRight } from "lucide-react";
+import { Users, Mic2, FileSearch, Calendar, MapPin, Award, Rocket, Sparkles, ArrowRight, ExternalLink } from "lucide-react";
 import KeyDates from "../components/TimeLine";
 import Countdown from "../components/Countdown";
 
@@ -289,7 +289,7 @@ export default function Home() {
                   </div>
 
                   <Link
-                    to="/best-paper-award"
+                    to="/best-project-award"
                     className="inline-flex items-center gap-2 bg-tuncis-yellow hover:bg-white text-tuncis-blue font-bold text-sm px-5 py-3 rounded-xl transition-all shadow-md shrink-0 self-stretch sm:self-auto justify-center"
                   >
                     <span>{t("home.bestPaperCalloutCta")}</span>
@@ -401,6 +401,115 @@ export default function Home() {
                 <div key={i} className="h-full">{card}</div>
               );
             })}
+          </div>
+
+          {/* ── AIS & TUNAISIA LEADERSHIP SECTION ── */}
+          <div className="mt-28">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              className="text-center max-w-3xl mx-auto mb-14"
+            >
+              <p className="uppercase tracking-wider text-xs text-tuncis-blue font-bold mb-3 flex items-center gap-2 justify-center">
+                <span className="w-8 h-0.5 bg-tuncis-yellow inline-block" />
+                {t("home.aisSectionLabel")}
+                <span className="w-8 h-0.5 bg-tuncis-yellow inline-block" />
+              </p>
+              <h2 className="font-heading text-3xl md:text-4xl text-tuncis-blue font-bold mb-4">
+                {t("home.aisSectionTitle")}
+              </h2>
+              <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                {t("home.aisSectionSubtitle")}
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* AIS Global Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-white border border-gray-100 rounded-3xl p-8 sm:p-10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-tuncis-blue/5 rounded-bl-full pointer-events-none" />
+                <div>
+                  <div className="flex items-center justify-between gap-4 mb-6">
+                    <div className="h-14 bg-gray-50 px-4 py-2 rounded-2xl border border-gray-100 flex items-center justify-center">
+                      <img src={aisLogo} alt="AIS - Association for Information Systems" className="h-9 w-auto object-contain" />
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider bg-tuncis-blue/10 text-tuncis-blue px-3 py-1 rounded-full">
+                      {t("home.aisCardBadge")}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-bold text-2xl text-tuncis-blue mb-3">
+                    {t("home.aisCardTitle")}
+                  </h3>
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                    {t("home.aisCardDesc")}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4">
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center gap-1.5 text-tuncis-blue hover:text-tuncis-blue-dark font-bold text-sm transition-colors"
+                  >
+                    <span>{t("home.aisLearnMore")}</span>
+                    <ArrowRight size={15} />
+                  </Link>
+                  <a
+                    href="https://aisnet.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-gray-500 hover:text-tuncis-blue text-xs font-medium transition-colors"
+                  >
+                    <span>{t("home.aisOfficialWebsite")}</span>
+                    <ExternalLink size={13} />
+                  </a>
+                </div>
+              </motion.div>
+
+              {/* TunAISia Chapter Card */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="bg-white border border-gray-100 rounded-3xl p-8 sm:p-10 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-tuncis-yellow/10 rounded-bl-full pointer-events-none" />
+                <div>
+                  <div className="flex items-center justify-between gap-4 mb-6">
+                    <div className="h-14 bg-gray-50 px-4 py-2 rounded-2xl border border-gray-100 flex items-center justify-center">
+                      <img src={tunaisiaLogo} alt="TunAISia Chapter" className="h-10 w-auto object-contain scale-110" />
+                    </div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider bg-tuncis-yellow/20 text-tuncis-yellow-dark px-3 py-1 rounded-full">
+                      {t("home.tunaisiaCardBadge")}
+                    </span>
+                  </div>
+
+                  <h3 className="font-heading font-bold text-2xl text-tuncis-blue mb-3">
+                    {t("home.tunaisiaCardTitle")}
+                  </h3>
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                    {t("home.tunaisiaCardDesc")}
+                  </p>
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between gap-4">
+                  <Link
+                    to="/about"
+                    className="inline-flex items-center gap-1.5 text-tuncis-blue hover:text-tuncis-blue-dark font-bold text-sm transition-colors"
+                  >
+                    <span>{t("home.aisLearnMore")}</span>
+                    <ArrowRight size={15} />
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
           </div>
 
           {/* ── PARTNERS ── */}

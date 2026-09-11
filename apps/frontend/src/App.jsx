@@ -9,18 +9,9 @@ import Committees from "./pages/Committees";
 import Registration from "./pages/Registration";
 import PracticalInfo from "./pages/PracticalInfo";
 import BestPaperAward from "./pages/BestPaperAward";
+import NvidiaCertification from "./pages/NvidiaCertification";
 import Partners from "./pages/Partners";
 import About from "./pages/About";
-
-// Temporary placeholders for new pages
-function PlaceholderPage({ title }) {
-  return (
-    <div className="py-24 max-w-4xl mx-auto px-6 text-center min-h-[50vh]">
-      <h1 className="text-3xl font-heading font-bold text-tuncis-blue mb-4">{title}</h1>
-      <p className="text-gray-500">This page is currently under construction.</p>
-    </div>
-  );
-}
 
 export default function App() {
   return (
@@ -40,8 +31,9 @@ export default function App() {
             {/* New Routes */}
             <Route path="/partners" element={<Partners />} />
             <Route path="/about" element={<About />} />
+            <Route path="/best-project-award" element={<BestPaperAward />} />
             <Route path="/best-paper-award" element={<BestPaperAward />} />
-            <Route path="/nvidia-certification" element={<PlaceholderPage title="NVIDIA Certification" />} />
+            <Route path="/nvidia-certification" element={<NvidiaCertification />} />
           </Routes>
         </div>
         <Footer />

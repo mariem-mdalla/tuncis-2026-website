@@ -10,7 +10,7 @@
     "people": "Committees",
     "participate": "Participate",
     "about": "About",
-    "bestPaper": "Best Paper Award",
+    "bestPaper": "Best Project Award",
     "nvidiaCert": "NVIDIA Certification",
     "partners": "Partners"
   },
@@ -83,10 +83,21 @@
     "nvidiaCalloutDesc": "Get hands-on training and earn an internationally accredited certificate from the NVIDIA Deep Learning Institute (DLI) during TUNCIS 2026.",
     "nvidiaCalloutCta": "Certification Details",
     "bestPaperBadge": "Academic Distinction",
-    "bestPaperCalloutTitle": "Best Paper Award",
-    "bestPaperCalloutDesc": "Recognizing outstanding research contributions with an official award certificate signed and stamped by AIS (Association for Information Systems).",
+    "bestPaperCalloutTitle": "Best Project Award",
+    "bestPaperCalloutDesc": "Recognizing outstanding innovative research projects and pitches with an official award certificate signed and stamped by AIS (Association for Information Systems).",
     "bestPaperCalloutCta": "Award Details",
-    "registerNow": "Register Now"
+    "registerNow": "Register Now",
+    "aisSectionLabel": "Organizing Leadership",
+    "aisSectionTitle": "Under the Auspices of AIS & TunAISia",
+    "aisSectionSubtitle": "TUNCIS 2026 is organized under the academic patronage of the premier global association for Information Systems and its official Tunisian chapter.",
+    "aisCardBadge": "Global Association",
+    "aisCardTitle": "Association for Information Systems (AIS)",
+    "aisCardDesc": "Founded in 1994, the Association for Information Systems (AIS) is the premier global professional association for researchers, educators, and scholars in information systems across 100+ countries. AIS sponsors top-tier conferences (ICIS, AMCIS, ECIS) and publishes world-leading scientific journals (JAIS, CAIS).",
+    "tunaisiaCardBadge": "National Chapter",
+    "tunaisiaCardTitle": "TunAISia Chapter",
+    "tunaisiaCardDesc": "The official Tunisian Chapter connecting Tunisian universities, research laboratories, and industry leaders with the global AIS academic ecosystem to foster high-impact scientific collaborations, doctoral consortia, and innovation in AI.",
+    "aisLearnMore": "Learn More About AIS & TunAISia",
+    "aisOfficialWebsite": "Visit Official AIS Website"
   },
   "milestones": {
     "submission": "Submission Deadline",
@@ -164,7 +175,7 @@
       "cfc": "Call for Communications",
       "committees": "Committees",
       "partners": "Partners & Sponsors",
-      "bestPaper": "Best Paper Award",
+      "bestPaper": "Best Project Award",
       "submitAbstract": "Submit Abstract",
       "keyDates": "Key Dates",
       "nvidiaCert": "NVIDIA Certification",
@@ -302,7 +313,7 @@
       "bio": "Director of ENSI (Ecole Nationale des Sciences de l’Informatique) and Director of the RIADI Laboratory, University of Manouba, Tunisia. A Professor in the Department of Information Systems and Decision Engineering, she teaches Software Engineering and Artificial Intelligence. She holds an engineering diploma from ENSEEIHT Toulouse, a PhD from the University of Toulouse 1, and an HDR from ENSI. Her research focuses on modeling and simulation of complex socio-technical systems, information systems, and multi-agent systems. She was also a Fulbright scholar at the University of California, Irvine."
     },
     "takoua": {
-      "bio": "Associate Professor at ENISo (National School of Engineers of Sousse), University of Sousse, and a researcher at the SERCOM Laboratory, Polytechnic School of Tunisia, University of Carthage. She holds an engineering degree from ENSIMAG (Grenoble, France), a PhD from Grenoble University, and an HDR from the University of Carthage. Her research focuses on Big Data, IoT, and Cloud Computing. She is also a co-founder of the Horizon School of Digital Technologies in Sousse, and an NVIDIA Ambassador in Generative AI."
+      "bio": "Associate Professor at ENISo (National School of Engineers of Sousse), University of Sousse, and a researcher at the SERCOM Laboratory, Polytechnic School of Tunisia, University of Carthage. She holds an engineering degree from ENSIMAG (Grenoble, France), a PhD from Grenoble University, and an HDR from the University of Carthage. Her research focuses on Big Data, IoT, and Cloud Computing. She is also an NVIDIA Ambassador in Generative AI."
     }
   },
   "practicalInfo": {
@@ -324,16 +335,16 @@
     "inquiries": "For any inquiries regarding travel, venue logistics, or registration:"
   },
   "bestPaper": {
-    "title": "Best Paper Award",
-    "heroSubtitle": "TUNCIS 2026 will present a Best Paper Award to recognize outstanding research contributions presented at the conference.",
+    "title": "Best Project Award",
+    "heroSubtitle": "TUNCIS 2026 will present a Best Project Award to recognize outstanding innovative research projects and pitches presented at the conference.",
     "awardsTitle": "The award includes:",
     "award1": "An official award certificate, signed and stamped by AIS (Association for Information Systems)",
-    "award2": "Public announcement of the winning paper during the conference",
-    "award3": "Recognition on TUNCIS 2026’s official social media channels",
+    "award2": "Public announcement and ceremony for the winning project during the conference",
+    "award3": "Featured recognition on TUNCIS 2026’s official social media and academic channels",
     "selectionTitle": "Selection Process",
-    "selectionText": "The winning paper will be selected by the ",
-    "selectionCommittee": "Scientific Committee",
-    "selectionCriteria": " based on originality, scientific rigor, and relevance to the conference themes."
+    "selectionText": "The winning project will be selected by the ",
+    "selectionCommittee": "Scientific Committee & Evaluation Jury",
+    "selectionCriteria": " based on originality, scientific rigor, practical impact, and relevance to the conference themes."
   },
   "partners": {
     "title": "Partners & Sponsors",
@@ -455,5 +466,74 @@
     "visitAis": "Visit Official AIS Website (aisnet.org)",
     "partnershipTitle": "Collaborative Synergy in TUNCIS 2026",
     "partnershipDesc": "TUNCIS 2026 is co-organized under the academic patronage of TunAISia and AIS. Together with our university partners, research laboratories, and industrial sponsors, this conference serves as Tunisia’s premier international gathering for AI innovation and digital systems excellence."
+  },
+  "nvidiaPage": {
+    "badge": "Official NVIDIA Deep Learning Institute (DLI) Training",
+    "title": "Rapid Application Development with LLMs",
+    "heroSubtitle": "Delivered by Horizon University in partnership with the NVIDIA Deep Learning Institute (DLI) during TUNCIS 2026.",
+    "deliveredBy": "Delivered by",
+    "deliveryPartner": "Horizon University",
+    "accreditation": "Accredited by NVIDIA Deep Learning Institute",
+    "courseOverviewTitle": "Course Overview",
+    "courseDesc": "This hands-on course provides a practical introduction to developing enterprise applications with large language models. Participants explore transformers, Hugging Face models, NLP pipelines, multimodal architectures, scalable text generation, and LangChain-based agentic workflows, culminating in the development of an integrated LLM-powered application.",
+    "officialLinkText": "View Official NVIDIA DLI Course Page",
+    "registerCta": "Register for TUNCIS & Training Track",
+    "keyDetailsTitle": "Course Key Information",
+    "details": {
+      "formatTitle": "Format",
+      "formatVal": "Hands-on Interactive Workshop",
+      "credentialTitle": "Credential",
+      "credentialVal": "NVIDIA DLI Certificate of Competency",
+      "prereqTitle": "Prerequisites",
+      "prereqVal": "Basic Python & deep learning concepts",
+      "partnerTitle": "Delivery Partner",
+      "partnerVal": "Horizon School of Digital Technologies"
+    },
+    "curriculumTitle": "Curriculum & Key Topics Covered",
+    "curriculumDesc": "Master cutting-edge generative AI and LLM tools through guided practical lab sessions:",
+    "topics": [
+      {
+        "title": "Transformers & Foundation Models",
+        "desc": "Understanding transformer architecture, self-attention mechanisms, and the modern foundation model landscape."
+      },
+      {
+        "title": "Hugging Face Ecosystem & NLP Pipelines",
+        "desc": "Navigating the Hugging Face Hub, utilizing pre-trained pipelines for classification, summarization, and token generation."
+      },
+      {
+        "title": "Scalable Text Generation & Prompt Design",
+        "desc": "Best practices in instruction prompting, sampling strategies, context window management, and optimization techniques."
+      },
+      {
+        "title": "Multimodal Architectures",
+        "desc": "Working with multimodal foundation models combining natural language processing with vision and document analysis."
+      },
+      {
+        "title": "LangChain & Agentic Workflows",
+        "desc": "Building autonomous LLM chains, tools integration, memory management, and structured output generation."
+      },
+      {
+        "title": "Enterprise Application Deployment",
+        "desc": "End-to-end integration and testing of a complete LLM-powered production-ready application."
+      }
+    ],
+    "benefitsTitle": "Why Earn This NVIDIA Certificate?",
+    "benefits": [
+      {
+        "title": "Globally Recognized Credential",
+        "desc": "Earn an official certificate from the NVIDIA Deep Learning Institute (DLI), verifiable online and recognized worldwide."
+      },
+      {
+        "title": "Accelerated Cloud GPU Workstations",
+        "desc": "Gain hands-on practice in dedicated cloud environments powered by high-performance NVIDIA GPUs."
+      },
+      {
+        "title": "Certified University Instructors",
+        "desc": "Guided step-by-step by certified instructors from Horizon University throughout the training track."
+      }
+    ],
+    "calloutTitle": "Ready to master enterprise LLMs with NVIDIA?",
+    "calloutSubtitle": "Seats for the certified hands-on track are strictly limited to guarantee dedicated GPU workstations and personalized mentoring.",
+    "enrollNow": "Register for Conference & Workshop"
   }
 }

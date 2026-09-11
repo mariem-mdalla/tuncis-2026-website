@@ -92,7 +92,7 @@ export default function Header() {
   const participateItems = [
     { to: "/register",             label: t("nav.register") },
     { to: "/practical-info",       label: t("nav.practicalInfo") },
-    { to: "/best-paper-award",     label: t("nav.bestPaper") },
+    { to: "/best-project-award",   label: t("nav.bestPaper") },
     { to: "/nvidia-certification", label: t("nav.nvidiaCert") },
   ];
   const aboutItems = [

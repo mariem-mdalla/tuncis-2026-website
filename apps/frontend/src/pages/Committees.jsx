@@ -12,10 +12,10 @@ const organizing = [
   { name: "Soussen Ben Jabra",   affiliation: "ISSAT Kairouan / Kairouan University" },
   { name: "Rania Yangui",        affiliation: "ISSATS / Sousse University" },
   { name: "Asma Mansour",        affiliation: "Horizon University" },
-  { name: "Jihed Hammami",       affiliation: "Horizon University" },
+  //{ name: "Jihed Hammami",       affiliation: "Horizon University" },
   { name: "Ameny Rjiba",         affiliation: "Horizon University" },
-  { name: "Ramy Chouchene",      affiliation: "Horizon University" },
-  { name: "Noura Aboudi",        affiliation: "Horizon University" },
+  //{ name: "Ramy Chouchene",      affiliation: "Horizon University" },
+  //{ name: "Noura Aboudi",        affiliation: "Horizon University" },
 ];
 
 function BioCard({ name, role, affiliation, image, bio }) {
