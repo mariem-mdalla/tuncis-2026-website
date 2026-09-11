@@ -225,14 +225,43 @@ export default async function handler(req, res) {
       `
     });
 
-    // Send emails independently — one failure must not block the other
-    console.log(`[Abstract] Sending to organizer: ${ORGANIZER_EMAIL}, applicant: ${email}`);
+    const cleanEmail = (email || '').trim();
 
-    try {
-      await transporter.sendMail({
+    const applicantText = `Dear ${fullName},
+
+Thank you for submitting your abstract for the Innovative Research Project Pitch Session at TUNCIS 2026.
+
+Submission Summary:
+- Author: ${fullName}
+- Email: ${cleanEmail}
+- File: ${fileName || "abstract.pdf"}
+- Date: ${submissionDate}
+
+Review Process:
+Our scientific review committee will review your submission and contact you with notification results before September 30, 2026.
+
+If you have any questions, please contact us at tuncis2026@horizon-tech.tn.
+
+TUNCIS 2026 Organizing Committee
+`;
+
+    const organizerText = `New Abstract Submission Received:
+- Author: ${fullName}
+- Email: ${cleanEmail}
+- File: ${fileName || "abstract.pdf"}
+- Date: ${submissionDate}
+(The PDF file is attached to this email)
+`;
+
+    console.log(`[Abstract] Sending to organizer: ${ORGANIZER_EMAIL}, applicant: ${cleanEmail}`);
+
+    const [organizerResult, applicantResult] = await Promise.allSettled([
+      transporter.sendMail({
         from: `"TUNCIS 2026 Submissions" <${SENDER_EMAIL}>`,
+        replyTo: cleanEmail,
         to: ORGANIZER_EMAIL,
         subject: `[Abstract Submission] ${fullName} - TUNCIS 2026`,
+        text: organizerText,
         html: organizerHtml,
         attachments: [
           {
@@ -241,22 +270,27 @@ export default async function handler(req, res) {
             contentType: "application/pdf",
           },
         ],
-      });
+      }),
+      transporter.sendMail({
+        from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
+        replyTo: SENDER_EMAIL,
+        to: cleanEmail,
+        subject: "Abstract Submission Confirmation - TUNCIS 2026",
+        text: applicantText,
+        html: applicantHtml,
+      }),
+    ]);
+
+    if (organizerResult.status === 'fulfilled') {
       console.log(`[Abstract] Organizer email sent OK to ${ORGANIZER_EMAIL}`);
-    } catch (mailErr) {
-      console.error(`[Abstract] Organizer email FAILED:`, mailErr.message);
+    } else {
+      console.error(`[Abstract] Organizer email FAILED:`, organizerResult.reason);
     }
 
-    try {
-      await transporter.sendMail({
-        from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
-        to: email,
-        subject: "Abstract Submission Confirmation - TUNCIS 2026",
-        html: applicantHtml,
-      });
-      console.log(`[Abstract] Applicant email sent OK to ${email}`);
-    } catch (mailErr) {
-      console.error(`[Abstract] Applicant email FAILED to ${email}:`, mailErr.message);
+    if (applicantResult.status === 'fulfilled') {
+      console.log(`[Abstract] Applicant email sent OK to ${cleanEmail}`);
+    } else {
+      console.error(`[Abstract] Applicant email FAILED to ${cleanEmail}:`, applicantResult.reason);
     }
 
     return res.status(201).json({

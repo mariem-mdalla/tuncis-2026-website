@@ -193,31 +193,69 @@ export default async function handler(req, res) {
         `
       });
 
-      // Send emails independently — one failure must not block the other
-      console.log(`[Registration] Sending to organizer: ${ORGANIZER_EMAIL}, attendee: ${email}`);
+      const cleanEmail = (email || '').trim();
 
-      try {
-        await transporter.sendMail({
+      const attendeeText = `Dear ${fullName},
+
+Thank you for registering for TUNCIS 2026 (Tunisian Conference on Artificial Intelligence and Scientific Innovation).
+
+Conference Dates: October 23–24, 2026
+Venue: Hotel Marhaba Palace, Port El Kantaoui, Sousse, Tunisia
+
+Summary of Your Registration:
+- Full Name: ${fullName}
+- Email: ${cleanEmail}
+- Phone: ${phone}
+- Affiliation: ${affiliation}
+- Academic / Professional Status: ${status}
+- Total Amount Due: ${totalAmountDue || '0'}
+
+Payment instructions will be communicated to you by the organizing committee. Please keep this email for your records.
+
+Contact: tuncis2026@horizon-tech.tn
+TUNCIS 2026 Organizing Committee
+`;
+
+      const organizerText = `New Conference Registration Received:
+- Full Name: ${fullName}
+- Email: ${cleanEmail}
+- Phone: ${phone}
+- Affiliation: ${affiliation}
+- Status: ${status}
+- Total Amount Due: ${totalAmountDue || '0'}
+`;
+
+      console.log(`[Registration] Sending to organizer: ${ORGANIZER_EMAIL}, attendee: ${cleanEmail}`);
+
+      const [organizerResult, attendeeResult] = await Promise.allSettled([
+        transporter.sendMail({
           from: `"TUNCIS 2026" <${SENDER_EMAIL}>`,
+          replyTo: cleanEmail,
           to: ORGANIZER_EMAIL,
           subject: `[New Registration] ${fullName} (${affiliation}) - TUNCIS 2026`,
+          text: organizerText,
           html: organizerHtml,
-        });
+        }),
+        transporter.sendMail({
+          from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
+          replyTo: SENDER_EMAIL,
+          to: cleanEmail,
+          subject: "Registration Confirmed - TUNCIS 2026",
+          text: attendeeText,
+          html: attendeeHtml,
+        }),
+      ]);
+
+      if (organizerResult.status === 'fulfilled') {
         console.log(`[Registration] Organizer email sent OK to ${ORGANIZER_EMAIL}`);
-      } catch (mailErr) {
-        console.error(`[Registration] Organizer email FAILED:`, mailErr.message);
+      } else {
+        console.error(`[Registration] Organizer email FAILED:`, organizerResult.reason);
       }
 
-      try {
-        await transporter.sendMail({
-          from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
-          to: email,
-          subject: "Registration Confirmed - TUNCIS 2026",
-          html: attendeeHtml,
-        });
-        console.log(`[Registration] Attendee email sent OK to ${email}`);
-      } catch (mailErr) {
-        console.error(`[Registration] Attendee email FAILED to ${email}:`, mailErr.message);
+      if (attendeeResult.status === 'fulfilled') {
+        console.log(`[Registration] Attendee email sent OK to ${cleanEmail}`);
+      } else {
+        console.error(`[Registration] Attendee email FAILED to ${cleanEmail}:`, attendeeResult.reason);
       }
 
       return res.status(201).json({ success: true, data: inserted || parsed.data });

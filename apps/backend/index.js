@@ -211,30 +211,69 @@ app.post("/registrations", async (req, res) => {
       `
     });
 
-    console.log(`[Registration] Sending to organizer: ${ORGANIZER_EMAIL}, attendee: ${email}`);
+    const cleanEmail = (email || '').trim();
 
-    try {
-      await transporter.sendMail({
+    const attendeeText = `Dear ${fullName},
+
+Thank you for registering for TUNCIS 2026 (Tunisian Conference on Artificial Intelligence and Scientific Innovation).
+
+Conference Dates: October 23–24, 2026
+Venue: Hotel Marhaba Palace, Port El Kantaoui, Sousse, Tunisia
+
+Summary of Your Registration:
+- Full Name: ${fullName}
+- Email: ${cleanEmail}
+- Phone: ${phone}
+- Affiliation: ${affiliation}
+- Academic / Professional Status: ${status}
+- Total Amount Due: ${totalAmountDue || '0'}
+
+Payment instructions will be communicated to you by the organizing committee. Please keep this email for your records.
+
+Contact: tuncis2026@horizon-tech.tn
+TUNCIS 2026 Organizing Committee
+`;
+
+    const organizerText = `New Conference Registration Received:
+- Full Name: ${fullName}
+- Email: ${cleanEmail}
+- Phone: ${phone}
+- Affiliation: ${affiliation}
+- Status: ${status}
+- Total Amount Due: ${totalAmountDue || '0'}
+`;
+
+    console.log(`[Registration] Sending to organizer: ${ORGANIZER_EMAIL}, attendee: ${cleanEmail}`);
+
+    const [organizerResult, attendeeResult] = await Promise.allSettled([
+      transporter.sendMail({
         from: `"TUNCIS 2026" <${SENDER_EMAIL}>`,
+        replyTo: cleanEmail,
         to: ORGANIZER_EMAIL,
         subject: `[New Registration] ${fullName} (${affiliation}) - TUNCIS 2026`,
+        text: organizerText,
         html: organizerHtml,
-      });
-      console.log(`[Registration] Organizer email sent OK`);
-    } catch (mailErr) {
-      console.error(`[Registration] Organizer email FAILED:`, mailErr.message);
+      }),
+      transporter.sendMail({
+        from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
+        replyTo: SENDER_EMAIL,
+        to: cleanEmail,
+        subject: "Registration Confirmed - TUNCIS 2026",
+        text: attendeeText,
+        html: attendeeHtml,
+      }),
+    ]);
+
+    if (organizerResult.status === 'fulfilled') {
+      console.log(`[Registration] Organizer email sent OK to ${ORGANIZER_EMAIL}`);
+    } else {
+      console.error(`[Registration] Organizer email FAILED:`, organizerResult.reason);
     }
 
-    try {
-      await transporter.sendMail({
-        from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
-        to: email,
-        subject: "Registration Confirmed - TUNCIS 2026",
-        html: attendeeHtml,
-      });
-      console.log(`[Registration] Attendee email sent OK to ${email}`);
-    } catch (mailErr) {
-      console.error(`[Registration] Attendee email FAILED to ${email}:`, mailErr.message);
+    if (attendeeResult.status === 'fulfilled') {
+      console.log(`[Registration] Attendee email sent OK to ${cleanEmail}`);
+    } else {
+      console.error(`[Registration] Attendee email FAILED to ${cleanEmail}:`, attendeeResult.reason);
     }
 
     res.status(201).json({ success: true, data: inserted || parsed.data });
@@ -305,31 +344,66 @@ app.post("/abstracts", upload.single("file"), async (req, res) => {
       `
     });
 
-    console.log(`[Abstract] Sending to organizer: ${ORGANIZER_EMAIL}, applicant: ${email}`);
+    const cleanEmail = (email || '').trim();
 
-    try {
-      await transporter.sendMail({
+    const applicantText = `Dear ${fullName},
+
+Thank you for submitting your abstract for the Innovative Research Project Pitch Session at TUNCIS 2026.
+
+Submission Summary:
+- Author: ${fullName}
+- Email: ${cleanEmail}
+- File: ${file.originalname}
+- Date: ${submissionDate}
+
+Review Process:
+Our scientific review committee will review your submission and contact you with notification results before September 30, 2026.
+
+If you have any questions, please contact us at tuncis2026@horizon-tech.tn.
+
+TUNCIS 2026 Organizing Committee
+`;
+
+    const organizerText = `New Abstract Submission Received:
+- Author: ${fullName}
+- Email: ${cleanEmail}
+- File: ${file.originalname}
+- Date: ${submissionDate}
+(The PDF file is attached to this email)
+`;
+
+    console.log(`[Abstract] Sending to organizer: ${ORGANIZER_EMAIL}, applicant: ${cleanEmail}`);
+
+    const [organizerResult, applicantResult] = await Promise.allSettled([
+      transporter.sendMail({
         from: `"TUNCIS 2026 Submissions" <${SENDER_EMAIL}>`,
+        replyTo: cleanEmail,
         to: ORGANIZER_EMAIL,
         subject: `[Abstract Submission] ${fullName} - TUNCIS 2026`,
+        text: organizerText,
         html: organizerHtml,
         attachments: [{ filename: file.originalname, content: file.buffer }],
-      });
-      console.log(`[Abstract] Organizer email sent OK`);
-    } catch (mailErr) {
-      console.error(`[Abstract] Organizer email FAILED:`, mailErr.message);
+      }),
+      transporter.sendMail({
+        from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
+        replyTo: SENDER_EMAIL,
+        to: cleanEmail,
+        subject: "Abstract Submission Confirmation - TUNCIS 2026",
+        text: applicantText,
+        html: applicantHtml,
+      }),
+    ]);
+
+    if (organizerResult.status === 'fulfilled') {
+      console.log(`[Abstract] Organizer email sent OK to ${ORGANIZER_EMAIL}`);
+    } else {
+      console.error(`[Abstract] Organizer email FAILED:`, organizerResult.reason);
     }
 
-    try {
-      await transporter.sendMail({
-        from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
-        to: email,
-        subject: "Abstract Submission Confirmation - TUNCIS 2026",
-        html: applicantHtml,
-      });
-      console.log(`[Abstract] Applicant email sent OK to ${email}`);
-    } catch (mailErr) {
-      console.error(`[Abstract] Applicant email FAILED to ${email}:`, mailErr.message);
+    if (applicantResult.status === 'fulfilled') {
+      console.log(`[Abstract] Applicant email sent OK to ${cleanEmail}`);
+    } else {
+      console.error(`[Abstract] Applicant email FAILED to ${cleanEmail}:`, applicantResult.reason);
     }
 
     res.status(201).json({
