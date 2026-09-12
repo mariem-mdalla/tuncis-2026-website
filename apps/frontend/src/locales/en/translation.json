@@ -16,6 +16,7 @@
   },
   "home": {
     "eyebrow": "October 23–24, 2026 · Sousse, Tunisia",
+    "fullName": "Tunisian Conference on Information Systems",
     "themePrefix": "From research to industrial deployment:",
     "themeHighlight": "co-construct innovation in AI",
     "subtitle": "TUNCIS 2026 brings together on October 23–24, 2026 in Sousse an intentionally small community (places are limited) around a dual ambition.",
@@ -47,7 +48,7 @@
     "partnersTitle": "Co-constructing innovation together",
     "partnersSubtitle": "TUNCIS 2026 is supported by leading Tunisian universities, research labs, and international organizations.",
     "viewAllPartners": "View All Partners",
-    "sousseCaption": "Sousse, Tunisia — Conference venue",
+    "sousseCaption": "Sousse, Tunisia – Conference venue",
     "bannerTitle": "Research to Industry: AI Innovation",
     "welcomePrefix": "Welcome to",
     "welcomeHighlight": "TUNCIS 2026!",
@@ -187,14 +188,109 @@
     }
   },
   "programme": {
+    "badge": "Conference Schedule",
     "title": "Programme",
-    "subtitle": "October 23–24, 2026 · Hotel Marhaba Palace, Kantaoui, Sousse",
-    "day1": "Day 1 - October 23",
-    "day2": "Day 2 - October 24",
-    "note": "Schedule subject to updates by the organizing committee.",
-    "pendingNote": "Content to be provided by the committee: final workshop titles, schedule, and names of facilitators and rapporteurs.",
-    "speakerLouadi": "Keynote Speaker",
-    "speakerMardassi": "Moderator: Horizon Europe Projects Workshop"
+    "subtitle": "October 23–24, 2026 · Sousse, Tunisia",
+    "tabs": {
+      "day1": "Day 1 – Friday, Oct 23",
+      "day1Subtitle": "Opening, Keynotes & Interactive Workshops",
+      "day2": "Day 2 – Saturday, Oct 24",
+      "day2Subtitle": "Tech Transfer Keynote, Pitches & NVIDIA Track"
+    },
+    "filters": {
+      "all": "All Sessions",
+      "keynotes": "Keynotes",
+      "workshops": "Workshops",
+      "special": "Pitch & NVIDIA",
+      "breaks": "Breaks & Networking"
+    },
+    "allRooms": "All Rooms",
+    "roomA": "Room A",
+    "roomB": "Room B",
+    "plenaryRoom": "Plenary Amphitheatre",
+    "parallelBadge": "Parallel Sessions · Choose Your Track",
+    "parallelSub": "Sessions run simultaneously in separate rooms.",
+    "parallelSubD2": "The Pitch Session and NVIDIA Training run concurrently.",
+    "rotationBadge": "Rotation Session",
+    "rotationNote": "Same topics & moderators so attendees can experience both workshops.",
+    "tbc": "TBC",
+    "viewNvidiaTrack": "Explore NVIDIA DLI Course & Syllabus",
+    "viewPitchCall": "Learn About Best Project Pitch Session",
+    "note": "Schedule subject to minor adjustments by the organizing committee.",
+    "emptyFilter": "No sessions match the selected filter.",
+    "resetFilter": "Show All Sessions",
+    "sessions": {
+      "d1_opening_title": "Official Opening Ceremony",
+      "d1_opening_speakers": [
+        { "name": "Prof. Lotfi Belkacem", "role": "Rector, University of Sousse" },
+        { "name": "Prof. Imed Boughzala", "role": "President of TunAISia · Director General of ENSIIE (France)" },
+        { "name": "Prof. Takoua Abdellatif", "role": "Co-chair TUNCIS 2026 · ENISo, University of Sousse" }
+      ],
+      "d1_keynote1_title": "Keynote 1",
+      "d1_keynote1_speaker": "Prof. Mohamed Louadi",
+      "d1_keynote1_role": "ISG Tunis",
+      "d1_keynote1_topic": "Topic to be announced soon",
+      "d1_coffee1_title": "Coffee Break & Networking",
+      "d1_coffee1_desc": "Morning coffee and networking with attendees and academic delegates.",
+      "d1_keynote2_title": "Keynote 2: Horizon Europe Projects",
+      "d1_keynote2_speaker": "Prof. Helmi Mardassi",
+      "d1_keynote2_role": "Director General of the Management Unit for European Framework Programmes",
+      "d1_keynote2_topic": "Opportunities & Pathways for Horizon Europe Framework Projects",
+      "d1_w1_title": "Workshop 1: Project Setup & Academic Cooperation",
+      "d1_w1_speakers": [
+        { "name": "Meriem Kallel", "role": "Ministry of Higher Education & Scientific Research, Horizon Europe" },
+        { "name": "Prof. Walid Barhoumi", "role": "Higher Institute of Computer Science (ISI)", "tbc": true }
+      ],
+      "d1_w2_title": "Workshop 2: Mobility & Career Development for Faculty Researchers",
+      "d1_w2_speakers": [
+        { "name": "Chaker Essid", "role": "Faculty of Sciences of Tunis, Tunisia" },
+        { "name": "Imed Boughzala", "role": "ENSIIE, France" }
+      ],
+      "d1_lunch_title": "Buffet Lunch Break",
+      "d1_lunch_desc": "Lunch break and networking at the venue restaurant.",
+      "d1_w1_rot_title": "Workshop 1 (Rotation): Project Setup & Academic Cooperation",
+      "d1_w2_rot_title": "Workshop 2 (Rotation): Mobility & Career Development for Faculty Researchers",
+      "d1_coffee2_title": "Afternoon Coffee Break",
+      "d1_coffee2_desc": "Coffee & tea break before the second round of workshops.",
+      "d1_w3_title": "Workshop 3: Doctoral Co-supervision & Scientific Mentoring",
+      "d1_w3_speakers": [
+        { "name": "Sana Rouis Skandrani", "role": "Karlstad University, Sweden" },
+        { "name": "Narjès Bellamine Ben Saoud", "role": "National School of Computer Sciences (ENSI), Tunisia" }
+      ],
+      "d1_w4_title": "Workshop 4: Scientific Publications & International Visibility",
+      "d1_w4_speakers": [
+        { "name": "Nabila Boukef", "role": "SKEMA Business School, France" },
+        { "name": "Rim Faiez Zitouni", "role": "IHEC Carthage, Tunisia" },
+        { "name": "Mohamed Ali Mahjoub", "role": "University of Sousse, Tunisia" }
+      ],
+      "d1_closing_title": "Wrap-up & Day 1 Synthesis",
+      "d1_closing_desc": "Session debrief, reporting of workshop outcomes, and announcements for Day 2.",
+      "d2_opening_title": "Welcome & Day 2 Opening",
+      "d2_opening_speakers": [
+        { "name": "Prof. Takoua Abdellatif", "role": "Co-chair TUNCIS 2026 · ENISo, University of Sousse" }
+      ],
+      "d2_keynote_title": "Keynote: Technology Transfer Between Research & Industry",
+      "d2_keynote_speaker": "Hichem Tourki",
+      "d2_keynote_role": "Novation City",
+      "d2_keynote_topic": "Presentation of technology transfer programs connecting academic research with industrial innovation",
+      "d2_keynote_tbc": true,
+      "d2_coffee_title": "Coffee Break",
+      "d2_coffee_desc": "Refreshments and preparations for the parallel tracks.",
+      "d2_pitch_title": "Innovative Research Projects Pitch Session",
+      "d2_pitch_desc": "Selected researchers and project teams pitch results ready for industrialization before an academic and industrial jury.",
+      "d2_pitch_jury": "Jury President: To be confirmed",
+      "d2_pitch_badge": "Best Project Competition",
+      "d2_nvidia_title": "NVIDIA DLI Certified Training: Rapid Application Development with LLMs",
+      "d2_nvidia_desc": "Hands-on practical masterclass exploring transformers, Hugging Face, NLP pipelines, multimodal architectures, and LangChain agentic workflows.",
+      "d2_nvidia_badge": "NVIDIA DLI Certification",
+      "d2_nvidia_req": "Delivered by Horizon University · Prior registration required",
+      "d2_delib_title": "Jury Deliberation & Industry-Researcher Networking",
+      "d2_delib_desc": "Jury evaluates pitch presentations while attendees engage with industrial partners.",
+      "d2_closing_title": "Awards Ceremony, Wrap-up & Conference Closing",
+      "d2_closing_desc": "Announcement of the Best Project Award winners, summary of conference findings, and closing remarks.",
+      "d2_lunch_title": "Closing Farewell Lunch",
+      "d2_lunch_desc": "Celebratory networking lunch and closing reception."
+    }
   },
   "cfc": {
     "badge": "Call for Innovative Research Projects",
@@ -266,7 +362,7 @@
     "submissionIntro": "Applicants are invited to submit:",
     "submission": [
       "Project title",
-      "Abstract (maximum 500 words)",
+      "Abstract (maximum 1000 words)",
       "Principal investigator and team members",
       "Keywords",
       "Expected impact",
@@ -275,14 +371,14 @@
     "submitCta": "Submit via Registration Form",
     "modal": {
       "title": "Submit Your Abstract",
-      "subtitle": "Please fill out your details and upload your PDF abstract.",
+      "subtitle": "Please fill out your details and upload your PDF abstract (maximum 1000 words).",
       "fullName": "Full Name",
       "fullNamePlaceholder": "e.g. Dr. Jane Doe",
       "email": "Email Address",
       "emailPlaceholder": "e.g. jane@university.edu",
-      "file": "Abstract File (PDF)",
+      "file": "Abstract File (PDF )",
       "fileUpload": "Click to upload or drag and drop",
-      "fileHint": "PDF format only (Max 5MB)",
+      "fileHint": "PDF format only",
       "submit": "Submit Abstract",
       "sending": "Sending...",
       "successTitle": "Submitted Successfully!",
@@ -291,9 +387,9 @@
     },
     "panelNote": "Selected projects will be presented before a distinguished panel of senior researchers and industry leaders.",
     "ctaTitle": "Ready to submit your abstract?",
-    "ctaBody": "Prepare your abstract as a PDF file and click below. Our team will review your submission and contact you with the result before",
+    "ctaBody": "Prepare your abstract as a PDF file  (maximum 1000 words) and click below. Our team will review your submission and contact you with the result before",
     "ctaDeadline": "Sep 30, 2026",
-    "ctaFileHint": "PDF format · Max 5 MB"
+    "ctaFileHint": "PDF format"
   },
   "committees": {
     "title": "Committees & Keynotes",
@@ -313,7 +409,7 @@
       "bio": "Director of ENSI (Ecole Nationale des Sciences de l’Informatique) and Director of the RIADI Laboratory, University of Manouba, Tunisia. A Professor in the Department of Information Systems and Decision Engineering, she teaches Software Engineering and Artificial Intelligence. She holds an engineering diploma from ENSEEIHT Toulouse, a PhD from the University of Toulouse 1, and an HDR from ENSI. Her research focuses on modeling and simulation of complex socio-technical systems, information systems, and multi-agent systems. She was also a Fulbright scholar at the University of California, Irvine."
     },
     "takoua": {
-      "bio": "Associate Professor at ENISo (National School of Engineers of Sousse), University of Sousse, and a researcher at the SERCOM Laboratory, Polytechnic School of Tunisia, University of Carthage. She holds an engineering degree from ENSIMAG (Grenoble, France), a PhD from Grenoble University, and an HDR from the University of Carthage. Her research focuses on Big Data, IoT, and Cloud Computing. She is also an NVIDIA Ambassador in Generative AI."
+      "bio": "Associate Professor at ENISo, University of Sousse, Takoua Abdellatif leads a research group at SERCOM Laboratory, University of Carthage, focusing on AI and Big Data systems. She leads major AI projects in drone-based platforms and smart agriculture within Horizon Europe. She holds an engineering degree from ENSIMAG, a PhD from Grenoble University, and an HDR from the University of Carthage. She is also an NVIDIA Ambassador in Generative AI."
     }
   },
   "practicalInfo": {

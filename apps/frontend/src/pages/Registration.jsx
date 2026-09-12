@@ -117,7 +117,7 @@ export default function Registration() {
             <div className="w-20 h-20 rounded-full bg-tuncis-yellow/10 flex items-center justify-center mx-auto mb-6 text-4xl">⏳</div>
             <h2 className="font-heading text-2xl sm:text-3xl font-bold text-tuncis-blue mb-4">Registration Not Yet Open</h2>
             <p className="text-tuncis-gray text-lg leading-relaxed mb-10">
-              Registration opens once abstract acceptances are confirmed — check back after <strong>September 30, 2026</strong>.
+              Registration opens once abstract acceptances are confirmed – check back after <strong>September 30, 2026</strong>.
             </p>
             <div className="text-left">
               <p className="text-xs uppercase font-bold tracking-wider text-tuncis-blue mb-4 flex items-center gap-2">

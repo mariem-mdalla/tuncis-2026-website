@@ -75,15 +75,21 @@ export default function Home() {
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-20">
           <div className="max-w-4xl text-left">
 
-            {/* Conference name + date badge */}
+            {/* Conference name + full name + date badge */}
             <motion.div
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="flex items-center gap-3 mb-6"
+              className="flex flex-wrap items-center gap-3 mb-6"
             >
-              <span className="font-heading text-tuncis-yellow text-2xl font-black tracking-wider">{t("home.heroTitle")}</span>
-              <span className="bg-tuncis-yellow/20 border border-tuncis-yellow/40 text-tuncis-yellow text-sm font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+              <span className="font-heading text-tuncis-yellow text-2xl sm:text-3xl font-black tracking-wider">
+                {t("home.heroTitle")}
+              </span>
+              <span className="hidden sm:inline text-white/40">|</span>
+              <span className="text-white/90 text-sm sm:text-base font-semibold tracking-wide">
+                {t("home.fullName")}
+              </span>
+              <span className="bg-tuncis-yellow/20 border border-tuncis-yellow/40 text-tuncis-yellow text-xs sm:text-sm font-bold px-3 py-1 rounded-full backdrop-blur-sm">
                 {t("home.heroDates")}
               </span>
             </motion.div>
@@ -161,7 +167,10 @@ export default function Home() {
                 <h2 className="font-heading text-3xl md:text-4xl font-bold text-tuncis-blue italic">
                   {t("home.welcomePrefix")} <span className="text-red-600 not-italic">{t("home.welcomeHighlight")}</span>
                 </h2>
-                <div className="w-24 h-1 bg-tuncis-yellow mt-6 rounded-full" />
+                <p className="font-heading text-lg sm:text-xl font-bold text-tuncis-blue/80 tracking-wide mt-2">
+                  {t("home.fullName")}
+                </p>
+                <div className="w-24 h-1 bg-tuncis-yellow mt-4 rounded-full" />
               </div>
 
               {/* Paragraphs */}

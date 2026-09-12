@@ -97,7 +97,7 @@ function renderTableRows(rows) {
             ${label}
           </td>
           <td style="padding: 12px 16px; font-size: 13px; color: #334155; width: 62%; vertical-align: top;">
-            ${value || '—'}
+            ${value || '–'}
           </td>
         </tr>
       `).join('')}
@@ -209,7 +209,7 @@ export default async function handler(req, res) {
     });
 
     const applicantHtml = wrapEmailHtml({
-      title: "Abstract Submission Received — TUNCIS 2026",
+      title: "Abstract Submission Received – TUNCIS 2026",
       subtitle: `Dear ${fullName}, thank you for submitting your abstract.`,
       contentHtml: `
         <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">

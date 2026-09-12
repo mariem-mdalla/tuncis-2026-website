@@ -99,7 +99,7 @@ function renderTableRows(rows) {
             ${label}
           </td>
           <td style="padding: 12px 16px; font-size: 13px; color: #334155; width: 62%; vertical-align: top;">
-            ${value || '—'}
+            ${value || '–'}
           </td>
         </tr>
       `).join('')}
@@ -177,7 +177,7 @@ export default async function handler(req, res) {
 
       // Email 2: Confirmation to Registrant
       const attendeeHtml = wrapEmailHtml({
-        title: "Registration Confirmation — TUNCIS 2026",
+        title: "Registration Confirmation – TUNCIS 2026",
         subtitle: `Dear ${fullName}, thank you for registering for TUNCIS 2026!`,
         contentHtml: `
           <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">

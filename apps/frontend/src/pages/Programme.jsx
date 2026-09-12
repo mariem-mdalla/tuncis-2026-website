@@ -1,162 +1,642 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { User, Mic2 } from "lucide-react";
+import { Link } from "react-router";
+import {
+  Calendar,
+  Clock,
+  MapPin,
+  Coffee,
+  Utensils,
+  ChevronRight,
+  ArrowRight,
+  Sparkles,
+  Info
+} from "lucide-react";
 
-const getDay1 = (t) => [
-  { time: "9H – 10H",      key: "keynote1", speaker: "Prof. Mohamed Louadi", speakerTitle: t("programme.speakerLouadi") },
-  { time: "10H – 11H",     key: "workshops1", speaker: "Prof. Helmi Mardassi", speakerTitle: t("programme.speakerMardassi") },
-  { time: "11H – 11H15",   key: "coffeeBreak1" },
-  { time: "11H15 – 13H",   key: "workshops2" },
-  { time: "13H – 14H30",   key: "lunch" },
-  { time: "14H30 – 15H30", key: "keynote2" },
-  { time: "15H30 – 17H",   key: "workshops3" },
-  { time: "17H – 18H",     key: "closing1" },
-  { time: "19H",           key: "gala" },
+// ─── Schedule Definitions ─────────────────────────────────────────────────────
+
+const DAY1_SCHEDULE = [
+  {
+    id: "d1-opening",
+    type: "ceremony",
+    time: "09h00 – 10h00",
+    roomKey: "programme.plenaryRoom",
+    badgeText: "Cérémonie",
+    titleKey: "programme.sessions.d1_opening_title",
+    speakersKey: "programme.sessions.d1_opening_speakers",
+  },
+  {
+    id: "d1-keynote1",
+    type: "keynote",
+    time: "10h00 – 10h45",
+    roomKey: "programme.plenaryRoom",
+    badgeText: "Keynote 1",
+    titleKey: "programme.sessions.d1_keynote1_title",
+    speakerKey: "programme.sessions.d1_keynote1_speaker",
+    roleKey: "programme.sessions.d1_keynote1_role",
+    topicKey: "programme.sessions.d1_keynote1_topic",
+  },
+  {
+    id: "d1-coffee1",
+    type: "break",
+    time: "10h45 – 11h00",
+    duration: "15 min",
+    titleKey: "programme.sessions.d1_coffee1_title",
+    icon: Coffee,
+  },
+  {
+    id: "d1-keynote2",
+    type: "keynote",
+    time: "11h00 – 11h45",
+    roomKey: "programme.plenaryRoom",
+    badgeText: "Keynote 2",
+    titleKey: "programme.sessions.d1_keynote2_title",
+    speakerKey: "programme.sessions.d1_keynote2_speaker",
+    roleKey: "programme.sessions.d1_keynote2_role",
+    topicKey: "programme.sessions.d1_keynote2_topic",
+  },
+  {
+    id: "d1-session1",
+    type: "parallel",
+    time: "11h45 – 13h00",
+    parallelTitleKey: "programme.parallelBadge",
+    trackA: {
+      room: "A",
+      roomLabelKey: "programme.roomA",
+      tag: "Atelier 1",
+      titleKey: "programme.sessions.d1_w1_title",
+      speakersKey: "programme.sessions.d1_w1_speakers",
+    },
+    trackB: {
+      room: "B",
+      roomLabelKey: "programme.roomB",
+      tag: "Atelier 2",
+      titleKey: "programme.sessions.d1_w2_title",
+      speakersKey: "programme.sessions.d1_w2_speakers",
+    },
+  },
+  {
+    id: "d1-lunch",
+    type: "break",
+    time: "13h00 – 14h30",
+    duration: "1h30",
+    titleKey: "programme.sessions.d1_lunch_title",
+    descKey: "programme.sessions.d1_lunch_desc",
+    icon: Utensils,
+  },
+  {
+    id: "d1-session2",
+    type: "parallel",
+    time: "14h30 – 15h45",
+    parallelTitleKey: "programme.parallelBadge",
+    isRotation: true,
+    rotationNoteKey: "programme.rotationNote",
+    trackA: {
+      room: "A",
+      roomLabelKey: "programme.roomA",
+      tag: "Atelier 1 (Rotation)",
+      titleKey: "programme.sessions.d1_w1_rot_title",
+      speakersKey: "programme.sessions.d1_w1_speakers",
+    },
+    trackB: {
+      room: "B",
+      roomLabelKey: "programme.roomB",
+      tag: "Atelier 2 (Rotation)",
+      titleKey: "programme.sessions.d1_w2_rot_title",
+      speakersKey: "programme.sessions.d1_w2_speakers",
+    },
+  },
+  {
+    id: "d1-coffee2",
+    type: "break",
+    time: "15h45 – 16h00",
+    duration: "15 min",
+    titleKey: "programme.sessions.d1_coffee2_title",
+    icon: Coffee,
+  },
+  {
+    id: "d1-session3",
+    type: "parallel",
+    time: "16h00 – 17h30",
+    parallelTitleKey: "programme.parallelBadge",
+    trackA: {
+      room: "A",
+      roomLabelKey: "programme.roomA",
+      tag: "Atelier 3",
+      titleKey: "programme.sessions.d1_w3_title",
+      speakersKey: "programme.sessions.d1_w3_speakers",
+    },
+    trackB: {
+      room: "B",
+      roomLabelKey: "programme.roomB",
+      tag: "Atelier 4",
+      titleKey: "programme.sessions.d1_w4_title",
+      speakersKey: "programme.sessions.d1_w4_speakers",
+    },
+  },
+  {
+    id: "d1-closing",
+    type: "ceremony",
+    time: "17h30 – 18h00",
+    roomKey: "programme.plenaryRoom",
+    badgeText: "Synthèse",
+    titleKey: "programme.sessions.d1_closing_title",
+    descKey: "programme.sessions.d1_closing_desc",
+  },
 ];
 
-const day2 = [
-  { time: "9H – 10H",      key: "keynote3" },
-  { time: "10H – 11H",     key: "coffeeBreak3" },
-  { time: "11H15 – 12H30", key: "pitching" },
-  { time: "12H30 – 13H",   key: "closing2" },
+const DAY2_SCHEDULE = [
+  {
+    id: "d2-opening",
+    type: "ceremony",
+    time: "09h00 – 09h15",
+    roomKey: "programme.plenaryRoom",
+    badgeText: "Accueil",
+    titleKey: "programme.sessions.d2_opening_title",
+    speakersKey: "programme.sessions.d2_opening_speakers",
+  },
+  {
+    id: "d2-keynote",
+    type: "keynote",
+    time: "09h15 – 10h00",
+    roomKey: "programme.plenaryRoom",
+    badgeText: "Keynote",
+    titleKey: "programme.sessions.d2_keynote_title",
+    speakerKey: "programme.sessions.d2_keynote_speaker",
+    roleKey: "programme.sessions.d2_keynote_role",
+    topicKey: "programme.sessions.d2_keynote_topic",
+    tbc: true,
+  },
+  {
+    id: "d2-coffee",
+    type: "break",
+    time: "10h00 – 10h15",
+    duration: "15 min",
+    titleKey: "programme.sessions.d2_coffee_title",
+    icon: Coffee,
+  },
+  {
+    id: "d2-tracks",
+    type: "parallel",
+    time: "10h15 – 12h15",
+    parallelTitleKey: "programme.parallelBadge",
+    trackA: {
+      room: "A",
+      roomLabelKey: "programme.roomA",
+      tag: "Session de Pitchs",
+      badgeText: "Compétition",
+      titleKey: "programme.sessions.d2_pitch_title",
+      descKey: "programme.sessions.d2_pitch_desc",
+      juryKey: "programme.sessions.d2_pitch_jury",
+      link: "/best-project-award",
+      linkTextKey: "programme.viewPitchCall",
+    },
+    trackB: {
+      room: "B",
+      roomLabelKey: "programme.roomB",
+      tag: "Formation Certifiante",
+      badgeText: "NVIDIA DLI",
+      badgeColor: "emerald",
+      titleKey: "programme.sessions.d2_nvidia_title",
+      descKey: "programme.sessions.d2_nvidia_desc",
+      reqKey: "programme.sessions.d2_nvidia_req",
+      link: "/nvidia-certification",
+      linkTextKey: "programme.viewNvidiaTrack",
+    },
+  },
+  {
+    id: "d2-delib",
+    type: "ceremony",
+    time: "12h15 – 12h40",
+    roomKey: "programme.plenaryRoom",
+    badgeText: "Délibération & Réseautage",
+    titleKey: "programme.sessions.d2_delib_title",
+    descKey: "programme.sessions.d2_delib_desc",
+  },
+  {
+    id: "d2-closing",
+    type: "ceremony",
+    time: "12h40 – 13h00",
+    roomKey: "programme.plenaryRoom",
+    badgeText: "Remise des Prix & Clôture",
+    titleKey: "programme.sessions.d2_closing_title",
+    descKey: "programme.sessions.d2_closing_desc",
+  },
+  {
+    id: "d2-lunch",
+    type: "break",
+    time: "13h00",
+    duration: "Clôture",
+    titleKey: "programme.sessions.d2_lunch_title",
+    descKey: "programme.sessions.d2_lunch_desc",
+    icon: Utensils,
+  },
 ];
 
-const itemLabels = {
-  en: {
-    keynote1:     "Keynote",
-    workshops1:   "Collaborative Workshops",
-    coffeeBreak1: "Coffee Break",
-    workshops2:   "Workshops",
-    lunch:        "Lunch Break",
-    keynote2:     "Keynote 2",
-    coffeeBreak2: "Coffee Break",
-    workshops3:   "Collaborative Workshops 2",
-    closing1:     "Wrap-up & Closing",
-    gala:         "Gala Dinner",
-    keynote3:     "Keynote",
-    coffeeBreak3: "Coffee Break",
-    pitching:     "Research Project Pitching / NVIDIA Certification Workshop",
-    closing2:     "Wrap-up & Closing",
-  },
-  fr: {
-    keynote1:     "Keynote",
-    workshops1:   "Ateliers collaboratifs",
-    coffeeBreak1: "Pause café",
-    workshops2:   "Ateliers",
-    lunch:        "Pause déjeuner",
-    keynote2:     "Keynote 2",
-    coffeeBreak2: "Pause café",
-    workshops3:   "Ateliers collaboratifs 2",
-    closing1:     "Restitution et Clôture",
-    gala:         "Gala dîner",
-    keynote3:     "Keynote",
-    coffeeBreak3: "Pause café",
-    pitching:     "Pitch de projets de recherche / Workshop de certification NVIDIA",
-    closing2:     "Restitution et clôture",
-  },
-};
-
-function DaySchedule({ title, items, lang }) {
-  const labels = itemLabels[lang] || itemLabels.fr;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      className="bg-white border border-gray-100 shadow-sm rounded-2xl p-8"
-    >
-      <h3 className="font-heading text-2xl font-bold text-tuncis-blue mb-8 pb-4 border-b border-gray-100">{title}</h3>
-      <div className="border-l-2 border-tuncis-blue/20 pl-8 space-y-8 relative">
-        {items.map((item, i) => (
-          <motion.div 
-            key={i} 
-            initial={{ opacity: 0, x: -10 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ delay: i * 0.1 }}
-            viewport={{ once: true }}
-            className="relative group"
-          >
-            <div className="absolute -left-[41px] top-1 w-4 h-4 rounded-full bg-tuncis-bg border-4 border-tuncis-yellow group-hover:scale-125 transition-transform" />
-            <p className="text-sm uppercase tracking-widest text-tuncis-yellow font-bold mb-1">{item.time}</p>
-            <p className="text-tuncis-blue font-bold text-lg group-hover:text-tuncis-blue-light transition-colors">
-              {labels[item.key]}
-            </p>
-            
-            {item.speaker && (
-              <div className="mt-3 flex items-start gap-3 bg-gray-50 border border-gray-100 p-3 rounded-lg">
-                <div className="w-8 h-8 rounded-full bg-tuncis-blue/10 flex items-center justify-center shrink-0 text-tuncis-blue">
-                  {item.key.includes("keynote") ? <Mic2 size={16} /> : <User size={16} />}
-                </div>
-                <div>
-                  <p className="text-tuncis-blue font-bold text-sm">{item.speaker}</p>
-                  <p className="text-tuncis-gray text-xs">{item.speakerTitle}</p>
-                </div>
-              </div>
-            )}
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  );
-}
+// ─── Component ────────────────────────────────────────────────────────────────
 
 export default function Programme() {
-  const { t, i18n } = useTranslation();
-  const lang = i18n.language?.startsWith("en") ? "en" : "fr";
+  const { t } = useTranslation();
+  const [activeDay, setActiveDay] = useState("day1");
+  const [selectedRoom, setSelectedRoom] = useState("all"); // "all" | "A" | "B"
+
+  const schedule = activeDay === "day1" ? DAY1_SCHEDULE : DAY2_SCHEDULE;
 
   return (
     <motion.main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className="bg-tuncis-bg min-h-screen pb-20"
+      transition={{ duration: 0.3 }}
+      className="bg-tuncis-bg min-h-screen pb-24"
     >
-      <section className="bg-tuncis-blue text-white py-16 sm:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-tuncis-blue-dark via-transparent to-transparent opacity-50" />
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="font-heading text-4xl md:text-5xl lg:text-6xl mb-6 font-bold"
-          >
+      {/* ── HERO ── */}
+      <section className="bg-tuncis-blue text-white py-12 sm:py-16 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_var(--tw-gradient-stops))] from-tuncis-blue-dark via-transparent to-transparent opacity-60 pointer-events-none" />
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10 text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold tracking-wide bg-white/10 text-tuncis-yellow border border-white/15 mb-3">
+            <Calendar size={13} />
+            <span>{t("programme.badge")}</span>
+          </div>
+
+          <h1 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 tracking-tight">
             {t("programme.title")}
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-white/80 text-lg sm:text-xl font-medium tracking-wide flex items-center gap-3"
-          >
-            <span className="w-10 h-1 bg-tuncis-yellow inline-block" />
-            {t("programme.subtitle")}
-          </motion.p>
+          </h1>
+
+          <p className="text-white/80 text-sm sm:text-base flex items-center justify-center gap-1.5 font-medium">
+            <MapPin size={15} className="text-tuncis-yellow shrink-0" />
+            <span>{t("programme.subtitle")}</span>
+          </p>
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12 -mt-10 relative z-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
-          <DaySchedule title={t("programme.day1")} items={getDay1(t)} lang={lang} />
-          <div className="space-y-6">
-            <DaySchedule title={t("programme.day2")} items={day2} lang={lang} />
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="text-sm text-tuncis-gray/70 italic px-1"
+      {/* ── MAIN CONTENT ── */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
+        {/* ── DAY SELECTOR ── */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-2 rounded-2xl border border-gray-200/90 shadow-sm mb-6">
+          {/* Day 1 / Day 2 Tabs */}
+          <div className="flex items-center gap-1.5 w-full sm:w-auto">
+            <button
+              onClick={() => setActiveDay("day1")}
+              className={`flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeDay === "day1"
+                  ? "bg-tuncis-blue text-white shadow-xs"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+              }`}
             >
-              {t("programme.pendingNote")}
-            </motion.p>
+              {t("programme.tabs.day1")}
+            </button>
+            <button
+              onClick={() => setActiveDay("day2")}
+              className={`flex-1 sm:flex-initial px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                activeDay === "day2"
+                  ? "bg-tuncis-blue text-white shadow-xs"
+                  : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+              }`}
+            >
+              {t("programme.tabs.day2")}
+            </button>
+          </div>
+
+          {/* Room Filter */}
+          <div className="flex items-center gap-1 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-100">
+            <span className="text-[11px] font-semibold text-gray-400 mr-1 hidden md:inline">
+              Filtre :
+            </span>
+            <button
+              onClick={() => setSelectedRoom("all")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                selectedRoom === "all"
+                  ? "bg-gray-900 text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              {t("programme.allRooms")}
+            </button>
+            <button
+              onClick={() => setSelectedRoom("A")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                selectedRoom === "A"
+                  ? "bg-tuncis-blue text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              {t("programme.roomA")}
+            </button>
+            <button
+              onClick={() => setSelectedRoom("B")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                selectedRoom === "B"
+                  ? "bg-indigo-600 text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              {t("programme.roomB")}
+            </button>
           </div>
         </div>
-        <motion.p 
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          className="text-center text-sm text-tuncis-gray/70 mt-12 italic"
-        >
+
+        {/* ── TIMELINE CARD (Clean White Document) ── */}
+        <div className="bg-white rounded-2xl border border-gray-200 shadow-xs p-5 sm:p-8 divide-y divide-gray-100">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`${activeDay}-${selectedRoom}`}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.2 }}
+              className="divide-y divide-gray-100"
+            >
+              {schedule.map((item) => (
+                <TimelineRow
+                  key={item.id}
+                  item={item}
+                  selectedRoom={selectedRoom}
+                />
+              ))}
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Note */}
+        <p className="text-center text-xs text-tuncis-gray/70 italic mt-8">
           {t("programme.note")}
-        </motion.p>
+        </p>
       </section>
     </motion.main>
+  );
+}
+
+// ─── Row Renderer ─────────────────────────────────────────────────────────────
+
+function TimelineRow({ item, selectedRoom }) {
+  const { t } = useTranslation();
+
+  // 1. Break / Lunch row (Minimal, unobtrusive)
+  if (item.type === "break") {
+    const Icon = item.icon || Coffee;
+    return (
+      <div className="py-3 px-3 my-2 rounded-xl bg-gray-50/80 border border-dashed border-gray-200 flex items-center justify-between text-xs text-gray-600">
+        <div className="flex items-center gap-2.5">
+          <Icon size={14} className="text-gray-400 shrink-0" />
+          <span className="font-bold text-gray-800">{item.time}</span>
+          <span className="text-gray-300">·</span>
+          <span className="font-medium text-gray-700">{t(item.titleKey)}</span>
+        </div>
+        {item.duration && (
+          <span className="text-[11px] text-gray-400 font-medium">
+            {item.duration}
+          </span>
+        )}
+      </div>
+    );
+  }
+
+  // 2. Parallel Session row
+  if (item.type === "parallel") {
+    const showTrackA = selectedRoom === "all" || selectedRoom === "A";
+    const showTrackB = selectedRoom === "all" || selectedRoom === "B";
+
+    return (
+      <div className="py-6 first:pt-2 last:pb-2">
+        <div className="flex flex-col md:flex-row md:items-start gap-3 md:gap-8">
+          {/* Time & Track label */}
+          <div className="md:w-36 shrink-0">
+            <span className="font-heading font-bold text-tuncis-blue text-sm sm:text-base block">
+              {item.time}
+            </span>
+            <span className="text-[11px] font-bold uppercase tracking-wider text-indigo-600 block mt-0.5">
+              {t("programme.parallelBadge")}
+            </span>
+            {item.isRotation && (
+              <span className="inline-block text-[10px] font-semibold text-amber-800 bg-amber-50 border border-amber-200/70 rounded px-1.5 py-0.5 mt-1">
+                {t("programme.rotationBadge")}
+              </span>
+            )}
+          </div>
+
+          {/* Parallel Columns */}
+          <div
+            className={`flex-1 grid gap-6 ${
+              showTrackA && showTrackB ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"
+            }`}
+          >
+            {/* Track A */}
+            {showTrackA && (
+              <TrackColumn
+                track={item.trackA}
+                accentColor="blue"
+                roomLabel={t(item.trackA.roomLabelKey)}
+              />
+            )}
+
+            {/* Track B */}
+            {showTrackB && (
+              <TrackColumn
+                track={item.trackB}
+                accentColor={item.trackB.badgeColor === "emerald" ? "emerald" : "indigo"}
+                roomLabel={t(item.trackB.roomLabelKey)}
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // 3. Plenary row (Keynote, Opening Ceremony, Restitution, Closing)
+  const isKeynote = item.type === "keynote";
+  const speakers = item.speakersKey
+    ? t(item.speakersKey, { returnObjects: true })
+    : [];
+
+  return (
+    <div className="py-6 first:pt-2 last:pb-2">
+      <div className="flex flex-col md:flex-row md:items-start gap-3 md:gap-8">
+        {/* Time & Room */}
+        <div className="md:w-36 shrink-0">
+          <span className="font-heading font-bold text-tuncis-blue text-sm sm:text-base block">
+            {item.time}
+          </span>
+          <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wider block mt-0.5">
+            {t(item.roomKey)}
+          </span>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 min-w-0">
+          {/* Badge */}
+          {item.badgeText && (
+            <span
+              className={`text-[11px] font-bold uppercase tracking-wider block mb-1 ${
+                isKeynote ? "text-amber-700" : "text-tuncis-blue"
+              }`}
+            >
+              {item.badgeText}
+            </span>
+          )}
+
+          {/* Title */}
+          <h3 className="font-heading text-base sm:text-lg font-bold text-gray-900 mb-1.5 leading-snug">
+            {t(item.titleKey)}
+          </h3>
+
+          {/* Keynote Speaker */}
+          {item.speakerKey && (
+            <div className="mt-2 text-sm">
+              <p className="text-gray-800">
+                <strong className="text-tuncis-blue font-bold">
+                  {t(item.speakerKey)}
+                </strong>
+                {item.roleKey && (
+                  <span className="text-gray-600"> – {t(item.roleKey)}</span>
+                )}
+                {item.tbc && (
+                  <span className="ml-2 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-100 text-amber-800">
+                    {t("programme.tbc")}
+                  </span>
+                )}
+              </p>
+              {item.topicKey && (
+                <p className="text-xs text-gray-500 italic mt-1">
+                  Thème : {t(item.topicKey)}
+                </p>
+              )}
+            </div>
+          )}
+
+          {/* Description */}
+          {item.descKey && (
+            <p className="text-xs sm:text-sm text-gray-600 mt-1">
+              {t(item.descKey)}
+            </p>
+          )}
+
+          {/* Ceremony Dignitaries list */}
+          {Array.isArray(speakers) && speakers.length > 0 && (
+            <ul className="mt-2.5 space-y-1 text-xs text-gray-700">
+              {speakers.map((spk, idx) => (
+                <li key={idx} className="flex items-baseline gap-2">
+                  <span className="text-tuncis-blue font-bold">•</span>
+                  <span>
+                    <strong className="text-gray-900 font-semibold">
+                      {spk.name}
+                    </strong>{" "}
+                    <span className="text-gray-500">({spk.role})</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Track Column for Parallel Workshops ─────────────────────────────────────
+
+function TrackColumn({ track, accentColor, roomLabel }) {
+  const { t } = useTranslation();
+  const speakers = track.speakersKey
+    ? t(track.speakersKey, { returnObjects: true })
+    : [];
+
+  const isEmerald = accentColor === "emerald";
+  const borderCls = isEmerald
+    ? "border-emerald-500"
+    : accentColor === "blue"
+    ? "border-tuncis-blue"
+    : "border-indigo-500";
+
+  const roomTextCls = isEmerald
+    ? "text-emerald-700"
+    : accentColor === "blue"
+    ? "text-tuncis-blue"
+    : "text-indigo-600";
+
+  return (
+    <div className={`border-l-3 ${borderCls} pl-4 py-1 flex flex-col justify-between`}>
+      <div>
+        {/* Room & Tag */}
+        <div className="flex items-center gap-2 mb-1 flex-wrap">
+          <span className={`text-xs font-bold uppercase tracking-wider ${roomTextCls}`}>
+            {roomLabel} · {track.tag}
+          </span>
+          {track.badgeText && (
+            <span
+              className={`text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider ${
+                isEmerald
+                  ? "bg-emerald-100 text-emerald-800"
+                  : "bg-amber-100 text-amber-800"
+              }`}
+            >
+              {track.badgeText}
+            </span>
+          )}
+        </div>
+
+        {/* Title */}
+        <h4 className="font-heading font-bold text-sm sm:text-base text-gray-900 mb-1.5 leading-snug">
+          {t(track.titleKey)}
+        </h4>
+
+        {/* Description / Requirement */}
+        {track.descKey && (
+          <p className="text-xs text-gray-600 mb-2 leading-relaxed">
+            {t(track.descKey)}
+          </p>
+        )}
+
+        {track.reqKey && (
+          <p className="text-xs font-medium text-emerald-800 mb-2">
+            {t(track.reqKey)}
+          </p>
+        )}
+
+        {track.juryKey && (
+          <p className="text-xs font-medium text-amber-800 mb-2">
+            {t(track.juryKey)}
+          </p>
+        )}
+
+        {/* Speakers List */}
+        {Array.isArray(speakers) && speakers.length > 0 && (
+          <ul className="space-y-1 text-xs text-gray-700 mt-2">
+            {speakers.map((spk, idx) => (
+              <li key={idx} className="flex items-baseline gap-2">
+                <span className="text-gray-400">•</span>
+                <span>
+                  <strong className="text-gray-900 font-semibold">{spk.name}</strong>{" "}
+                  <span className="text-gray-500">({spk.role})</span>
+                  {spk.tbc && (
+                    <span className="ml-1.5 text-[9px] font-bold uppercase px-1 py-0.2 rounded bg-amber-100 text-amber-800">
+                      {t("programme.tbc")}
+                    </span>
+                  )}
+                </span>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {/* Link button if present */}
+      {track.link && (
+        <div className="mt-3 pt-2">
+          <Link
+            to={track.link}
+            className={`inline-flex items-center gap-1 text-xs font-bold underline underline-offset-2 transition-colors ${
+              isEmerald
+                ? "text-emerald-700 hover:text-emerald-900"
+                : "text-tuncis-blue hover:text-tuncis-blue-dark"
+            }`}
+          >
+            <span>{t(track.linkTextKey)}</span>
+            <ArrowRight size={12} />
+          </Link>
+        </div>
+      )}
+    </div>
   );
 }

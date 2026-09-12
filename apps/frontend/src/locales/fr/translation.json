@@ -1,4 +1,4 @@
-﻿{
+{
   "nav": {
     "programme": "Programme",
     "callForCommunications": "Appel à Communications",
@@ -16,6 +16,7 @@
   },
   "home": {
     "eyebrow": "23–24 octobre 2026 · Sousse, Tunisie",
+    "fullName": "Tunisian Conference on Information Systems",
     "themePrefix": "De la recherche au déploiement industriel :",
     "themeHighlight": "co-construire l'innovation en IA",
     "subtitle": "TUNCIS 2026 réunit les 23 et 24 octobre 2026 à Sousse une communauté volontairement restreinte (les places sont limitées) autour d'une double ambition.",
@@ -47,7 +48,7 @@
     "partnersTitle": "Co-construire l'innovation ensemble",
     "partnersSubtitle": "TUNCIS 2026 est soutenu par les principales universités tunisiennes, laboratoires de recherche et organisations internationales.",
     "viewAllPartners": "Voir Tous les Partenaires",
-    "sousseCaption": "Sousse, Tunisie — Lieu de la conférence",
+    "sousseCaption": "Sousse, Tunisie – Lieu de la conférence",
     "bannerTitle": "De la recherche à l'industrie : innovation en IA",
     "welcomePrefix": "Bienvenue à",
     "welcomeHighlight": "TUNCIS 2026 !",
@@ -187,14 +188,109 @@
     }
   },
   "programme": {
+    "badge": "Programme de la conférence",
     "title": "Programme",
-    "subtitle": "23–24 octobre 2026 · Hôtel Marhaba Palace, Kantaoui, Sousse",
-    "day1": "Jour 1 - 23 octobre",
-    "day2": "Jour 2 - 24 octobre",
-    "note": "Programme susceptible d'être modifié par le comité d'organisation.",
-    "pendingNote": "Contenu à fournir par le comité : intitulés définitifs des ateliers, horaires, noms des facilitateurs et rapporteurs.",
-    "speakerLouadi": "Conférencier Principal (Keynote)",
-    "speakerMardassi": "Modérateur : Atelier Projets Horizon Europe"
+    "subtitle": "23–24 octobre 2026 · Sousse, Tunisie",
+    "tabs": {
+      "day1": "Jour 1 – Vendredi 23 oct.",
+      "day1Subtitle": "Ouverture, Keynotes & Ateliers Collaboratifs",
+      "day2": "Jour 2 – Samedi 24 oct.",
+      "day2Subtitle": "Keynote Transfert, Pitchs & Formation NVIDIA"
+    },
+    "filters": {
+      "all": "Tous les temps forts",
+      "keynotes": "Keynotes",
+      "workshops": "Ateliers",
+      "special": "Pitch & NVIDIA",
+      "breaks": "Pauses & Réseautage"
+    },
+    "allRooms": "Toutes les salles",
+    "roomA": "Salle A",
+    "roomB": "Salle B",
+    "plenaryRoom": "Salle Plénière",
+    "parallelBadge": "Sessions Parallèles · Choisissez votre atelier",
+    "parallelSub": "Les ateliers se déroulent simultanément dans des salles séparées.",
+    "parallelSubD2": "La session de pitchs et la formation certifiante NVIDIA se tiennent en parallèle.",
+    "rotationBadge": "Session Rotation",
+    "rotationNote": "Mêmes thèmes et modérateurs pour permettre à tous les participants d'assister aux deux ateliers.",
+    "tbc": "À confirmer",
+    "viewNvidiaTrack": "Découvrir la formation NVIDIA DLI & Syllabus",
+    "viewPitchCall": "En savoir plus sur la Session de Pitchs",
+    "note": "Programme susceptible d'être ajusté par le comité d'organisation.",
+    "emptyFilter": "Aucune session ne correspond à ce filtre.",
+    "resetFilter": "Afficher toutes les sessions",
+    "sessions": {
+      "d1_opening_title": "Cérémonie officielle d'ouverture",
+      "d1_opening_speakers": [
+        { "name": "Pr Lotfi Belkacem", "role": "Recteur, Université de Sousse" },
+        { "name": "Pr Imed Boughzala", "role": "Président de TunAISia · Directeur général de l'ENSIIE (France)" },
+        { "name": "Pr Takoua Abdellatif", "role": "Co-chair de TUNCIS 2026 · ENISo, Université de Sousse" }
+      ],
+      "d1_keynote1_title": "Keynote 1",
+      "d1_keynote1_speaker": "Pr Mohamed Louadi",
+      "d1_keynote1_role": "ISG Tunis",
+      "d1_keynote1_topic": "Thème à définir prochainement",
+      "d1_coffee1_title": "Pause café & Réseautage",
+      "d1_coffee1_desc": "Café d'accueil, échanges entre participants et délégations académiques.",
+      "d1_keynote2_title": "Keynote 2 : Les projets Horizon Europe",
+      "d1_keynote2_speaker": "Pr Helmi Mardassi",
+      "d1_keynote2_role": "Directeur général de l'Unité de gestion des programmes-cadres européens",
+      "d1_keynote2_topic": "Opportunités et accompagnement pour les projets du programme Horizon Europe",
+      "d1_w1_title": "Atelier 1 : Montage de projet et coopération académique",
+      "d1_w1_speakers": [
+        { "name": "Meriem Kallel", "role": "Ministère de l'Enseignement supérieur et de la Recherche scientifique, Horizon Europe" },
+        { "name": "Pr Walid Barhoumi", "role": "Institut Supérieur d'Informatique (ISI)", "tbc": true }
+      ],
+      "d1_w2_title": "Atelier 2 : Mobilité et développement des carrières des enseignants-chercheurs",
+      "d1_w2_speakers": [
+        { "name": "Chaker Essid", "role": "Faculté des Sciences de Tunis, Tunisie" },
+        { "name": "Imed Boughzala", "role": "ENSIIE, France" }
+      ],
+      "d1_lunch_title": "Déjeuner buffet & Échanges",
+      "d1_lunch_desc": "Pause déjeuner et moments de convivialité au restaurant de l'hôtel.",
+      "d1_w1_rot_title": "Atelier 1 (Rotation) : Montage de projet et coopération académique",
+      "d1_w2_rot_title": "Atelier 2 (Rotation) : Mobilité et développement des carrières des enseignants-chercheurs",
+      "d1_coffee2_title": "Pause café de l'après-midi",
+      "d1_coffee2_desc": "Pause rafraîchissante avant la seconde série d'ateliers.",
+      "d1_w3_title": "Atelier 3 : Co-encadrement doctoral et mentorat scientifique",
+      "d1_w3_speakers": [
+        { "name": "Sana Rouis Skandrani", "role": "Karlstad University, Suède" },
+        { "name": "Narjès Bellamine Ben Saoud", "role": "École Nationale des Sciences de l'Informatique (ENSI), Tunisie" }
+      ],
+      "d1_w4_title": "Atelier 4 : Publications scientifiques et visibilité internationale",
+      "d1_w4_speakers": [
+        { "name": "Nabila Boukef", "role": "SKEMA Business School, France" },
+        { "name": "Rim Faiez Zitouni", "role": "IHEC Carthage, Tunisie" },
+        { "name": "Mohamed Ali Mahjoub", "role": "Université de Sousse, Tunisie" }
+      ],
+      "d1_closing_title": "Restitution des ateliers & Clôture du Jour 1",
+      "d1_closing_desc": "Synthèse des travaux en ateliers, retours d'expérience et annonces pour la 2ème journée.",
+      "d2_opening_title": "Accueil & Ouverture du Jour 2",
+      "d2_opening_speakers": [
+        { "name": "Pr Takoua Abdellatif", "role": "Co-chair de TUNCIS 2026 · ENISo, Université de Sousse" }
+      ],
+      "d2_keynote_title": "Keynote : Programmes de transfert technologique entre recherche et industrie",
+      "d2_keynote_speaker": "Hichem Tourki",
+      "d2_keynote_role": "Novation City",
+      "d2_keynote_topic": "Présentation des mécanismes et programmes concrets de valorisation et transfert technologique",
+      "d2_keynote_tbc": true,
+      "d2_coffee_title": "Pause café",
+      "d2_coffee_desc": "Pause café et préparation pour le déroulement des sessions parallèles.",
+      "d2_pitch_title": "Session de pitchs – Résultats prêts à être industrialisés",
+      "d2_pitch_desc": "Présentation des projets sélectionnés à fort potentiel d'industrialisation devant un jury mixte académique et industriel.",
+      "d2_pitch_jury": "Président du jury : à confirmer",
+      "d2_pitch_badge": "Compétition Meilleur Projet",
+      "d2_nvidia_title": "Formation certifiante NVIDIA : Développement d'applications d'IA générative avec les LLMs",
+      "d2_nvidia_desc": "Formation pratique intensive sur les transformers, Hugging Face, pipelines NLP, architectures multimodales et agents LangChain.",
+      "d2_nvidia_badge": "Certification NVIDIA DLI",
+      "d2_nvidia_req": "Délivrée par Horizon University · Inscription préalable requise",
+      "d2_delib_title": "Délibération du jury & Networking chercheurs-entreprises",
+      "d2_delib_desc": "Délibération du jury pour désigner les lauréats et réseautage direct entre porteurs de projets et industriels.",
+      "d2_closing_title": "Restitution, remise des prix et clôture officielle",
+      "d2_closing_desc": "Cérémonie de remise du Prix du Meilleur Projet, bilan de la conférence TUNCIS 2026 et allocutions de clôture.",
+      "d2_lunch_title": "Déjeuner de clôture",
+      "d2_lunch_desc": "Déjeuner de clôture et échanges finaux entre les délégations."
+    }
   },
   "cfc": {
     "badge": "Appel à Projets de Recherche Innovants",
@@ -266,7 +362,7 @@
     "submissionIntro": "Les candidats sont invités à soumettre :",
     "submission": [
       "Titre du projet",
-      "Résumé (maximum 500 mots)",
+      "Résumé (maximum 1000 mots)",
       "Investigateur principal et membres de l'équipe",
       "Mots-clés",
       "Impact attendu",
@@ -275,14 +371,14 @@
     "submitCta": "Soumettre via le Formulaire",
     "modal": {
       "title": "Soumettre votre résumé",
-      "subtitle": "Veuillez remplir vos informations et télécharger votre résumé en PDF.",
+      "subtitle": "Veuillez remplir vos informations et télécharger votre résumé en PDF (maximum 1000 mots).",
       "fullName": "Nom complet",
       "fullNamePlaceholder": "ex. Dr. Jane Doe",
       "email": "Adresse e-mail",
       "emailPlaceholder": "ex. jane@université.tn",
       "file": "Fichier résumé (PDF)",
       "fileUpload": "Cliquez pour télécharger ou glissez-déposez",
-      "fileHint": "Format PDF uniquement (Max 5 Mo)",
+      "fileHint": "Format PDF uniquement",
       "submit": "Envoyer le résumé",
       "sending": "Envoi en cours...",
       "successTitle": "Soumis avec succès !",
@@ -290,10 +386,10 @@
       "close": "Fermer"
     },
     "panelNote": "Les projets sélectionnés seront présentés devant un jury de chercheurs séniors et de leaders industriels.",
-    "ctaTitle": "Prêt·e à soumettre votre résumé ?",
-    "ctaBody": "Préparez votre résumé en PDF et cliquez ci-dessous. Notre équipe examinera votre soumission et vous contactera avant le",
+    "ctaTitle": "Prête à soumettre votre résumé ?",
+    "ctaBody": "Préparez votre résumé en PDF (maximum 1000 mots) et cliquez ci-dessous. Notre équipe examinera votre soumission et vous contactera avant le",
     "ctaDeadline": "30 sept. 2026",
-    "ctaFileHint": "Format PDF · Max 5 Mo"
+    "ctaFileHint": "Format PDF"
   },
   "committees": {
     "title": "Comités & Keynotes",
@@ -313,7 +409,7 @@
       "bio": "Directrice de l’ENSI et Directrice du Laboratoire RIADI, Université de la Manouba, Tunisie. Professeure au département des Systèmes d’Information et de l’Ingénierie de la Décision, elle enseigne le Génie Logiciel et l’Intelligence Artificielle. Titulaire d’un diplôme d’ingénieur de l’ENSEEIHT Toulouse, d’un doctorat de l’Université de Toulouse 1, et d’une HDR de l’ENSI. Ses recherches portent sur la modélisation et la simulation de systèmes socio-techniques complexes. Elle a également été boursière Fulbright à l’Université de Californie, Irvine."
     },
     "takoua": {
-      "bio": "Maître de Conférences à l’ENISo, Université de Sousse, et chercheuse au Laboratoire SERCOM, École Polytechnique de Tunisie. Titulaire d’un diplôme d’ingénieur de l’ENSIMAG (Grenoble, France), d’un doctorat de l’Université de Grenoble et d’une HDR de l’Université de Carthage. Ses recherches portent sur le Big Data, l’IoT et le Cloud Computing. Elle est Ambassadrice NVIDIA en IA Générative."
+      "bio": "Maître de conférences à ENISo, Université de Sousse, Takoua Abdellatif dirige un groupe de recherche au Laboratoire SERCOM, Université de Carthage, se concentrant sur les systèmes d'IA et de Big Data. Elle pilote des projets majeurs d'IA sur les plateformes basées sur les drones et l'agriculture intelligente dans le cadre de Horizon Europe. Elle détient un diplôme d'ingénieur d'ENSIMAG, un doctorat de l'Université de Grenoble et une HDR de l'Université de Carthage. Elle est également Ambassadrice NVIDIA en IA Générative."
     }
   },
   "practicalInfo": {
