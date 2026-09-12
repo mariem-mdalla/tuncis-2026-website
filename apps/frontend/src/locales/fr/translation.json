@@ -239,7 +239,7 @@
       "d1_w1_title": "Atelier 1 : Montage de projet et coopération académique",
       "d1_w1_speakers": [
         { "name": "Meriem Kallel", "role": "Ministère de l'Enseignement supérieur et de la Recherche scientifique, Horizon Europe" },
-        { "name": "Pr Walid Barhoumi", "role": "Institut Supérieur d'Informatique (ISI)", "tbc": true }
+        { "name": "Pr Walid Barhoumi", "role": "ENICarthage, Université de Carthage", "tbc": true }
       ],
       "d1_w2_title": "Atelier 2 : Mobilité et développement des carrières des enseignants-chercheurs",
       "d1_w2_speakers": [
@@ -255,13 +255,14 @@
       "d1_w3_title": "Atelier 3 : Co-encadrement doctoral et mentorat scientifique",
       "d1_w3_speakers": [
         { "name": "Sana Rouis Skandrani", "role": "Karlstad University, Suède" },
-        { "name": "Narjès Bellamine Ben Saoud", "role": "École Nationale des Sciences de l'Informatique (ENSI), Tunisie" }
+        { "name": "Narjès Bellamine Ben Saoud", "role": "École Nationale des Sciences de l'Informatique (ENSI), Tunisie" },
+        { "name": "Sonia Ayachi", "role": "ISG, Université de Sousse" }
       ],
       "d1_w4_title": "Atelier 4 : Publications scientifiques et visibilité internationale",
       "d1_w4_speakers": [
         { "name": "Nabila Boukef", "role": "SKEMA Business School, France" },
         { "name": "Rim Faiez Zitouni", "role": "IHEC Carthage, Tunisie" },
-        { "name": "Mohamed Ali Mahjoub", "role": "Université de Sousse, Tunisie" }
+        { "name": "Mohamed Ali Mahjoub", "role": "ENISo, Université de Sousse" }
       ],
       "d1_closing_title": "Restitution des ateliers & Clôture du Jour 1",
       "d1_closing_desc": "Synthèse des travaux en ateliers, retours d'expérience et annonces pour la 2ème journée.",

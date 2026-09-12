@@ -239,7 +239,7 @@
       "d1_w1_title": "Workshop 1: Project Setup & Academic Cooperation",
       "d1_w1_speakers": [
         { "name": "Meriem Kallel", "role": "Ministry of Higher Education & Scientific Research, Horizon Europe" },
-        { "name": "Prof. Walid Barhoumi", "role": "Higher Institute of Computer Science (ISI)", "tbc": true }
+        { "name": "Prof. Walid Barhoumi", "role": "ENICarthage, University of Carthage", "tbc": true }
       ],
       "d1_w2_title": "Workshop 2: Mobility & Career Development for Faculty Researchers",
       "d1_w2_speakers": [
@@ -255,13 +255,14 @@
       "d1_w3_title": "Workshop 3: Doctoral Co-supervision & Scientific Mentoring",
       "d1_w3_speakers": [
         { "name": "Sana Rouis Skandrani", "role": "Karlstad University, Sweden" },
-        { "name": "Narjès Bellamine Ben Saoud", "role": "National School of Computer Sciences (ENSI), Tunisia" }
+        { "name": "Narjès Bellamine Ben Saoud", "role": "National School of Computer Sciences (ENSI), Tunisia" },
+        { "name": "Sonia Ayachi", "role": "ISG, University of Sousse" }
       ],
       "d1_w4_title": "Workshop 4: Scientific Publications & International Visibility",
       "d1_w4_speakers": [
         { "name": "Nabila Boukef", "role": "SKEMA Business School, France" },
         { "name": "Rim Faiez Zitouni", "role": "IHEC Carthage, Tunisia" },
-        { "name": "Mohamed Ali Mahjoub", "role": "University of Sousse, Tunisia" }
+        { "name": "Mohamed Ali Mahjoub", "role": "ENISo, University of Sousse" }
       ],
       "d1_closing_title": "Wrap-up & Day 1 Synthesis",
       "d1_closing_desc": "Session debrief, reporting of workshop outcomes, and announcements for Day 2.",
