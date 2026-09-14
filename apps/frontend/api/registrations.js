@@ -142,9 +142,26 @@ export default async function handler(req, res) {
 
       const {
         fullName, email, phone, affiliation, status, category,
-        day1, day2, accommodation, galaDinner, nvidiaCertification,
+        attendanceMode, day1, day2, accommodation, galaDinner, nvidiaCertification,
         dietaryRestrictions, totalAmountDue
       } = parsed.data;
+
+      const isOnline = attendanceMode === "online";
+      const modeTag = isOnline ? "EN LIGNE" : "PRÉSENTIEL";
+      const attendanceModeLabel = isOnline
+        ? "🌐 En ligne / Online"
+        : "📍 Présentiel / In-Person (Sousse)";
+
+      const modeBadgeHtml = `
+        <div style="margin: 16px 0; padding: 12px 18px; border-radius: 8px; background-color: ${isOnline ? '#e0f2fe' : '#e0e7ff'}; border-left: 5px solid ${isOnline ? '#0284c7' : '#022c5e'};">
+          <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: ${isOnline ? '#0369a1' : '#312e81'}; font-weight: 700; display: block;">
+            Mode de participation / Attendance Mode:
+          </span>
+          <span style="font-size: 16px; font-weight: 800; color: ${isOnline ? '#0284c7' : '#022c5e'};">
+            ${attendanceModeLabel}
+          </span>
+        </div>
+      `;
 
       const registrationTableRows = [
         ["Full Name", fullName],
@@ -153,6 +170,7 @@ export default async function handler(req, res) {
         ["Affiliation", affiliation],
         ["Academic / Professional Status", status],
         ["Participant Category", category === "intl" ? "International" : "Local (Tunisia)"],
+        ["Attendance Mode", `<strong><span style="color: ${isOnline ? '#0284c7' : '#022c5e'};">${attendanceModeLabel}</span></strong>`],
         ["Day 1 Attendance (Oct 23)", day1 ? "Yes" : "No"],
         ["Day 2 Attendance (Oct 24)", day2 ? "Yes" : "No"],
         ["Hotel Accommodation", accommodation ? "Requested (TBC)" : "Not included"],
@@ -168,6 +186,7 @@ export default async function handler(req, res) {
         title: "New Conference Registration Received",
         subtitle: `A new registration has been submitted by <strong>${fullName}</strong>.`,
         contentHtml: `
+          ${modeBadgeHtml}
           <p style="font-size: 14px; color: #334155; margin-bottom: 12px;">
             Below are the attendee's full registration details:
           </p>
@@ -183,6 +202,7 @@ export default async function handler(req, res) {
           <p style="font-size: 14px; color: #334155; line-height: 1.6; margin-bottom: 16px;">
             We are delighted to confirm your registration for the <strong>Tunisian Conference on Artificial Intelligence and Scientific Innovation (TUNCIS 2026)</strong>.
           </p>
+          ${modeBadgeHtml}
           <p style="font-size: 14px; font-weight: 700; color: #022c5e; margin-bottom: 8px;">
             Summary of Your Registration:
           </p>
@@ -203,6 +223,7 @@ Conference Dates: October 23–24, 2026
 Venue: Hotel Marhaba Palace, Port El Kantaoui, Sousse, Tunisia
 
 Summary of Your Registration:
+- Mode de participation / Attendance Mode: ${modeTag}
 - Full Name: ${fullName}
 - Email: ${cleanEmail}
 - Phone: ${phone}
@@ -217,6 +238,7 @@ TUNCIS 2026 Organizing Committee
 `;
 
       const organizerText = `New Conference Registration Received:
+- Mode de participation: ${modeTag}
 - Full Name: ${fullName}
 - Email: ${cleanEmail}
 - Phone: ${phone}
@@ -232,7 +254,7 @@ TUNCIS 2026 Organizing Committee
           from: `"TUNCIS 2026" <${SENDER_EMAIL}>`,
           replyTo: cleanEmail,
           to: ORGANIZER_EMAIL,
-          subject: `[New Registration] ${fullName} (${affiliation}) - TUNCIS 2026`,
+          subject: `[New Registration - ${modeTag}] ${fullName} (${affiliation}) - TUNCIS 2026`,
           text: organizerText,
           html: organizerHtml,
         }),
@@ -240,7 +262,7 @@ TUNCIS 2026 Organizing Committee
           from: `"TUNCIS 2026 Organizing Committee" <${SENDER_EMAIL}>`,
           replyTo: SENDER_EMAIL,
           to: cleanEmail,
-          subject: "Registration Confirmed - TUNCIS 2026",
+          subject: `Registration Confirmed [${modeTag}] - TUNCIS 2026`,
           text: attendeeText,
           html: attendeeHtml,
         }),

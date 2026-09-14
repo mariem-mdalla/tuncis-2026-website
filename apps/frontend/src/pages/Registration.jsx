@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Check, ChevronDown } from "lucide-react";
+import { Check, ChevronDown, Monitor, MapPin } from "lucide-react";
 import PhoneInput, { getCountryCallingCode } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { useTranslation } from "react-i18next";
 
-// ── Fee Table Data (order matters — Gala is last) ──────────────────
+// ── Fee Table Data ──────────────────────────────────────────────────
 const getFeeRows = (t) => [
-  { key: "day1",          label: t("registration.fees.day1"),             local: 170, intl: 70 },
-  { key: "day2",          label: t("registration.fees.day2"),             local: 120, intl: 40 },
-  { key: "accommodation", label: t("registration.fees.accommodation"),    local: 170, intl: 70,  note: t("registration.fees.accommodationNote") },
-  { key: "nvidia",        label: t("registration.fees.nvidia"),           local: 130, intl: 100 },
-  { key: "gala",          label: t("registration.fees.gala"),             local: 100, intl: 40 },
+  { key: "day1",          label: t("registration.fees.day1"),          local: 170, intl: 70,  onlineAllowed: true  },
+  { key: "day2",          label: t("registration.fees.day2"),          local: 120, intl: 40,  onlineAllowed: true  },
+  { key: "accommodation", label: t("registration.fees.accommodation"), local: 170, intl: 70,  onlineAllowed: false, note: t("registration.fees.accommodationNote") },
+  { key: "nvidia",        label: t("registration.fees.nvidia"),        local: 130, intl: 100, onlineAllowed: true  },
+  { key: "gala",          label: t("registration.fees.gala"),          local: 100, intl: 40,  onlineAllowed: false },
 ];
 
 // ── Helpers ────────────────────────────────────────────────────────
@@ -50,6 +50,8 @@ export default function Registration() {
   const [form, setForm] = useState({
     fullName: "", email: "", phone: "", affiliation: "", status: "Researcher", category: "local",
   });
+  // null = not chosen yet; "in_person" | "online"
+  const [attendanceMode, setAttendanceMode] = useState(null);
   const [checked, setChecked] = useState({
     day1: false, day2: false, accommodation: false, nvidia: false, gala: false,
   });
@@ -58,17 +60,43 @@ export default function Registration() {
   const [errorMsg, setErrorMsg] = useState("");
 
   const feeRows = getFeeRows(t);
-  const isLocal    = form.category === "local";
-  const currency   = isLocal ? "DT" : "€";
-  const total      = feeRows.reduce((sum, row) => sum + (checked[row.key] ? (isLocal ? row.local : row.intl) : 0), 0);
-  const toggleRow  = key => setChecked(p => ({ ...p, [key]: !p[key] }));
+  const isLocal  = form.category === "local";
+  const currency = isLocal ? "DT" : "€";
+  const isOnline = attendanceMode === "online";
+
+  // When switching to online, auto-uncheck in-person-only options
+  const handleAttendanceMode = (mode) => {
+    setAttendanceMode(mode);
+    if (mode === "online") {
+      setChecked(prev => ({ ...prev, accommodation: false, gala: false }));
+    }
+    setSubmitStatus("idle");
+    setErrorMsg("");
+  };
+
+  // Only count rows that are allowed for the current mode
+  const visibleRows = feeRows.filter(row => !isOnline || row.onlineAllowed);
+  const total = feeRows.reduce(
+    (sum, row) => sum + (checked[row.key] ? (isLocal ? row.local : row.intl) : 0),
+    0
+  );
+
+  const toggleRow = (key) => setChecked(p => ({ ...p, [key]: !p[key] }));
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleSubmit = async e => {
     e.preventDefault();
-    
-    // Require at least one participation option
-    if (!checked.day1 && !checked.day2 && !checked.accommodation && !checked.nvidia && !checked.gala) {
+
+    // 1. Must choose attendance mode
+    if (!attendanceMode) {
+      setSubmitStatus("error");
+      setErrorMsg(t("registration.requireAttendanceMode", "Please select an attendance mode (In-Person or Online)."));
+      return;
+    }
+
+    // 2. Must check at least one participation option
+    const anyChecked = visibleRows.some(row => checked[row.key]);
+    if (!anyChecked) {
       setSubmitStatus("error");
       setErrorMsg(t("registration.requireParticipation", "Please select at least one participation option."));
       return;
@@ -87,10 +115,11 @@ export default function Registration() {
           affiliation: form.affiliation,
           status: form.status,
           category: form.category,
+          attendanceMode,
           day1: Boolean(checked.day1),
           day2: Boolean(checked.day2),
-          accommodation: Boolean(checked.accommodation),
-          galaDinner: Boolean(checked.gala),
+          accommodation: isOnline ? false : Boolean(checked.accommodation),
+          galaDinner: isOnline ? false : Boolean(checked.gala),
           nvidiaCertification: Boolean(checked.nvidia),
           dietaryRestrictions: dietary || "",
           totalAmountDue: `${total} ${currency}`,
@@ -148,7 +177,7 @@ export default function Registration() {
                           {row.note && <span className="block text-xs text-amber-600 mt-0.5">⚠ {row.note}</span>}
                         </td>
                         <td className="px-4 py-3 text-right font-bold text-tuncis-blue">
-                          {row.local === 170 && row.key === "accommodation" ? "~170" : row.local}
+                          {row.key === "accommodation" ? "~170" : row.local}
                         </td>
                         <td className="px-4 py-3 text-right font-bold text-tuncis-blue">
                           {row.key === "accommodation" ? "~70" : row.intl}
@@ -243,84 +272,169 @@ export default function Registration() {
             </div>
           </div>
 
-          {/* ─ 2. Participation — interactive fee TABLE ─ */}
+          {/* ─ 2. Attendance Mode ─ */}
           <div className="bg-white border border-gray-100 shadow-sm rounded-2xl overflow-hidden">
             <div className="bg-tuncis-blue/5 border-b border-gray-100 px-6 py-4 flex items-center gap-3">
               <div className="w-7 h-7 rounded-full bg-tuncis-blue flex items-center justify-center text-white text-xs font-bold shrink-0">2</div>
-              <h2 className="font-heading font-bold text-tuncis-blue text-lg">{t("registration.participation")}</h2>
+              <h2 className="font-heading font-bold text-tuncis-blue text-lg">{t("registration.attendanceMode")} *</h2>
             </div>
-            <div className="overflow-x-auto">
-              <table className="w-full text-sm min-w-[400px]">
-                <thead>
-                  <tr className="bg-tuncis-blue text-white">
-                    <th className="w-12 px-4 py-3 text-center">✓</th>
-                    <th className="text-left px-4 py-3 font-semibold">Item</th>
-                    <th className="text-right px-4 py-3 font-semibold whitespace-nowrap">Local (DT)</th>
-                    <th className="text-right px-4 py-3 font-semibold whitespace-nowrap">Intl (€)</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {feeRows.map((row, i) => {
-                    const isChecked = checked[row.key];
-                    return (
-                      <tr
-                        key={row.key}
-                        onClick={() => toggleRow(row.key)}
-                        className={`cursor-pointer transition-colors select-none ${
-                          isChecked
-                            ? "bg-tuncis-yellow/10 border-l-4 border-l-tuncis-yellow"
-                            : i % 2 === 0 ? "bg-white hover:bg-gray-50" : "bg-gray-50/60 hover:bg-gray-100"
-                        }`}
-                      >
-                        {/* Checkbox cell */}
-                        <td className="px-4 py-4 text-center">
-                          <div className={`w-5 h-5 rounded border-2 flex items-center justify-center mx-auto transition-all ${
-                            isChecked ? "bg-tuncis-blue border-tuncis-blue" : "border-gray-300 bg-white"
-                          }`}>
-                            {isChecked && <Check size={11} className="text-white" strokeWidth={3} />}
-                          </div>
-                        </td>
-                        {/* Label cell */}
-                        <td className="px-4 py-4">
-                          <p className={`font-medium ${isChecked ? "text-tuncis-blue" : "text-gray-700"}`}>{row.label}</p>
-                          {row.note && <p className="text-xs text-amber-600 mt-0.5">⚠ {row.note}</p>}
-                        </td>
-                        {/* Local price */}
-                        <td className={`px-4 py-4 text-right font-bold tabular-nums ${isChecked && isLocal ? "text-tuncis-blue text-base" : "text-gray-500"}`}>
-                          {row.key === "accommodation" ? "~170" : row.local} DT
-                        </td>
-                        {/* Intl price */}
-                        <td className={`px-4 py-4 text-right font-bold tabular-nums ${isChecked && !isLocal ? "text-tuncis-blue text-base" : "text-gray-500"}`}>
-                          {row.key === "accommodation" ? "~70" : row.intl} €
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-                {/* Running total row */}
-                <tfoot>
-                  <tr className="bg-tuncis-blue/5 border-t-2 border-tuncis-blue/20">
-                    <td colSpan={2} className="px-4 py-4">
-                      <span className="font-bold text-tuncis-blue">{t("registration.totalDue")}</span>
-                    </td>
-                    <td colSpan={2} className="px-4 py-4 text-right">
-                      <span className="font-black text-2xl text-tuncis-blue font-heading">
-                        {total} {currency}
-                      </span>
-                    </td>
-                  </tr>
-                </tfoot>
-              </table>
+            <div className="p-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* In-Person card */}
+              <button
+                type="button"
+                onClick={() => handleAttendanceMode("in_person")}
+                className={`flex items-center gap-4 p-5 rounded-xl border-2 text-left transition-all ${
+                  attendanceMode === "in_person"
+                    ? "border-tuncis-blue bg-tuncis-blue/5"
+                    : "border-gray-200 hover:border-tuncis-blue/40 bg-white"
+                }`}
+              >
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                  attendanceMode === "in_person" ? "bg-tuncis-blue text-white" : "bg-gray-100 text-gray-500"
+                }`}>
+                  <MapPin size={20} />
+                </div>
+                <div>
+                  <p className={`font-bold text-sm ${attendanceMode === "in_person" ? "text-tuncis-blue" : "text-gray-700"}`}>
+                    {t("registration.attendanceInPerson")}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-0.5">{t("registration.attendanceInPersonDesc")}</p>
+                </div>
+                {attendanceMode === "in_person" && (
+                  <div className="ml-auto w-5 h-5 rounded-full bg-tuncis-blue flex items-center justify-center shrink-0">
+                    <Check size={11} className="text-white" strokeWidth={3} />
+                  </div>
+                )}
+              </button>
+
+              {/* Online card */}
+              <button
+                type="button"
+                onClick={() => handleAttendanceMode("online")}
+                className={`flex items-center gap-4 p-5 rounded-xl border-2 text-left transition-all ${
+                  attendanceMode === "online"
+                    ? "border-tuncis-blue bg-tuncis-blue/5"
+                    : "border-gray-200 hover:border-tuncis-blue/40 bg-white"
+                }`}
+              >
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                  attendanceMode === "online" ? "bg-tuncis-blue text-white" : "bg-gray-100 text-gray-500"
+                }`}>
+                  <Monitor size={20} />
+                </div>
+                <div>
+                  <p className={`font-bold text-sm ${attendanceMode === "online" ? "text-tuncis-blue" : "text-gray-700"}`}>
+                    {t("registration.attendanceOnline")}
+                  </p>
+                  <p className="text-xs text-gray-400 mt-0.5">{t("registration.attendanceOnlineDesc")}</p>
+                </div>
+                {attendanceMode === "online" && (
+                  <div className="ml-auto w-5 h-5 rounded-full bg-tuncis-blue flex items-center justify-center shrink-0">
+                    <Check size={11} className="text-white" strokeWidth={3} />
+                  </div>
+                )}
+              </button>
             </div>
-            <p className="px-6 py-3 text-xs text-gray-400 italic border-t border-gray-100">
-              * Accommodation rate to be confirmed. Click any row to select / deselect.
-            </p>
+
+            {/* Online notice */}
+            {isOnline && (
+              <p className="px-6 pb-4 text-xs text-amber-700 bg-amber-50 border-t border-amber-100 py-3 flex items-center gap-2">
+                <span>⚠</span> {t("registration.onlineNotice")}
+              </p>
+            )}
           </div>
 
-          {/* ─ 3. Additional Info ─ */}
+          {/* ─ 3. Participation Options ─ (only shown after choosing mode) */}
+          {attendanceMode && (
+            <div className="bg-white border border-gray-100 shadow-sm rounded-2xl overflow-hidden">
+              <div className="bg-tuncis-blue/5 border-b border-gray-100 px-6 py-4 flex items-center gap-3">
+                <div className="w-7 h-7 rounded-full bg-tuncis-blue flex items-center justify-center text-white text-xs font-bold shrink-0">3</div>
+                <h2 className="font-heading font-bold text-tuncis-blue text-lg">{t("registration.participation")}</h2>
+              </div>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm min-w-[400px]">
+                  <thead>
+                    <tr className="bg-tuncis-blue text-white">
+                      <th className="w-12 px-4 py-3 text-center">✓</th>
+                      <th className="text-left px-4 py-3 font-semibold">Item</th>
+                      <th className="text-right px-4 py-3 font-semibold whitespace-nowrap">Local (DT)</th>
+                      <th className="text-right px-4 py-3 font-semibold whitespace-nowrap">Intl (€)</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-gray-100">
+                    {feeRows.map((row, i) => {
+                      const isChecked = checked[row.key];
+                      const isDisabled = isOnline && !row.onlineAllowed;
+                      return (
+                        <tr
+                          key={row.key}
+                          onClick={() => !isDisabled && toggleRow(row.key)}
+                          className={`transition-colors select-none ${isDisabled
+                            ? "opacity-40 cursor-not-allowed bg-gray-50"
+                            : isChecked
+                              ? "cursor-pointer bg-tuncis-yellow/10 border-l-4 border-l-tuncis-yellow"
+                              : i % 2 === 0
+                                ? "cursor-pointer bg-white hover:bg-gray-50"
+                                : "cursor-pointer bg-gray-50/60 hover:bg-gray-100"
+                          }`}
+                        >
+                          {/* Checkbox cell */}
+                          <td className="px-4 py-4 text-center">
+                            <div className={`w-5 h-5 rounded border-2 flex items-center justify-center mx-auto transition-all ${
+                              isDisabled
+                                ? "border-gray-200 bg-gray-100"
+                                : isChecked
+                                  ? "bg-tuncis-blue border-tuncis-blue"
+                                  : "border-gray-300 bg-white"
+                            }`}>
+                              {isChecked && !isDisabled && <Check size={11} className="text-white" strokeWidth={3} />}
+                            </div>
+                          </td>
+                          {/* Label cell */}
+                          <td className="px-4 py-4">
+                            <p className={`font-medium ${isDisabled ? "text-gray-400" : isChecked ? "text-tuncis-blue" : "text-gray-700"}`}>
+                              {row.label}
+                            </p>
+                            {row.note && !isDisabled && <p className="text-xs text-amber-600 mt-0.5">⚠ {row.note}</p>}
+                            {isDisabled && <p className="text-xs text-gray-400 mt-0.5">{t("registration.notAvailableOnline")}</p>}
+                          </td>
+                          {/* Local price */}
+                          <td className={`px-4 py-4 text-right font-bold tabular-nums ${isChecked && isLocal && !isDisabled ? "text-tuncis-blue text-base" : "text-gray-500"}`}>
+                            {row.key === "accommodation" ? "~170" : row.local} DT
+                          </td>
+                          {/* Intl price */}
+                          <td className={`px-4 py-4 text-right font-bold tabular-nums ${isChecked && !isLocal && !isDisabled ? "text-tuncis-blue text-base" : "text-gray-500"}`}>
+                            {row.key === "accommodation" ? "~70" : row.intl} €
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                  {/* Running total row */}
+                  <tfoot>
+                    <tr className="bg-tuncis-blue/5 border-t-2 border-tuncis-blue/20">
+                      <td colSpan={2} className="px-4 py-4">
+                        <span className="font-bold text-tuncis-blue">{t("registration.totalDue")}</span>
+                      </td>
+                      <td colSpan={2} className="px-4 py-4 text-right">
+                        <span className="font-black text-2xl text-tuncis-blue font-heading">
+                          {total} {currency}
+                        </span>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <p className="px-6 py-3 text-xs text-gray-400 italic border-t border-gray-100">
+                * {t("registration.fees.accommodationNote")}. {t("registration.clickToSelect")}
+              </p>
+            </div>
+          )}
+
+          {/* ─ 4. Additional Info ─ */}
           <div className="bg-white border border-gray-100 shadow-sm rounded-2xl overflow-hidden">
             <div className="bg-tuncis-blue/5 border-b border-gray-100 px-6 py-4 flex items-center gap-3">
-              <div className="w-7 h-7 rounded-full bg-tuncis-blue flex items-center justify-center text-white text-xs font-bold shrink-0">3</div>
+              <div className="w-7 h-7 rounded-full bg-tuncis-blue flex items-center justify-center text-white text-xs font-bold shrink-0">4</div>
               <h2 className="font-heading font-bold text-tuncis-blue text-lg">{t("registration.additionalInfo")}</h2>
             </div>
             <div className="p-6">
