@@ -151,6 +151,7 @@
     "confirmedTitle": "Inscription Confirmée",
     "confirmedMessage": "Merci de vous être inscrit à TUNCIS 2026. Un e-mail de confirmation vous sera envoyé sous peu.",
     "errorFallback": "Veuillez vérifier le formulaire et réessayer.",
+    "requireParticipation": "Veuillez sélectionner au moins une option de participation.",
     "feesTitle": "Frais d'inscription",
     "feesText": "Jour 1 (Conférence) : 150 DT / 70 €. Jour 2 (Conférence + Hôtel) : +200 DT / +130 €. Dîner Gala : +100 DT / +50 €. Certification NVIDIA : +130 DT / +100 €.",
     "feesNote": "Ces tarifs peuvent changer.",

@@ -66,6 +66,14 @@ export default function Registration() {
 
   const handleSubmit = async e => {
     e.preventDefault();
+    
+    // Require at least one participation option
+    if (!checked.day1 && !checked.day2 && !checked.accommodation && !checked.nvidia && !checked.gala) {
+      setSubmitStatus("error");
+      setErrorMsg(t("registration.requireParticipation", "Please select at least one participation option."));
+      return;
+    }
+
     setSubmitStatus("submitting");
     setErrorMsg("");
     try {

@@ -9,6 +9,7 @@ const registrations = pgTable("registrations", {
   status: text("status").notNull(),
   day1: boolean("day1").default(false).notNull(),
   day2: boolean("day2").default(false).notNull(),
+  accommodation: boolean("accommodation").default(false).notNull(),
   galaDinner: boolean("gala_dinner").default(false).notNull(),
   nvidiaCertification: boolean("nvidia_certification").default(false).notNull(),
   dietaryRestrictions: text("dietary_restrictions"),
