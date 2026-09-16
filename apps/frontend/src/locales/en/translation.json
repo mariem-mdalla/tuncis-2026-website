@@ -249,7 +249,7 @@
       "d1_w1_title": "Workshop 1: Project Setup & Academic Cooperation",
       "d1_w1_speakers": [
         { "name": "Meriem Kallel", "role": "Ministry of Higher Education & Scientific Research, Horizon Europe" },
-        { "name": "Prof. Walid Barhoumi", "role": "ENICarthage, University of Carthage", "tbc": true }
+        { "name": "Speaker to be confirmed", "role": "To be announced", "tbc": true }
       ],
       "d1_w2_title": "Workshop 2: Mobility & Career Development for Faculty Researchers",
       "d1_w2_speakers": [
@@ -417,7 +417,7 @@
       "bio": "Director General of ENSIIE, France, and President of TunAISia. Distinguished Professor in Information Systems, qualified to lead research in computer science and management sciences. His current research focuses on digital intelligence, digital transformation of organizations, governance of massive data, and quantum computing. He also conducts foresight work on emerging technologies and their societal impacts."
     },
     "narjes": {
-      "bio": "Director of ENSI (Ecole Nationale des Sciences de l’Informatique) and Director of the RIADI Laboratory, University of Manouba, Tunisia. A Professor in the Department of Information Systems and Decision Engineering, she teaches Software Engineering and Artificial Intelligence. She holds an engineering diploma from ENSEEIHT Toulouse, a PhD from the University of Toulouse 1, and an HDR from ENSI. Her research focuses on modeling and simulation of complex socio-technical systems, information systems, and multi-agent systems. She was also a Fulbright scholar at the University of California, Irvine."
+      "bio": "Director of the RIADI Laboratory, University of Manouba, Tunisia. A Professor in the Department of Information Systems and Decision Engineering, she teaches Software Engineering and Artificial Intelligence. She holds an engineering diploma from ENSEEIHT Toulouse, a PhD from the University of Toulouse 1, and an HDR from ENSI. Her research focuses on modeling and simulation of complex socio-technical systems, information systems, and multi-agent systems. She was also a Fulbright scholar at the University of California, Irvine."
     },
     "takoua": {
       "bio": "Associate Professor at ENISo, University of Sousse, Takoua Abdellatif leads a research group at SERCOM Laboratory, University of Carthage, focusing on AI and Big Data systems. She leads major AI projects in drone-based platforms and smart agriculture within Horizon Europe. She holds an engineering degree from ENSIMAG, a PhD from Grenoble University, and an HDR from the University of Carthage. She is also an NVIDIA Ambassador in Generative AI."

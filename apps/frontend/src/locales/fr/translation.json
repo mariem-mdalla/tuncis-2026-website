@@ -249,7 +249,7 @@
       "d1_w1_title": "Atelier 1 : Montage de projet et coopération académique",
       "d1_w1_speakers": [
         { "name": "Meriem Kallel", "role": "Ministère de l'Enseignement supérieur et de la Recherche scientifique, Horizon Europe" },
-        { "name": "Pr Walid Barhoumi", "role": "ENICarthage, Université de Carthage", "tbc": true }
+        { "name": "Intervenant à confirmer", "role": "En cours de confirmation", "tbc": true }
       ],
       "d1_w2_title": "Atelier 2 : Mobilité et développement des carrières des enseignants-chercheurs",
       "d1_w2_speakers": [
@@ -417,7 +417,7 @@
       "bio": "Directeur Général de l’ENSIIE, France, et Président de TunAISia. Professeur Distingué en Systèmes d’Information, habilité à diriger des recherches en informatique et en sciences de gestion. Ses recherches actuelles portent sur l’intelligence digitale, la transformation digitale des organisations, la gouvernance des données massives et l’informatique quantique. Il mène également des travaux de prospective sur les technologies émergentes et leurs impacts sociétaux."
     },
     "narjes": {
-      "bio": "Directrice de l’ENSI et Directrice du Laboratoire RIADI, Université de la Manouba, Tunisie. Professeure au département des Systèmes d’Information et de l’Ingénierie de la Décision, elle enseigne le Génie Logiciel et l’Intelligence Artificielle. Titulaire d’un diplôme d’ingénieur de l’ENSEEIHT Toulouse, d’un doctorat de l’Université de Toulouse 1, et d’une HDR de l’ENSI. Ses recherches portent sur la modélisation et la simulation de systèmes socio-techniques complexes. Elle a également été boursière Fulbright à l’Université de Californie, Irvine."
+      "bio": "Directrice du Laboratoire RIADI, Université de la Manouba, Tunisie. Professeure au département des Systèmes d’Information et de l’Ingénierie de la Décision, elle enseigne le Génie Logiciel et l’Intelligence Artificielle. Titulaire d’un diplôme d’ingénieur de l’ENSEEIHT Toulouse, d’un doctorat de l’Université de Toulouse 1, et d’une HDR de l’ENSI. Ses recherches portent sur la modélisation et la simulation de systèmes socio-techniques complexes. Elle a également été boursière Fulbright à l’Université de Californie, Irvine."
     },
     "takoua": {
       "bio": "Maître de conférences à ENISo, Université de Sousse, Takoua Abdellatif dirige un groupe de recherche au Laboratoire SERCOM, Université de Carthage, se concentrant sur les systèmes d'IA et de Big Data. Elle pilote des projets majeurs d'IA sur les plateformes basées sur les drones et l'agriculture intelligente dans le cadre de Horizon Europe. Elle détient un diplôme d'ingénieur d'ENSIMAG, un doctorat de l'Université de Grenoble et une HDR de l'Université de Carthage. Elle est également Ambassadrice NVIDIA en IA Générative."
