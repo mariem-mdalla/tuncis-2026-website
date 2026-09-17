@@ -421,7 +421,10 @@
     },
     "takoua": {
       "bio": "Associate Professor at ENISo, University of Sousse, Takoua Abdellatif leads a research group at SERCOM Laboratory, University of Carthage, focusing on AI and Big Data systems. She leads major AI projects in drone-based platforms and smart agriculture within Horizon Europe. She holds an engineering degree from ENSIMAG, a PhD from Grenoble University, and an HDR from the University of Carthage. She is also an NVIDIA Ambassador in Generative AI."
-    }
+    },
+    "louadi": {
+  "bio": "Mohamed Louadi is a professor of Management Information Systems at the Higher Institute of Management (ISG), University of Tunis, with a PhD from the University of Pittsburgh and an MSc from the University of Wisconsin-Madison. He has taught at the University of Pittsburgh (United States), the Université du Québec à Trois-Rivières (Canada), Concordia University (Canada), the Higher Colleges of Technology (UAE), and the American University of Beirut. He is the author or co-author of some forty articles, conference papers, and books on MIS in organizations. He has also delivered more than 140 conference presentations on information and communication technologies (ICTs) and their impact on individuals, organizations, and society."
+}
   },
   "practicalInfo": {
     "title": "Practical Information",
