@@ -18,6 +18,12 @@ const organizing = [
   //{ name: "Noura Aboudi",        affiliation: "Horizon University" },
 ];
 
+const keynotes = [
+  { speakerKey: "programme.sessions.d1_keynote1_speaker", roleKey: "programme.sessions.d1_keynote1_role", topicKey: "programme.sessions.d1_keynote1_topic" },
+  { speakerKey: "programme.sessions.d1_keynote2_speaker", roleKey: "programme.sessions.d1_keynote2_role", topicKey: "programme.sessions.d1_keynote2_topic" },
+  { speakerKey: "programme.sessions.d2_keynote_speaker", roleKey: "programme.sessions.d2_keynote_role", topicKey: "programme.sessions.d2_keynote_topic" },
+];
+
 function BioCard({ name, role, affiliation, image, bio }) {
   return (
     <motion.div
@@ -107,17 +113,53 @@ export default function Committees() {
           </div>
         </div>
 
-        {/* 2 — Scientific Committee (coming soon) */}
+        {/* 2 — Keynotes */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}>
+          <h2 className="font-heading text-2xl font-bold text-tuncis-blue mb-8 pb-3 border-b-2 border-tuncis-yellow/40 inline-block">
+            Keynotes
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {keynotes.map((k, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white border border-gray-100 p-6 rounded-xl shadow-xs">
+                <h3 className="font-heading font-bold text-base text-tuncis-blue mb-1">{t(k.speakerKey)}</h3>
+                <p className="text-xs text-tuncis-gray/70 mb-3">{t(k.roleKey)}</p>
+                <p className="text-sm text-tuncis-gray leading-relaxed italic">{t(k.topicKey)}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* 3 — Scientific Committee */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}>
           <h2 className="font-heading text-2xl font-bold text-tuncis-blue mb-8 pb-3 border-b-2 border-tuncis-yellow/40 inline-block">
             {t("committees.scientific")}
           </h2>
-          <div className="bg-white border border-gray-100 p-10 rounded-2xl shadow-xs flex items-center justify-center min-h-[120px] text-center">
-            <p className="text-tuncis-gray italic text-base sm:text-lg">{t("committees.comingSoon")}</p>
+          <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-white border border-gray-100 rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden flex flex-col md:flex-row"
+            >
+              <div className="md:w-72 bg-gradient-to-br from-tuncis-bg to-gray-100 flex items-center justify-center p-8 shrink-0 border-b md:border-b-0 md:border-r border-gray-100">
+                <div className="w-48 h-48 rounded-full overflow-hidden shadow-lg border-4 border-white ring-4 ring-tuncis-blue/10 bg-tuncis-blue flex items-center justify-center">
+                  <span className="text-white font-heading font-bold text-5xl">ML</span>
+                </div>
+              </div>
+              <div className="p-6 sm:p-8 flex-1 flex flex-col justify-center">
+                <h3 className="font-heading font-bold text-2xl text-tuncis-blue mb-1">Mohamed Louadi</h3>
+                <p className="text-tuncis-yellow font-bold uppercase tracking-wider text-xs mb-2">Scientific Committee</p>
+                <p className="text-sm text-tuncis-gray/70 flex items-center gap-1.5 mb-5 pb-5 border-b border-gray-100">
+                  <Building2 size={13} className="text-tuncis-gray/40 shrink-0" />
+                  ISG Tunis
+                </p>
+                <p className="text-tuncis-gray leading-relaxed text-sm">{t("committees.louadi.bio")}</p>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
 
-        {/* 3 — Organizing Committee (clean cards: name + affiliation only, no avatars) */}
+        {/* 4 — Organizing Committee (clean cards: name + affiliation only, no avatars) */}
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}>
           <div className="flex items-center justify-between mb-8 pb-3 border-b-2 border-tuncis-yellow/40">
             <h2 className="font-heading text-2xl font-bold text-tuncis-blue">
