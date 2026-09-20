@@ -1,8 +1,8 @@
-﻿import { useTranslation } from "react-i18next";
+import { useTranslation } from "react-i18next";
 import { FileText, Bell, UserCheck, LayoutList, Calendar } from "lucide-react";
 
 const milestoneConfig = [
-  { icon: FileText,   statusKey: "firm",     dateKey: "dates.submission",           labelKey: "milestones.submission" },
+  { icon: FileText,   statusKey: "extended", dateKey: "dates.submission",           labelKey: "milestones.submission" },
   { icon: Bell,       statusKey: "upcoming", dateKey: "dates.acceptance",            labelKey: "milestones.acceptance" },
   { icon: UserCheck,  statusKey: "upcoming", dateKey: "dates.registrationDeadline",  labelKey: "milestones.registrationDeadline" },
   { icon: LayoutList, statusKey: "upcoming", dateKey: "dates.programmePublished",    labelKey: "milestones.programmePublished" },
@@ -10,7 +10,7 @@ const milestoneConfig = [
 ];
 
 const statusStyles = {
-  firm:     { bg: "bg-red-50",     border: "border-red-100",     text: "text-red-700",    badge: "bg-red-600 text-white", label: "FIRM" },
+  extended: { bg: "bg-orange-50",  border: "border-orange-200",  text: "text-orange-700", badge: "bg-gradient-to-r from-orange-500 to-red-500 text-white animate-pulse", label: "EXTENDED" },
   upcoming: { bg: "bg-blue-50",    border: "border-blue-100",    text: "text-blue-700",   badge: "bg-gray-500 text-white", label: "UPCOMING" },
   event:    { bg: "bg-yellow-50",  border: "border-yellow-100",  text: "text-yellow-700", badge: "bg-tuncis-yellow text-tuncis-blue", label: "EVENT" },
 };
