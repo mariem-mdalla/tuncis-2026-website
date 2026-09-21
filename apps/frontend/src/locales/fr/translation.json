@@ -481,6 +481,10 @@
   "name": "Université de Carthage",
   "desc": "L'une des principales universités publiques tunisiennes, regroupant plusieurs facultés et instituts de recherche en ingénierie, sciences et technologie."
 },
+      "sfax": {
+        "name": "Université de Sfax",
+        "desc": "Grande université publique tunisienne basée à Sfax, offrant formation et recherche en ingénierie, sciences, médecine, économie et sciences humaines."
+      },
       "utm": {
         "name": "Université de Tunis El Manar (UTM)",
         "desc": "Pôle universitaire et scientifique majeur en Tunisie, spécialisé dans les sciences fondamentales, la technologie, l’ingénierie et la recherche appliquée."
@@ -520,6 +524,10 @@
       "sixcom": {
         "name": "Laboratoire 6COM",
         "desc": "Laboratoire de recherche dédié aux communications sans fil avancées, à l’optimisation des réseaux cellulaires et aux technologies de connectivité future."
+      },
+      "miracl": {
+        "name": "Laboratoire MIRACL",
+        "desc": "Laboratoire Multimedia, InfoRmation systems and Advanced Computing (Université de Sfax), menant des recherches en systèmes d’information, intelligence artificielle et multimédia."
       },
       "nvidia": {
         "name": "NVIDIA Deep Learning Institute",
