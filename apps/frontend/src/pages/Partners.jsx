@@ -11,7 +11,7 @@ import horizonLogo   from "../assets/logos/Horizon-logo.png";
 import doctoralLogo  from "../assets/logos/doctoral-school-logo.png";
 import tunaisiaLogo  from "../assets/logos/tunaisia_logo.png";
 import aisLogo       from "../assets/logos/The-Association-for-Information-Systems-AIS-Logo.webp";
-import carthageLogo  from "../assets/logos/Université_Carthage_logo.png";
+import carthageLogo  from "../assets/logos/carthage-logo.png";
 
 // Research Lab Logos
 import riadiLogo     from "../assets/logos/riadi-log.png";
