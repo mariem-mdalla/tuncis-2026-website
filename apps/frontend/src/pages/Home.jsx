@@ -19,8 +19,6 @@ import sixComLogo    from "../assets/logos/6com-logo.png";
 import eniseLogo     from "../assets/logos/Logo_ENISo,_Tunisie.svg.webp";
 import doctoralLogo  from "../assets/logos/doctoral-school-logo.png";
 import deloitteLogo  from "../assets/logos/Logo_of_Deloitte.svg.webp";
-import draxlLogo     from "../assets/logos/draxlmaier-logo.png";
-import leoniLogo     from "../assets/logos/leoni-logo.png";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
 import carthageLogo  from "../assets/logos/carthage-logo.png";
@@ -62,8 +60,6 @@ export default function Home() {
     // Industrial Partners
     { src: nvidiaLogo,   alt: "NVIDIA", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.1)", transformOrigin: "center" } },
     { src: deloitteLogo, alt: "Deloitte", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
-    { src: draxlLogo,    alt: "Dräxlmaier", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
-    { src: leoniLogo,    alt: "Leoni", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: proxymLogo,   alt: "Proxym", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: novationLogo, alt: "Novation City", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
   ];
