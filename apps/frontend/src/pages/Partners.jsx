@@ -26,7 +26,6 @@ import draxlLogo     from "../assets/logos/draxlmaier-logo.png";
 import leoniLogo     from "../assets/logos/leoni-logo.png";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
-import weviooLogo    from "../assets/logos/wevioo-logo.png";
 
 const academicList = [
   { key: "uSousse",  src: uSousseLogo },
@@ -54,7 +53,6 @@ const industrialList = [
   { key: "leoni",    src: leoniLogo },
   { key: "proxym",   src: proxymLogo },
   { key: "novation", src: novationLogo },
-  { key: "wevioo",   src: weviooLogo },
 ];
 
 function PartnerCard({ partnerKey, logo, tag, icon: TagIcon }) {
@@ -63,8 +61,6 @@ function PartnerCard({ partnerKey, logo, tag, icon: TagIcon }) {
   let scaleClass = "max-h-16 max-w-[85%]";
   if (partnerKey === "tunaisia") {
     scaleClass = "max-h-20 scale-140 max-w-[90%]";
-  } else if (partnerKey === "wevioo") {
-    scaleClass = "max-h-20 scale-150 max-w-[90%]";
   }
 
   return (
@@ -231,7 +227,7 @@ export default function Partners() {
             </h3>
             <p className="text-white/80 max-w-lg mx-auto mb-6">
               {t("partners.contactText")}{" "}
-              <a
+              
                 href="mailto:tuncis2026@horizon-tech.tn"
                 className="text-tuncis-yellow font-bold underline hover:text-white transition-colors"
               >
