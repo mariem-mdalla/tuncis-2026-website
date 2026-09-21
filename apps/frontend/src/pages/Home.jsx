@@ -471,7 +471,7 @@ export default function Home() {
                     <span>{t("home.aisLearnMore")}</span>
                     <ArrowRight size={15} />
                   </Link>
-                  <a>
+                  <a
                     href="https://aisnet.org"
                     target="_blank"
                     rel="noopener noreferrer"
