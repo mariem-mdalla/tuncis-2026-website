@@ -477,6 +477,10 @@
         "name": "Université de la Manouba",
         "desc": "A leading Tunisian university recognized for advanced research and academic excellence in computer science, engineering, and information systems."
       },
+      "carthage": {
+  "name": "University of Carthage",
+  "desc": "One of Tunisia's leading public universities, encompassing multiple faculties and research institutes across engineering, sciences, and technology."
+},
       "utm": {
         "name": "Université de Tunis El Manar (UTM)",
         "desc": "A major public research university in Tunisia, specializing in science, technology, engineering, and advanced applied research."
