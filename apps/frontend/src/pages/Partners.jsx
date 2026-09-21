@@ -12,12 +12,14 @@ import doctoralLogo  from "../assets/logos/doctoral-school-logo.png";
 import tunaisiaLogo  from "../assets/logos/tunaisia_logo.png";
 import aisLogo       from "../assets/logos/The-Association-for-Information-Systems-AIS-Logo.webp";
 import carthageLogo  from "../assets/logos/carthage-logo.png";
+import sfaxLogo      from "../assets/logos/sfax-logo.png";
 
 // Research Lab Logos
 import riadiLogo     from "../assets/logos/riadi-log.png";
 import sercomLogo    from "../assets/logos/sercom.png";
 import larodecLogo   from "../assets/logos/larodec-logo.png";
 import sixComLogo    from "../assets/logos/6com-logo.png";
+import miraclLogo    from "../assets/logos/miracl-logo.png";
 
 // Industrial Logos
 import nvidiaLogo    from "../assets/logos/NVIDIA_logo.webp";
@@ -37,6 +39,7 @@ const academicList = [
   { key: "tunaisia", src: tunaisiaLogo },
   { key: "ais",      src: aisLogo },
   { key: "carthage", src: carthageLogo },
+  { key: "sfax",     src: sfaxLogo },
 ];
 
 const researchList = [
@@ -44,6 +47,7 @@ const researchList = [
   { key: "sercom",  src: sercomLogo },
   { key: "larodec", src: larodecLogo },
   { key: "sixcom",  src: sixComLogo },
+  { key: "miracl",  src: miraclLogo },
 ];
 
 const industrialList = [
@@ -61,6 +65,8 @@ function PartnerCard({ partnerKey, logo, tag, icon: TagIcon }) {
   let scaleClass = "max-h-16 max-w-[85%]";
   if (partnerKey === "tunaisia") {
     scaleClass = "max-h-20 scale-140 max-w-[90%]";
+  } else if (partnerKey === "miracl") {
+    scaleClass = "max-h-20 scale-150 max-w-[90%]";
   }
 
   return (
