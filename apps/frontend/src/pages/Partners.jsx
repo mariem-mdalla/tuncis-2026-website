@@ -227,7 +227,7 @@ export default function Partners() {
             </h3>
             <p className="text-white/80 max-w-lg mx-auto mb-6">
               {t("partners.contactText")}{" "}
-              
+              <a
                 href="mailto:tuncis2026@horizon-tech.tn"
                 className="text-tuncis-yellow font-bold underline hover:text-white transition-colors"
               >
