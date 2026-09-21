@@ -11,6 +11,7 @@ import horizonLogo   from "../assets/logos/Horizon-logo.png";
 import doctoralLogo  from "../assets/logos/doctoral-school-logo.png";
 import tunaisiaLogo  from "../assets/logos/tunaisia_logo.png";
 import aisLogo       from "../assets/logos/The-Association-for-Information-Systems-AIS-Logo.webp";
+import carthageLogo  from "../assets/logos/Université_Carthage_logo.png";
 
 // Research Lab Logos
 import riadiLogo     from "../assets/logos/riadi-log.png";
@@ -36,6 +37,7 @@ const academicList = [
   { key: "doctoral", src: doctoralLogo },
   { key: "tunaisia", src: tunaisiaLogo },
   { key: "ais",      src: aisLogo },
+  { key: "carthage", src: carthageLogo },
 ];
 
 const researchList = [
@@ -229,7 +231,7 @@ export default function Partners() {
             </h3>
             <p className="text-white/80 max-w-lg mx-auto mb-6">
               {t("partners.contactText")}{" "}
-              <a
+              
                 href="mailto:tuncis2026@horizon-tech.tn"
                 className="text-tuncis-yellow font-bold underline hover:text-white transition-colors"
               >
