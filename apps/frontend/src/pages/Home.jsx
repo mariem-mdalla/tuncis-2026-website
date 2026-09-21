@@ -24,6 +24,8 @@ import leoniLogo     from "../assets/logos/leoni-logo.png";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
 import carthageLogo  from "../assets/logos/carthage-logo.png";
+import sfaxLogo      from "../assets/logos/sfax-logo.png";
+import miraclLogo    from "../assets/logos/miracl-logo.png";
 import soussePhoto   from "../assets/sousse-hover.jpg";
 
 export default function Home() {
@@ -44,6 +46,7 @@ export default function Home() {
     { src: manoubaLogo,  alt: "Université de la Manouba", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: eniseLogo,    alt: "ENISo", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: carthageLogo, alt: "Université de Carthage", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: sfaxLogo,     alt: "Université de Sfax", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: tunaisiaLogo, alt: "TunAISia", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.5)", transformOrigin: "center" } },
     { src: aisLogo,      alt: "Association for Information Systems", cardStyle: { height: "130px", width: "240px" }, imgStyle: { width: "90%" } },
     { src: horizonLogo,  alt: "Horizon University", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
@@ -54,6 +57,7 @@ export default function Home() {
     { src: sercomLogo,   alt: "SERCOM", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: larodecLogo,  alt: "LARODEC", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: sixComLogo,   alt: "6COM", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.1)", transformOrigin: "center" } },
+    { src: miraclLogo,   alt: "Laboratoire MIRACL", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.6)", transformOrigin: "center" } },
 
     // Industrial Partners
     { src: nvidiaLogo,   alt: "NVIDIA", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.1)", transformOrigin: "center" } },
