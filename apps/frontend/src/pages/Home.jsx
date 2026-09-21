@@ -24,6 +24,7 @@ import leoniLogo     from "../assets/logos/leoni-logo.png";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
 import weviooLogo    from "../assets/logos/wevioo-logo.png";
+import carthageLogo  from "../assets/logos/carthage-logo.png";
 import soussePhoto   from "../assets/sousse-hover.jpg";
 
 export default function Home() {
@@ -43,6 +44,7 @@ export default function Home() {
     { src: utmLogo,      alt: "Université de Tunis El Manar", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: manoubaLogo,  alt: "Université de la Manouba", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: eniseLogo,    alt: "ENISo", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: carthageLogo, alt: "Université de Carthage", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: tunaisiaLogo, alt: "TunAISia", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.5)", transformOrigin: "center" } },
     { src: aisLogo,      alt: "Association for Information Systems", cardStyle: { height: "130px", width: "240px" }, imgStyle: { width: "90%" } },
     { src: horizonLogo,  alt: "Horizon University", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
@@ -469,7 +471,7 @@ export default function Home() {
                     <span>{t("home.aisLearnMore")}</span>
                     <ArrowRight size={15} />
                   </Link>
-                  <a
+                  
                     href="https://aisnet.org"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -567,5 +569,3 @@ export default function Home() {
     </main>
   );
 }
-
-
