@@ -23,7 +23,6 @@ import draxlLogo     from "../assets/logos/draxlmaier-logo.png";
 import leoniLogo     from "../assets/logos/leoni-logo.png";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
-import weviooLogo    from "../assets/logos/wevioo-logo.png";
 import carthageLogo  from "../assets/logos/carthage-logo.png";
 import soussePhoto   from "../assets/sousse-hover.jpg";
 
@@ -63,7 +62,6 @@ export default function Home() {
     { src: leoniLogo,    alt: "Leoni", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: proxymLogo,   alt: "Proxym", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: novationLogo, alt: "Novation City", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
-    { src: weviooLogo,   alt: "Wevioo", cardStyle: { height: "130px", width: "190px" }, imgStyle: { transform: "scale(1.3)", transformOrigin: "center" } },
   ];
 
   return (
@@ -471,7 +469,7 @@ export default function Home() {
                     <span>{t("home.aisLearnMore")}</span>
                     <ArrowRight size={15} />
                   </Link>
-                  <a
+                  
                     href="https://aisnet.org"
                     target="_blank"
                     rel="noopener noreferrer"
