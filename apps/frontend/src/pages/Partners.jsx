@@ -24,8 +24,6 @@ import miraclLogo    from "../assets/logos/miracl-logo.png";
 // Industrial Logos
 import nvidiaLogo    from "../assets/logos/NVIDIA_logo.webp";
 import deloitteLogo  from "../assets/logos/Logo_of_Deloitte.svg.webp";
-import draxlLogo     from "../assets/logos/draxlmaier-logo.png";
-import leoniLogo     from "../assets/logos/leoni-logo.png";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
 
@@ -53,8 +51,6 @@ const researchList = [
 const industrialList = [
   { key: "nvidia",   src: nvidiaLogo },
   { key: "deloitte", src: deloitteLogo },
-  { key: "draxl",    src: draxlLogo },
-  { key: "leoni",    src: leoniLogo },
   { key: "proxym",   src: proxymLogo },
   { key: "novation", src: novationLogo },
 ];
