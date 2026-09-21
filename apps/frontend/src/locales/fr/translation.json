@@ -477,9 +477,9 @@
         "name": "Université de la Manouba",
         "desc": "Université tunisienne de référence, reconnue pour ses programmes d’enseignement supérieur et sa recherche avancée en informatique et systèmes d’information."
       },
-      "carthage": {
+   "carthage": {
   "name": "Université de Carthage",
-  "desc": "Partenaire académique de TUNCIS 2026."
+  "desc": "L'une des principales universités publiques tunisiennes, regroupant plusieurs facultés et instituts de recherche en ingénierie, sciences et technologie."
 },
       "utm": {
         "name": "Université de Tunis El Manar (UTM)",
