@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
-import { Building2 } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Building2, ChevronDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import imedImg from "../assets/chairs/imed-boughzela.png";
 import narjesImg from "../assets/chairs/narjes-bellamine-ben-saoud.png";
@@ -71,6 +72,43 @@ function BioCard({ name, role, affiliation, image, bio }) {
   );
 }
 
+function KeynoteCard({ speaker, role, topic, bio, isFr }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <motion.div initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white border border-gray-100 p-6 rounded-xl shadow-xs">
+      <h3 className="font-heading font-bold text-base text-tuncis-blue mb-1">{speaker}</h3>
+      <p className="text-xs text-tuncis-gray/70 mb-3">{role}</p>
+      <p className="text-sm text-tuncis-gray leading-relaxed italic">{topic}</p>
+      {bio && (
+        <>
+          <button
+            type="button"
+            onClick={() => setOpen(!open)}
+            aria-expanded={open}
+            className="mt-4 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-tuncis-blue hover:text-tuncis-blue-dark transition-colors"
+          >
+            {open ? (isFr ? "Masquer la bio" : "Hide bio") : (isFr ? "Voir la bio" : "Read bio")}
+            <ChevronDown size={14} className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+          </button>
+          <AnimatePresence initial={false}>
+            {open && (
+              <motion.p
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="overflow-hidden text-sm text-tuncis-gray leading-relaxed"
+              >
+                <span className="block mt-3 pt-3 border-t border-gray-100">{bio}</span>
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </>
+      )}
+    </motion.div>
+  );
+}
+
 function MemberGrid({ members }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4">
@@ -98,7 +136,8 @@ function MemberGrid({ members }) {
 }
 
 export default function Committees() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isFr = i18n.language?.startsWith("fr");
 
   const leadership = [
     {
@@ -165,14 +204,14 @@ export default function Committees() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
             {keynotes.map((k, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="bg-white border border-gray-100 p-6 rounded-xl shadow-xs">
-                <h3 className="font-heading font-bold text-base text-tuncis-blue mb-1">{t(k.speakerKey)}</h3>
-                <p className="text-xs text-tuncis-gray/70 mb-3">{t(k.roleKey)}</p>
-                <p className="text-sm text-tuncis-gray leading-relaxed italic">{t(k.topicKey)}</p>
-                {k.bioKey && (
-                  <p className="text-sm text-tuncis-gray leading-relaxed mt-4 pt-4 border-t border-gray-100">{t(k.bioKey)}</p>
-                )}
-              </motion.div>
+              <KeynoteCard
+                key={i}
+                speaker={t(k.speakerKey)}
+                role={t(k.roleKey)}
+                topic={t(k.topicKey)}
+                bio={k.bioKey ? t(k.bioKey) : null}
+                isFr={isFr}
+              />
             ))}
           </div>
         </motion.div>
