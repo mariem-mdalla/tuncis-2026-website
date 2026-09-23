@@ -26,6 +26,7 @@ import nvidiaLogo    from "../assets/logos/NVIDIA_logo.webp";
 import deloitteLogo  from "../assets/logos/Logo_of_Deloitte.svg.webp";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
+import draxlLogo     from "../assets/logos/draxlmaier-logo.png";
 
 const academicList = [
   { key: "uSousse",  src: uSousseLogo },
@@ -53,6 +54,7 @@ const industrialList = [
   { key: "deloitte", src: deloitteLogo },
   { key: "proxym",   src: proxymLogo },
   { key: "novation", src: novationLogo },
+  { key: "draxl",    src: draxlLogo },
 ];
 
 function PartnerCard({ partnerKey, logo, tag, icon: TagIcon }) {
