@@ -21,6 +21,7 @@ import doctoralLogo  from "../assets/logos/doctoral-school-logo.png";
 import deloitteLogo  from "../assets/logos/Logo_of_Deloitte.svg.webp";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
+import draxlLogo     from "../assets/logos/draxlmaier-logo.png";
 import carthageLogo  from "../assets/logos/carthage-logo.png";
 import sfaxLogo      from "../assets/logos/sfax-logo.png";
 import miraclLogo    from "../assets/logos/miracl-logo.png";
@@ -62,6 +63,7 @@ export default function Home() {
     { src: deloitteLogo, alt: "Deloitte", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: proxymLogo,   alt: "Proxym", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
     { src: novationLogo, alt: "Novation City", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
+    { src: draxlLogo,    alt: "DRÄXLMAIER Group", cardStyle: { height: "130px", width: "190px" }, imgStyle: {} },
   ];
 
   return (
