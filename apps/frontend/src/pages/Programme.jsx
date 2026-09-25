@@ -207,6 +207,14 @@ const DAY2_SCHEDULE = [
       link: "/nvidia-certification",
       linkTextKey: "programme.viewNvidiaTrack",
     },
+    trackC: {
+      room: "C",
+      roomLabelKey: "programme.roomC",
+      tag: "Formation",
+      badgeText: "Axe Employabilité",
+      titleKey: "programme.sessions.d2_genai_title",
+      descKey: "programme.sessions.d2_genai_desc",
+    },
   },
   {
     id: "d2-delib",
@@ -336,6 +344,16 @@ export default function Programme() {
             >
               {t("programme.roomB")}
             </button>
+            <button
+              onClick={() => setSelectedRoom("C")}
+              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
+                selectedRoom === "C"
+                  ? "bg-purple-600 text-white"
+                  : "text-gray-600 hover:bg-gray-100"
+              }`}
+            >
+              {t("programme.roomC")}
+            </button>
           </div>
         </div>
 
@@ -397,8 +415,16 @@ function TimelineRow({ item, selectedRoom }) {
 
   // 2. Parallel Session row
   if (item.type === "parallel") {
-    const showTrackA = selectedRoom === "all" || selectedRoom === "A";
-    const showTrackB = selectedRoom === "all" || selectedRoom === "B";
+    const showTrackA = !!item.trackA && (selectedRoom === "all" || selectedRoom === "A");
+    const showTrackB = !!item.trackB && (selectedRoom === "all" || selectedRoom === "B");
+    const showTrackC = !!item.trackC && (selectedRoom === "all" || selectedRoom === "C");
+    const visibleCount = [showTrackA, showTrackB, showTrackC].filter(Boolean).length;
+    const gridColsCls =
+      visibleCount >= 3
+        ? "grid-cols-1 lg:grid-cols-3"
+        : visibleCount === 2
+        ? "grid-cols-1 lg:grid-cols-2"
+        : "grid-cols-1";
 
     return (
       <div className="py-6 first:pt-2 last:pb-2">
@@ -419,11 +445,7 @@ function TimelineRow({ item, selectedRoom }) {
           </div>
 
           {/* Parallel Columns */}
-          <div
-            className={`flex-1 grid gap-6 ${
-              showTrackA && showTrackB ? "grid-cols-1 lg:grid-cols-2" : "grid-cols-1"
-            }`}
-          >
+          <div className={`flex-1 grid gap-6 ${gridColsCls}`}>
             {/* Track A */}
             {showTrackA && (
               <TrackColumn
@@ -439,6 +461,15 @@ function TimelineRow({ item, selectedRoom }) {
                 track={item.trackB}
                 accentColor={item.trackB.badgeColor === "emerald" ? "emerald" : "indigo"}
                 roomLabel={t(item.trackB.roomLabelKey)}
+              />
+            )}
+
+            {/* Track C */}
+            {showTrackC && (
+              <TrackColumn
+                track={item.trackC}
+                accentColor="purple"
+                roomLabel={t(item.trackC.roomLabelKey)}
               />
             )}
           </div>
@@ -546,17 +577,27 @@ function TrackColumn({ track, accentColor, roomLabel }) {
     : [];
 
   const isEmerald = accentColor === "emerald";
-  const borderCls = isEmerald
-    ? "border-emerald-500"
-    : accentColor === "blue"
-    ? "border-tuncis-blue"
-    : "border-indigo-500";
-
-  const roomTextCls = isEmerald
-    ? "text-emerald-700"
-    : accentColor === "blue"
-    ? "text-tuncis-blue"
-    : "text-indigo-600";
+  const ACCENT_BORDER = {
+    blue: "border-tuncis-blue",
+    indigo: "border-indigo-500",
+    emerald: "border-emerald-500",
+    purple: "border-purple-500",
+  };
+  const ACCENT_TEXT = {
+    blue: "text-tuncis-blue",
+    indigo: "text-indigo-600",
+    emerald: "text-emerald-700",
+    purple: "text-purple-700",
+  };
+  const ACCENT_BADGE = {
+    blue: "bg-amber-100 text-amber-800",
+    indigo: "bg-amber-100 text-amber-800",
+    emerald: "bg-emerald-100 text-emerald-800",
+    purple: "bg-purple-100 text-purple-800",
+  };
+  const borderCls = ACCENT_BORDER[accentColor] || ACCENT_BORDER.indigo;
+  const roomTextCls = ACCENT_TEXT[accentColor] || ACCENT_TEXT.indigo;
+  const badgeCls = ACCENT_BADGE[accentColor] || ACCENT_BADGE.indigo;
 
   return (
     <div className={`border-l-3 ${borderCls} pl-4 py-1 flex flex-col justify-between`}>
@@ -568,11 +609,7 @@ function TrackColumn({ track, accentColor, roomLabel }) {
           </span>
           {track.badgeText && (
             <span
-              className={`text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider ${
-                isEmerald
-                  ? "bg-emerald-100 text-emerald-800"
-                  : "bg-amber-100 text-amber-800"
-              }`}
+              className={`text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider ${badgeCls}`}
             >
               {track.badgeText}
             </span>
