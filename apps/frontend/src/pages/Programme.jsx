@@ -604,26 +604,23 @@ function TrackColumn({ track, accentColor, roomLabel }) {
         )}
 
         {track.prizeKey && (
-          <div className="mt-1 mb-2 bg-tuncis-yellow/15 border border-tuncis-yellow/50 rounded-xl p-3.5">
-            <div className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-full bg-tuncis-yellow/30 flex items-center justify-center shrink-0">
-                <Rocket size={18} className="text-tuncis-blue" />
+          <div className="mt-2 mb-3 bg-gradient-to-br from-tuncis-yellow/25 to-tuncis-yellow/5 border-2 border-tuncis-yellow rounded-2xl p-4 sm:p-5 shadow-sm">
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-11 h-11 rounded-full bg-tuncis-yellow/30 flex items-center justify-center shrink-0">
+                <Rocket size={22} className="text-tuncis-blue" />
               </div>
-              <div>
-                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 block mb-0.5">
-                  {t("programme.prizeLabel")}
-                </span>
-                <p className="text-sm font-semibold text-tuncis-blue leading-snug">
-                  {t(track.prizeKey)}
-                </p>
-                <img
-                  src={novationLogo}
-                  alt="Novation City"
-                  className="mt-2"
-                  style={{ maxHeight: "72px", maxWidth: "72px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
-                />
-              </div>
+              <span className="text-[11px] font-bold uppercase tracking-wider text-amber-800 bg-white/70 px-2.5 py-1 rounded-full">
+                {t("programme.prizeLabel")}
+              </span>
             </div>
+            <p className="text-base sm:text-lg font-bold text-tuncis-blue leading-snug mb-3">
+              {t(track.prizeKey)}
+            </p>
+            <img
+              src={novationLogo}
+              alt="Novation City"
+              style={{ maxHeight: "100px", maxWidth: "100px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
+            />
           </div>
         )}
 
