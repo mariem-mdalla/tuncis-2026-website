@@ -11,8 +11,11 @@ import {
   ChevronRight,
   ArrowRight,
   Sparkles,
-  Info
+  Info,
+  Rocket
 } from "lucide-react";
+
+import novationLogo from "../assets/logos/Novation_logo.png";
 
 // ─── Schedule Definitions ─────────────────────────────────────────────────────
 
@@ -189,6 +192,7 @@ const DAY2_SCHEDULE = [
       titleKey: "programme.sessions.d2_pitch_title",
       descKey: "programme.sessions.d2_pitch_desc",
       juryKey: "programme.sessions.d2_pitch_jury",
+      prizeKey: "programme.sessions.d2_pitch_prize",
       link: "/best-project-award",
       linkTextKey: "programme.viewPitchCall",
     },
@@ -598,6 +602,23 @@ function TrackColumn({ track, accentColor, roomLabel }) {
           <p className="text-xs font-medium text-amber-800 mb-2">
             {t(track.juryKey)}
           </p>
+        )}
+
+        {track.prizeKey && (
+          <div className="mb-2 bg-tuncis-yellow/10 border border-tuncis-yellow/30 rounded-lg px-2.5 py-2">
+            <div className="flex items-start gap-1.5">
+              <Rocket size={13} className="text-tuncis-blue shrink-0 mt-0.5" />
+              <p className="text-xs font-medium text-tuncis-blue">
+                {t(track.prizeKey)}
+              </p>
+            </div>
+            <img
+              src={novationLogo}
+              alt="Novation City"
+              className="mt-1.5 ml-[19px]"
+              style={{ maxHeight: "16px", maxWidth: "90px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
+            />
+          </div>
         )}
 
         {/* Speakers List */}
