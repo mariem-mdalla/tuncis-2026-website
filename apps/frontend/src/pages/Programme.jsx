@@ -191,7 +191,6 @@ const DAY2_SCHEDULE = [
       badgeText: "Compétition",
       titleKey: "programme.sessions.d2_pitch_title",
       descKey: "programme.sessions.d2_pitch_desc",
-      juryKey: "programme.sessions.d2_pitch_jury",
       prizeKey: "programme.sessions.d2_pitch_prize",
       link: "/best-project-award",
       linkTextKey: "programme.viewPitchCall",
@@ -605,19 +604,26 @@ function TrackColumn({ track, accentColor, roomLabel }) {
         )}
 
         {track.prizeKey && (
-          <div className="mb-2 bg-tuncis-yellow/10 border border-tuncis-yellow/30 rounded-lg px-2.5 py-2">
-            <div className="flex items-start gap-1.5">
-              <Rocket size={13} className="text-tuncis-blue shrink-0 mt-0.5" />
-              <p className="text-xs font-medium text-tuncis-blue">
-                {t(track.prizeKey)}
-              </p>
+          <div className="mt-1 mb-2 bg-tuncis-yellow/15 border border-tuncis-yellow/50 rounded-xl p-3.5">
+            <div className="flex items-start gap-3">
+              <div className="w-9 h-9 rounded-full bg-tuncis-yellow/30 flex items-center justify-center shrink-0">
+                <Rocket size={18} className="text-tuncis-blue" />
+              </div>
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-amber-700 block mb-0.5">
+                  {t("programme.prizeLabel")}
+                </span>
+                <p className="text-sm font-semibold text-tuncis-blue leading-snug">
+                  {t(track.prizeKey)}
+                </p>
+                <img
+                  src={novationLogo}
+                  alt="Novation City"
+                  className="mt-2"
+                  style={{ maxHeight: "24px", maxWidth: "130px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
+                />
+              </div>
             </div>
-            <img
-              src={novationLogo}
-              alt="Novation City"
-              className="mt-1.5 ml-[19px]"
-              style={{ maxHeight: "16px", maxWidth: "90px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
-            />
           </div>
         )}
 
