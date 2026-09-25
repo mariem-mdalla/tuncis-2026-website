@@ -35,6 +35,7 @@ const scientific = [
   { name: "Rim Faiez Zitouni",         affiliation: "IHEC Carthage" },
   { name: "Mohamed Ali Mahjoub",       affiliation: "ENISo / Sousse University" },
   { name: "Yemna Sayeb",               affiliation: "ENSI / Manouba University" },
+  { name: "Ahmed Maalel",              affiliation: "ISSATso / Sousse University" },
   { name: "Olfa Chourabi",             affiliation: "IMT Business School, France" },
 ];
 
