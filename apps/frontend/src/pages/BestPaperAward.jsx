@@ -1,6 +1,8 @@
-﻿import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Award, FileText, Megaphone, CheckCircle } from "lucide-react";
+import { Award, FileText, Megaphone, CheckCircle, Rocket } from "lucide-react";
+
+import novationLogo from "../assets/logos/Novation_logo.png";
 
 export default function BestPaperAward() {
   const { t } = useTranslation();
@@ -9,6 +11,7 @@ export default function BestPaperAward() {
     { icon: FileText,     key: "award1" },
     { icon: Megaphone,    key: "award2" },
     { icon: CheckCircle,  key: "award3" },
+    { icon: Rocket,       key: "award4" },
   ];
 
   return (
@@ -52,21 +55,40 @@ export default function BestPaperAward() {
           </h2>
 
           <div className="space-y-4 mb-10">
-            {awardItems.map((item, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1 }}
-                viewport={{ once: true }}
-                className="flex items-start gap-4 p-4 rounded-xl bg-gray-50 border border-gray-100"
-              >
-                <div className="w-10 h-10 rounded-full bg-tuncis-blue/10 flex items-center justify-center shrink-0">
-                  <item.icon size={20} className="text-tuncis-blue" />
-                </div>
-                <p className="text-tuncis-gray font-medium pt-2">{t(`bestPaper.${item.key}`)}</p>
-              </motion.div>
-            ))}
+            {awardItems.map((item, i) => {
+              const isNovation = item.key === "award4";
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`flex items-start gap-4 p-4 rounded-xl border ${
+                    isNovation
+                      ? "bg-tuncis-yellow/10 border-tuncis-yellow/40"
+                      : "bg-gray-50 border-gray-100"
+                  }`}
+                >
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center shrink-0 ${
+                    isNovation ? "bg-tuncis-yellow/20" : "bg-tuncis-blue/10"
+                  }`}>
+                    <item.icon size={20} className="text-tuncis-blue" />
+                  </div>
+                  <div className="flex-1 flex flex-col sm:flex-row sm:items-center gap-3 justify-between">
+                    <p className="text-tuncis-gray font-medium pt-2 sm:pt-0">{t(`bestPaper.${item.key}`)}</p>
+                    {isNovation && (
+                      <img
+                        src={novationLogo}
+                        alt="Novation City"
+                        className="shrink-0 self-start sm:self-center"
+                        style={{ maxHeight: "32px", maxWidth: "140px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
+                      />
+                    )}
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
           <div className="border-t border-gray-100 pt-8">
