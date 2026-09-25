@@ -608,11 +608,14 @@ function TrackColumn({ track, accentColor, roomLabel }) {
             {roomLabel} · {track.tag}
           </span>
           {track.badgeText && (
-            <span
-              className={`text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider ${badgeCls}`}
-            >
-              {track.badgeText}
-            </span>
+            <>
+              {" "}
+              <span
+                className={`text-[10px] font-bold px-1.5 py-0.2 rounded uppercase tracking-wider ${badgeCls}`}
+              >
+                {track.badgeText}
+              </span>
+            </>
           )}
         </div>
 
