@@ -82,7 +82,7 @@ export default function BestPaperAward() {
                         src={novationLogo}
                         alt="Novation City"
                         className="shrink-0 self-start sm:self-center"
-                        style={{ maxHeight: "32px", maxWidth: "140px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
+                        style={{ maxHeight: "64px", maxWidth: "64px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
                       />
                     )}
                   </div>
