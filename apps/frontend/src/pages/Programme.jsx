@@ -620,7 +620,7 @@ function TrackColumn({ track, accentColor, roomLabel }) {
                   src={novationLogo}
                   alt="Novation City"
                   className="mt-2"
-                  style={{ maxHeight: "24px", maxWidth: "130px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
+                  style={{ maxHeight: "72px", maxWidth: "72px", width: "auto", height: "auto", objectFit: "contain", display: "block" }}
                 />
               </div>
             </div>
