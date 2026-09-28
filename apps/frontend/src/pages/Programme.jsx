@@ -250,7 +250,6 @@ const DAY2_SCHEDULE = [
 export default function Programme() {
   const { t } = useTranslation();
   const [activeDay, setActiveDay] = useState("day1");
-  const [selectedRoom, setSelectedRoom] = useState("all"); // "all" | "A" | "B"
 
   const schedule = activeDay === "day1" ? DAY1_SCHEDULE : DAY2_SCHEDULE;
 
@@ -284,7 +283,7 @@ export default function Programme() {
       {/* ── MAIN CONTENT ── */}
       <section className="max-w-4xl mx-auto px-4 sm:px-6 -mt-6 relative z-20">
         {/* ── DAY SELECTOR ── */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 bg-white p-2 rounded-2xl border border-gray-200/90 shadow-sm mb-6">
+        <div className="flex items-center justify-center gap-3 bg-white p-2 rounded-2xl border border-gray-200/90 shadow-sm mb-6">
           {/* Day 1 / Day 2 Tabs */}
           <div className="flex items-center gap-1.5 w-full sm:w-auto">
             <button
@@ -308,60 +307,13 @@ export default function Programme() {
               {t("programme.tabs.day2")}
             </button>
           </div>
-
-          {/* Room Filter */}
-          <div className="flex items-center gap-1 w-full sm:w-auto justify-end border-t sm:border-t-0 pt-2 sm:pt-0 border-gray-100">
-            <span className="text-[11px] font-semibold text-gray-400 mr-1 hidden md:inline">
-              Filtre :
-            </span>
-            <button
-              onClick={() => setSelectedRoom("all")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                selectedRoom === "all"
-                  ? "bg-gray-900 text-white"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              {t("programme.allRooms")}
-            </button>
-            <button
-              onClick={() => setSelectedRoom("A")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                selectedRoom === "A"
-                  ? "bg-tuncis-blue text-white"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              {t("programme.roomA")}
-            </button>
-            <button
-              onClick={() => setSelectedRoom("B")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                selectedRoom === "B"
-                  ? "bg-indigo-600 text-white"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              {t("programme.roomB")}
-            </button>
-            <button
-              onClick={() => setSelectedRoom("C")}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
-                selectedRoom === "C"
-                  ? "bg-purple-600 text-white"
-                  : "text-gray-600 hover:bg-gray-100"
-              }`}
-            >
-              {t("programme.roomC")}
-            </button>
-          </div>
         </div>
 
         {/* ── TIMELINE CARD (Clean White Document) ── */}
         <div className="bg-white rounded-2xl border border-gray-200 shadow-xs p-5 sm:p-8 divide-y divide-gray-100">
           <AnimatePresence mode="wait">
             <motion.div
-              key={`${activeDay}-${selectedRoom}`}
+              key={activeDay}
               initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
@@ -369,11 +321,7 @@ export default function Programme() {
               className="divide-y divide-gray-100"
             >
               {schedule.map((item) => (
-                <TimelineRow
-                  key={item.id}
-                  item={item}
-                  selectedRoom={selectedRoom}
-                />
+                <TimelineRow key={item.id} item={item} />
               ))}
             </motion.div>
           </AnimatePresence>
@@ -390,7 +338,7 @@ export default function Programme() {
 
 // ─── Row Renderer ─────────────────────────────────────────────────────────────
 
-function TimelineRow({ item, selectedRoom }) {
+function TimelineRow({ item }) {
   const { t } = useTranslation();
 
   // 1. Break / Lunch row (Minimal, unobtrusive)
@@ -415,9 +363,9 @@ function TimelineRow({ item, selectedRoom }) {
 
   // 2. Parallel Session row
   if (item.type === "parallel") {
-    const showTrackA = !!item.trackA && (selectedRoom === "all" || selectedRoom === "A");
-    const showTrackB = !!item.trackB && (selectedRoom === "all" || selectedRoom === "B");
-    const showTrackC = !!item.trackC && (selectedRoom === "all" || selectedRoom === "C");
+    const showTrackA = !!item.trackA;
+    const showTrackB = !!item.trackB;
+    const showTrackC = !!item.trackC;
     const visibleCount = [showTrackA, showTrackB, showTrackC].filter(Boolean).length;
     const gridColsCls =
       visibleCount >= 3
