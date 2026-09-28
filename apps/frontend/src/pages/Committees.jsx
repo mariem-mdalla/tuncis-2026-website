@@ -37,6 +37,7 @@ const scientific = [
   { name: "Yemna Sayeb",               affiliation: "ENSI / Manouba University" },
   { name: "Ahmed Maalel",              affiliation: "ISSATso / Sousse University" },
   { name: "Olfa Chourabi",             affiliation: "IMT Business School, France" },
+  { name: "Wissem Fathallah",          affiliation: "Sousse University" },
 ];
 
 const keynotes = [
