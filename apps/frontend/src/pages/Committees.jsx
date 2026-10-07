@@ -38,6 +38,9 @@ const scientific = [
   { name: "Ahmed Maalel",              affiliation: "ISSATso / Sousse University" },
   { name: "Olfa Chourabi",             affiliation: "IMT Business School, France" },
   { name: "Wissem Fathallah",          affiliation: "Sousse University" },
+  { name: "Sahar Mechri",              affiliation: "Managers / IHEC Carthage" },
+  { name: "Nabila Jawadi",             affiliation: "IPAG, France" },
+  { name: "Hajer Kefi",                affiliation: "EMLV, France" },
 ];
 
 const keynotes = [
