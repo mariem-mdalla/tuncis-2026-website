@@ -207,14 +207,6 @@ const DAY2_SCHEDULE = [
       link: "/nvidia-certification",
       linkTextKey: "programme.viewNvidiaTrack",
     },
-    trackC: {
-      room: "C",
-      roomLabelKey: "programme.roomC",
-      tag: "Formation",
-      badgeText: "Axe Employabilité",
-      titleKey: "programme.sessions.d2_genai_title",
-      descKey: "programme.sessions.d2_genai_desc",
-    },
   },
   {
     id: "d2-delib",
