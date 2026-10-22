@@ -46,6 +46,7 @@
     },
     "partnersLabel": "Our Partners",
     "partnersTitle": "Co-constructing innovation together",
+    "supportedBy": "With the support of",
     "partnersSubtitle": "TUNCIS 2026 is supported by leading Tunisian universities, research labs, and international organizations.",
     "viewAllPartners": "View All Partners",
     "sousseCaption": "Sousse, Tunisia – Conference venue",
@@ -176,6 +177,7 @@
   },
   "footer": {
     "description": "Tunisian Conference on Artificial Intelligence and Scientific Innovation. Organized by TunAISia and AIS.",
+    "supportedBy": "With the support of",
     "rights": "© 2026 TUNCIS. All rights reserved.",
     "colExplore": "Explore",
     "colAuthors": "For Authors",
@@ -471,6 +473,8 @@
     "industrial": "Industrial Partners",
     "contactTitle": "Become a Partner",
     "contactText": "Interested in partnering with TUNCIS 2026? Contact us at",
+    "supportedBy": "With the support of",
+    "supportedByName": "Horizon Europe Tunisia",
     "categories": {
       "academic": "Academic Institutions",
       "research": "Research Laboratories",
