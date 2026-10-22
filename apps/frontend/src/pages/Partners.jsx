@@ -27,6 +27,7 @@ import deloitteLogo  from "../assets/logos/Logo_of_Deloitte.svg.webp";
 import proxymLogo    from "../assets/logos/logo-proxym-png.png";
 import novationLogo  from "../assets/logos/Novation_logo.png";
 import draxlLogo     from "../assets/logos/draxlmaier-logo.png";
+import horizonEuropeLogo from "../assets/logos/horizon-europe-logo.png";
 
 const academicList = [
   { key: "uSousse",  src: uSousseLogo },
@@ -138,6 +139,27 @@ export default function Partners() {
       </section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 -mt-8 relative z-20 space-y-16">
+
+        {/* Supported by: Horizon Europe */}
+        <motion.section
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white rounded-2xl shadow-lg border-2 border-tuncis-yellow p-8 sm:p-10 flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 text-center md:text-left"
+        >
+          <div>
+            <p className="uppercase tracking-widest text-sm text-tuncis-blue/70 font-bold mb-2">
+              {t("partners.supportedBy")}
+            </p>
+            <h2 className="font-heading text-2xl sm:text-3xl font-bold text-tuncis-blue">
+              {t("partners.supportedByName")}
+            </h2>
+          </div>
+          <img
+            src={horizonEuropeLogo}
+            alt="Horizon Europe Tunisia"
+            style={{ height: "120px", width: "auto", objectFit: "contain" }}
+          />
+        </motion.section>
 
         {/* Section 1: Academic & Institutional Partners */}
         <motion.section
