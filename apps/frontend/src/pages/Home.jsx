@@ -26,6 +26,7 @@ import carthageLogo  from "../assets/logos/carthage-logo.png";
 import sfaxLogo      from "../assets/logos/sfax-logo.png";
 import miraclLogo    from "../assets/logos/miracl-logo.png";
 import soussePhoto   from "../assets/sousse-hover.jpg";
+import horizonEuropeLogo from "../assets/logos/horizon-europe-logo.png";
 
 export default function Home() {
   const { t } = useTranslation();
@@ -140,6 +141,23 @@ export default function Home() {
             </motion.div>
 
           </div>
+        </div>
+      </section>
+
+      {/* ── SUPPORTED BY: HORIZON EUROPE ── */}
+      <section className="bg-white border-b-4 border-tuncis-yellow py-8 sm:py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-10">
+          <p className="uppercase tracking-widest text-sm sm:text-base text-tuncis-blue font-bold flex items-center gap-3">
+            <span className="w-8 h-0.5 bg-tuncis-yellow inline-block" />
+            {t("home.supportedBy")}
+          </p>
+          <Link to="/partners" aria-label="Horizon Europe Tunisia">
+            <img
+              src={horizonEuropeLogo}
+              alt="Horizon Europe Tunisia"
+              style={{ height: "96px", width: "auto", objectFit: "contain" }}
+            />
+          </Link>
         </div>
       </section>
 
