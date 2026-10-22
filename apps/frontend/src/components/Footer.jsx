@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router";
 import { MapPin, Calendar, Mail, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import horizonEuropeLogo from "../assets/logos/horizon-europe-logo.png";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -41,6 +42,19 @@ export default function Footer() {
           <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
             {t("footer.description")}
           </p>
+
+          <div className="pt-2">
+            <p className="uppercase tracking-wider text-[11px] text-tuncis-yellow font-bold mb-2">
+              {t("footer.supportedBy")}
+            </p>
+            <div className="bg-white rounded-xl px-4 py-3 inline-block">
+              <img
+                src={horizonEuropeLogo}
+                alt="Horizon Europe Tunisia"
+                style={{ height: "48px", width: "auto", objectFit: "contain" }}
+              />
+            </div>
+          </div>
 
           <div className="space-y-2 pt-2 text-xs text-white/80">
             <p className="flex items-center gap-2.5">
